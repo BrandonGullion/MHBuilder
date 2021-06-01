@@ -3,14 +3,16 @@ using System;
 using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210601180419_UpdatedWeaponClass")]
+    partial class UpdatedWeaponClass
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -174,7 +176,13 @@ namespace Data.Migrations
                     b.Property<string>("PhialOrShellingType")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("PreviousWeapon")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("PurpleSharpness")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("RampageSkillId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("RampageSlots")
@@ -186,10 +194,10 @@ namespace Data.Migrations
                     b.Property<int>("RedSharpness")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("StringRampageSkills")
+                    b.Property<string>("Type")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Type")
+                    b.Property<string>("UpgradeWeapon")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("WhiteSharpness")
@@ -199,6 +207,8 @@ namespace Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("RampageSkillId");
 
                     b.ToTable("Weapons");
                 });
@@ -210,6 +220,15 @@ namespace Data.Migrations
                         .HasForeignKey("SkillId");
 
                     b.Navigation("Skill");
+                });
+
+            modelBuilder.Entity("Classes.Weapon", b =>
+                {
+                    b.HasOne("Classes.Skill", "RampageSkill")
+                        .WithMany()
+                        .HasForeignKey("RampageSkillId");
+
+                    b.Navigation("RampageSkill");
                 });
 #pragma warning restore 612, 618
         }

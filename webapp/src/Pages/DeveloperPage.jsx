@@ -18,7 +18,7 @@ export default function DeveloperPage() {
 
     // Whenever the skill list is updated, then the skill list options will be updated
     useEffect(() => {
-        skillList.sort((a,b) => a.name > b.name ? 1 : -1);
+        skillList.sort((a, b) => (a.name > b.name ? 1 : -1));
         skillList.forEach((skill) => {
             setSkillListOptions((prevArray) => [
                 ...prevArray,
@@ -29,7 +29,7 @@ export default function DeveloperPage() {
 
     // Submits armor to the db
     const handleArmorSubmit = () => {
-        console.log("Submitting armor to server");
+        console.log("Armor Post request made");
 
         console.log(armor);
 
@@ -39,11 +39,18 @@ export default function DeveloperPage() {
     };
     // Submits new skill to db
     const handleSkillSubmit = () => {
-        console.log("Post request made");
+        console.log("Skill Post request made");
         axios
             .post("http://localhost:5000/api/skill", skill)
             .then((response) => console.log(response));
     };
+
+    const handleWeaponSubmit = () => {
+        console.log("Weapon Post request made");
+        axios
+            .post("http://localhost:5000/api/weapon", weapon)
+            .then((response) => console.log(response));
+    }
 
     // Skill type array for skill drop down menu
     const skillTypeOptions = [
@@ -85,6 +92,45 @@ export default function DeveloperPage() {
         decoSlot3Lvl: 0,
         stringSkills: "",
         rank: "",
+    };
+
+    const weapon = {
+        name: "",
+        type: "",
+        rarity: 0,
+        defenseIncrease: 0,
+        phialOrShellingType: "",
+        damage: 0,
+        elementType: "",
+        elementalDamage: 0,
+        affinity: 0,
+        redSharpness: 0,
+        orangeSharpness: 0,
+        yellowSharpness: 0,
+        greenSharpness: 0,
+        blueSharpness: 0,
+        whiteSharpness: 0,
+        purpleSharpness: 0,
+        rampageSlots: 0,
+        stringRampageSkills: "",
+        decoSlot1Lvl: 0,
+        decoSlot2Lvl: 0,
+        decoSlot3Lvl: 0,
+    };
+
+    const setSharpnessValues = (stringOfInts) => {
+        console.log("Sharpness values were changed");
+        let arrayOfSharpness = stringOfInts.split(",");
+        if (arrayOfSharpness.length === 7) {
+            weapon.redSharpness = arrayOfSharpness[0];
+            weapon.orangeSharpness = arrayOfSharpness[1];
+            weapon.yellowSharpness = arrayOfSharpness[2];
+            weapon.greenSharpness = arrayOfSharpness[3];
+            weapon.blueSharpness = arrayOfSharpness[4];
+            weapon.whiteSharpness = arrayOfSharpness[5];
+            weapon.purpleSharpness = arrayOfSharpness[6];
+            console.log(weapon);
+        }
     };
 
     return (
@@ -247,6 +293,104 @@ export default function DeveloperPage() {
                         Submit
                     </button>
                 </div>
+            </div>
+
+            {/* Add Weapon Div */}
+            <div>
+                <label>Add new weapon</label>
+                <div
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        marginLeft: "10px",
+                    }}
+                >
+                    <label>Name</label>
+                    <input
+                        onChange={(e) => (weapon.name = e.target.value)}
+                    ></input>
+                    <label>Type</label>
+                    <input
+                        onChange={(e) => (weapon.type = e.target.value)}
+                    ></input>
+                    <label>Rarity</label>
+                    <input
+                        type="number"
+                        onChange={(e) => (weapon.rarity = e.target.value)}
+                    ></input>
+                    <label>Defense Increase</label>
+                    <input
+                        type="number"
+                        onChange={(e) =>
+                            (weapon.defenseIncrease = e.target.value)
+                        }
+                    ></input>
+                    <label>Phial Or Shelling</label>
+                    <input
+                        onChange={(e) =>
+                            (weapon.phialOrShellingType = e.target.value)
+                        }
+                    ></input>
+                    <label>Damage</label>
+                    <input
+                        type="number"
+                        onChange={(e) => (weapon.damage = e.target.value)}
+                    ></input>
+                    <label>Element Type</label>
+                    <input
+                        onChange={(e) => (weapon.elementType = e.target.value)}
+                    ></input>
+                    <label>Elemental Damage</label>
+                    <input
+                        type="number"
+                        onChange={(e) =>
+                            (weapon.elementalDamage = e.target.value)
+                        }
+                    ></input>
+                    <label>Affinity</label>
+                    <input
+                        onChange={(e) => (weapon.affinity = e.target.value)}
+                    ></input>
+                    <label>R, O, Y, G, B, W, P</label>
+                    <input
+                        onChange={(e) => setSharpnessValues(e.target.value)}
+                    ></input>
+                    <label>Rampage Slots</label>
+                    <input
+                        type="number"
+                        onChange={(e) => (weapon.rampageSlots = e.target.value)}
+                    ></input>
+                    <label>String Rampage Slots</label>
+                    <input
+                        onChange={(e) => (weapon.stringRampageSkills = e.target.value)}
+                    ></input>
+                </div>
+            </div>
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    marginLeft: "10px",
+                    marginTop: "31px",
+                }}
+            >
+                <label>Deco Slot 1 Lvl</label>
+                <input
+                    type="number"
+                    onChange={(e) => (weapon.decoSlot1Lvl = e.target.value)}
+                ></input>
+                <label>Deco Slot 2 Lvl</label>
+                <input
+                    type="number"
+                    onChange={(e) => (weapon.decoSlot2Lvl = e.target.value)}
+                ></input>{" "}
+                <label>Deco Slot 3 Lvl</label>
+                <input
+                    type="number"
+                    onChange={(e) => (weapon.decoSlot3Lvl = e.target.value)}
+                ></input>
+                <button onClick={() => console.log(weapon)}>Validate</button>
+                <button onClick={handleWeaponSubmit}>Submit</button>
             </div>
         </div>
     );

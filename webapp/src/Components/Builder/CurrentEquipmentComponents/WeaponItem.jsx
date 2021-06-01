@@ -2,14 +2,19 @@ import React from "react";
 import { BsShieldShaded } from "react-icons/bs";
 import { GiBroadsword, GiSwordWound } from "react-icons/gi";
 import { RiSwordFill } from "react-icons/ri";
+import SharpnessBar from "../SharpnessBar";
 
 export default function WeaponItem(props) {
     const { weapon, dispatch } = props;
 
     if (weapon !== undefined) {
         return (
-            <div className="glass-card armor-item rounded-corners"
-                 onClick={() => dispatch({ type: "SET_WEAPON", payload: weapon })}>
+            <div
+                className="glass-card armor-item rounded-corners"
+                onClick={() =>
+                    dispatch({ type: "SET_WEAPON", payload: weapon })
+                }
+            >
                 <div
                     className="glass-card-header"
                     style={{ padding: "0px 15px 10px", fontSize: "2.2rem" }}
@@ -17,8 +22,19 @@ export default function WeaponItem(props) {
                     <GiBroadsword></GiBroadsword>
                 </div>
                 <div className="glass-card-content armor-item-content">
-                    <h4 className="pad-left-10 pad-top-5">{weapon.name}</h4>
                     <div className="flex-container justify-space-around">
+                        <h4 className="pad-left-10 pad-top-5">{weapon.name}</h4>
+                        <SharpnessBar
+                            redSharpness={weapon.redSharpness}
+                            orangeSharpness={weapon.orangeSharpness}
+                            yellowSharpness={weapon.yellowSharpness}
+                            greenSharpness={weapon.greenSharpness}
+                            blueSharpness={weapon.blueSharpness}
+                            whiteSharpness={weapon.whiteSharpness}
+                            purpleSharpness={weapon.purpleSharpness}
+                        ></SharpnessBar>
+                    </div>
+                    <div className="flex-container justify-content-start">
                         <div>
                             <RiSwordFill
                                 style={{ padding: "6 10 10 10" }}

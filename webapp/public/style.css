@@ -577,16 +577,20 @@ h5 {
 
 .armor-popup{
     background-color: var(--header-background);
-    border-radius: 5px;
-    box-shadow: 0 0 5px var(--hightlightblue);
+    border-radius: 3px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: var(--hightlightblue);
     color:var(--lightergrey);
     padding: 5px  20px 5px 25px;
 }
 
 .skill-popup{
     background-color: var(--header-background);
-    border-radius: 5px;
-    box-shadow: 0 0 5px var(--hightlightblue);
+    border-radius: 3px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: var(--hightlightblue);
     color:var(--lightergrey);
     padding: 5px  20px 5px 25px;
 }
@@ -610,4 +614,16 @@ h5 {
 
 .radio-button label{
     cursor: pointer;
+}
+
+.weapon-sharpness-bar{
+    border-radius: 10px;
+    border-width: 1px;
+    overflow: hidden;
+    background-color: var(--icone-hover);
+    width: 150px;
+    height: 10px;
+    display: flex;
+    justify-content: left;
+    margin: 11px 0 10px 30px;
 }

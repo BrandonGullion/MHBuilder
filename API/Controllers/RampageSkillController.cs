@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -5,42 +6,43 @@ using Classes;
 using Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
 namespace API.Controllers
 {
-    public class WeaponController : BaseApiController
+    public class RampageSkillController : BaseApiController
     {
         private readonly DataContext _context;
-        public WeaponController(DataContext context)
+
+        RampageSkillController(DataContext context)
         {
             _context = context;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Weapon>>> GetWeapons()
+        public async Task<ActionResult<List<RampageSkill>>> GetRampageSkills()
         {
-            return await _context.Weapons.ToListAsync();
+            return await _context.RampageSkills.ToListAsync();
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateWeapon(object data) 
+        public async Task<IActionResult> CreateRampageSkill(object data)
         {
+            // Save new weapon to database
             try
             {
                 var stringData = data.ToString();
-                Weapon weapon = JsonConvert.DeserializeObject<Weapon>(stringData);
-                _context.Add(weapon);
+                RampageSkill rampageSkill = JsonConvert.DeserializeObject<RampageSkill>(stringData);
+                _context.Add(rampageSkill);
                 await _context.SaveChangesAsync();
                 return Ok();
             }
+            // Return 404 not found if there is an error
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
                 return NotFound();
             }
         }
-
     }
 }

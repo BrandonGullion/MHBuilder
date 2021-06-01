@@ -9,6 +9,7 @@ namespace Data
         public DbSet<Skill> Skills { get; set; }
         public DbSet<Armor> Armors { get; set; }
         public DbSet<Weapon> Weapons { get; set; }
+        public DbSet<RampageSkill> RampageSkills { get; set; }
 
         public DataContext (DbContextOptions options) : base(options)
         {
