@@ -265,7 +265,7 @@ export default function WeaponTabContent(props) {
     };
 
     return (
-        <div>
+        <div style={{overflowY:"scroll", maxHeight:"700px"}}>
             <div style={{ padding: "10px 10px" }}>
                 <ComboBoxComponent
                     fields={weaponFields}

@@ -15,7 +15,7 @@ namespace Classes
         public int Rarity { get; set; }
         public int DefenseIncrease { get; set; }
         public string PhialOrShellingType { get; set; }
-        public double Damage { get; set; }
+        public int Damage { get; set; }
         public string ElementType { get; set; }
         public double ElementalDamage { get; set; }
         public double Affinity { get; set; }
@@ -23,18 +23,19 @@ namespace Classes
 
         // Sharpness Integers
 
-        public int RedSharpness { get; set; }
-        public int OrangeSharpness { get; set; }
-        public int YellowSharpness { get; set; }
-        public int GreenSharpness { get; set; }
-        public int BlueSharpness { get; set; }
-        public int WhiteSharpness { get; set; }
-        public int PurpleSharpness { get; set; }
+        public double RedSharpness { get; set; }
+        public double OrangeSharpness { get; set; }
+        public double YellowSharpness { get; set; }
+        public double GreenSharpness { get; set; }
+        public double BlueSharpness { get; set; }
+        public double WhiteSharpness { get; set; }
+        public double PurpleSharpness { get; set; }
 
 
         // Rampage skills 
-        public int RampageSlots { get; set; }
         public string StringRampageSkills { get; set; }
+        [NotMapped]
+        public List<RampageSkill> RampageSkills { get; set; }
 
         // Decoration slots and their level 
         public int DecoSlot1Lvl { get; set; }

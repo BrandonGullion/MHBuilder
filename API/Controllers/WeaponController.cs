@@ -30,8 +30,8 @@ namespace API.Controllers
             try
             {
                 var stringData = data.ToString();
-                Weapon weapon = JsonConvert.DeserializeObject<Weapon>(stringData);
-                _context.Add(weapon);
+                List<Weapon> dataList = JsonConvert.DeserializeObject<List<Weapon>>(stringData);
+                _context.AddRange(dataList);
                 await _context.SaveChangesAsync();
                 return Ok();
             }

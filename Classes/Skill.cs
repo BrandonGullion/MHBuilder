@@ -11,9 +11,6 @@ namespace Classes
         public int Id { get; set; }
         public string Name { get; set; }
 
-        // Enum for either normal or rampage 
-        public string Type { get; set; }
-
         // Skill description 
         public string Description { get; set; }
 

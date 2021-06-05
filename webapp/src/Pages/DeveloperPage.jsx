@@ -2,17 +2,23 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
+import lanceData from "../SeedingDataFromWebsite/lanceData";
 
 export default function DeveloperPage() {
     // Generates a list of skills to select
     const [skillList, setSkillList] = useState([]);
     const [skillListOptions, setSkillListOptions] = useState([]);
+    const [rampageSkillList, setRampageSkillList] = useState([]);
+    const [rampageSkillListOptions, setRampageSkillListOptions] = useState([]);
 
     // Populate skill data at start of page loading
     useEffect(() => {
         // Gets a list of skills to be displayed in the select tag
         axios.get("http://localhost:5000/api/skill").then((response) => {
             setSkillList(response.data);
+        });
+        axios.get("http://localhost:5000/api/RampageSkill").then((response) => {
+            setRampageSkillList(response.data);
         });
     }, []);
 
@@ -26,6 +32,20 @@ export default function DeveloperPage() {
             ]);
         });
     }, [skillList]);
+
+    useEffect(() => {
+        rampageSkillList.sort((a, b) => (a.name > b.name ? 1 : -1));
+        rampageSkillList.forEach((rampageSkill) => {
+            setRampageSkillListOptions((prevArray) => [
+                ...prevArray,
+                {
+                    key: rampageSkill.id,
+                    value: rampageSkill.id,
+                    label: rampageSkill.name,
+                },
+            ]);
+        });
+    }, [rampageSkillList]);
 
     // Submits armor to the db
     const handleArmorSubmit = () => {
@@ -50,6 +70,17 @@ export default function DeveloperPage() {
         axios
             .post("http://localhost:5000/api/weapon", weapon)
             .then((response) => console.log(response));
+    };
+
+    const handleRampageSkillSubmit = () => {
+        console.log("Weapon Post request made");
+        axios
+            .post("http://localhost:5000/api/rampageskill", rampageSkill)
+            .then((response) => console.log(response));
+    };
+
+    const handleWeaponSeedSubmit = (data) => {
+        axios.post("http://localhost:5000/api/weapon", data).then(response => console.log(response));
     }
 
     // Skill type array for skill drop down menu
@@ -67,7 +98,6 @@ export default function DeveloperPage() {
     // Beginning Instance of skill
     const skill = {
         name: "",
-        type: "",
         description: "",
         stats: "",
         statType: "",
@@ -111,11 +141,15 @@ export default function DeveloperPage() {
         blueSharpness: 0,
         whiteSharpness: 0,
         purpleSharpness: 0,
-        rampageSlots: 0,
         stringRampageSkills: "",
         decoSlot1Lvl: 0,
         decoSlot2Lvl: 0,
         decoSlot3Lvl: 0,
+    };
+
+    const rampageSkill = {
+        name: "",
+        description: "",
     };
 
     const setSharpnessValues = (stringOfInts) => {
@@ -255,10 +289,6 @@ export default function DeveloperPage() {
                     <input
                         onChange={(e) => (skill.name = e.target.value)}
                     ></input>
-                    <label>Type</label>
-                    <input
-                        onChange={(e) => (skill.type = e.target.value)}
-                    ></input>
                     <label>Description</label>
                     <textarea
                         style={{ fontSize: "14px", height: "100px" }}
@@ -355,17 +385,9 @@ export default function DeveloperPage() {
                     <input
                         onChange={(e) => setSharpnessValues(e.target.value)}
                     ></input>
-                    <label>Rampage Slots</label>
-                    <input
-                        type="number"
-                        onChange={(e) => (weapon.rampageSlots = e.target.value)}
-                    ></input>
-                    <label>String Rampage Slots</label>
-                    <input
-                        onChange={(e) => (weapon.stringRampageSkills = e.target.value)}
-                    ></input>
                 </div>
-            </div>
+            </div> 
+
             <div
                 style={{
                     display: "flex",
@@ -374,6 +396,19 @@ export default function DeveloperPage() {
                     marginTop: "31px",
                 }}
             >
+                <label>Rampage Skills</label>
+                {/* Create the select list of skills for armor */}
+                <Dropdown
+                    options={rampageSkillListOptions}
+                    placeholder="Skills"
+                    onChange={(e) =>
+                        (weapon.stringRampageSkills =
+                            weapon.stringRampageSkills + e.value + "*")
+                    }
+                ></Dropdown>
+
+                <button onClick={() => weapon.stringRampageSkills = ""}>Clear Rampage Skills</button>
+
                 <label>Deco Slot 1 Lvl</label>
                 <input
                     type="number"
@@ -391,6 +426,35 @@ export default function DeveloperPage() {
                 ></input>
                 <button onClick={() => console.log(weapon)}>Validate</button>
                 <button onClick={handleWeaponSubmit}>Submit</button>
+            </div>
+
+            {/*Rampage skill */}
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    marginLeft: "10px",
+                }}
+            >
+                <label>Add Rampage Skill</label>
+                <label>Name</label>
+                <input
+                    onChange={(e) => (rampageSkill.name = e.target.value)}
+                ></input>
+                <label>Description</label>
+                <textarea
+                    onChange={(e) =>
+                        (rampageSkill.description = e.target.value)
+                    }
+                ></textarea>
+                <button onClick={() => console.log(rampageSkill)}>
+                    Validate
+                </button>
+                <button onClick={handleRampageSkillSubmit}>Submit</button>
+                <hr></hr>
+                <div>
+                    <button onClick={() => handleWeaponSeedSubmit(lanceData)}>Seed Great Sword</button>
+                </div>
             </div>
         </div>
     );

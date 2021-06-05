@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,7 +13,7 @@ namespace API.Controllers
     {
         private readonly DataContext _context;
 
-        RampageSkillController(DataContext context)
+        public RampageSkillController(DataContext context)
         {
             _context = context;
         }
