@@ -3,14 +3,16 @@ using System;
 using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210605171006_AddedShelling")]
+    partial class AddedShelling
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -155,14 +157,8 @@ namespace Data.Migrations
                     b.Property<double>("Affinity")
                         .HasColumnType("REAL");
 
-                    b.Property<string>("ArcShot")
-                        .HasColumnType("TEXT");
-
                     b.Property<double>("BlueSharpness")
                         .HasColumnType("REAL");
-
-                    b.Property<string>("BowGunSpecs")
-                        .HasColumnType("TEXT");
 
                     b.Property<int>("Damage")
                         .HasColumnType("INTEGER");
@@ -188,9 +184,6 @@ namespace Data.Migrations
                     b.Property<double>("GreenSharpness")
                         .HasColumnType("REAL");
 
-                    b.Property<string>("Melody")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
@@ -212,7 +205,7 @@ namespace Data.Migrations
                     b.Property<int>("ShellingLevel")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("ShotType")
+                    b.Property<string>("ShellingType")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("StringRampageSkills")

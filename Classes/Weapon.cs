@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Classes
 {
@@ -15,10 +11,17 @@ namespace Classes
         public int Rarity { get; set; }
         public int DefenseIncrease { get; set; }
         public string PhialOrShellingType { get; set; }
+        public string Melody { get; set; }
+        public int ShellingLevel { get; set; }
         public int Damage { get; set; }
         public string ElementType { get; set; }
         public double ElementalDamage { get; set; }
         public double Affinity { get; set; }
+        public string ArcShot { get; set; }
+        public string ShotType { get; set; }
+
+        // Deviation, recoil, reload, cluster, special ammo
+        public string BowGunSpecs { get; set; }
 
 
         // Sharpness Integers
@@ -41,6 +44,5 @@ namespace Classes
         public int DecoSlot1Lvl { get; set; }
         public int DecoSlot2Lvl { get; set; }
         public int DecoSlot3Lvl { get; set; }
-
     }
 }
