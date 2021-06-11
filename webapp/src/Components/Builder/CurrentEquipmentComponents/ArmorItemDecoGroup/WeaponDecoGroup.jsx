@@ -1,6 +1,6 @@
 import React from "react";
 import DecorationItem from "../DecorationItem";
-import WeaponItem from "../WeaponItem";
+import CurrentWeaponItem from "./CurrentWeaponItem";
 
 export default function WeaponDecoGroup(props) {
     const { currentWeapon } = props;
@@ -8,7 +8,7 @@ export default function WeaponDecoGroup(props) {
     // Only render if the weapon is not undefined... idfk why this keeps happening when
     // whole page should only render when all api data is loaded... love js
     return <div>
-        <WeaponItem weapon={currentWeapon}></WeaponItem>
+        <CurrentWeaponItem weapon={currentWeapon}></CurrentWeaponItem>
         <DecorationItem armorPiece={currentWeapon}></DecorationItem>
     </div>;
 }

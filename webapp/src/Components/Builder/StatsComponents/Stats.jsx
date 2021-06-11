@@ -59,6 +59,7 @@ export default function Stats(props) {
             let initialStats = {
                 defense: 0,
                 attack: 0,
+                affinity: 0,
                 fRes: 0,
                 wRes: 0,
                 tRes: 0,
@@ -78,17 +79,19 @@ export default function Stats(props) {
             });
 
             initialStats.attack += state.weapon.damage;
+            initialStats.affinity += state.weapon.affinity;
 
             setCurrentStats((prevStats) => {
                 return {
                     ...prevStats,
-                    attack:initialStats.attack,
+                    attack: initialStats.attack,
+                    affinity: initialStats.affinity,
                     defense: initialStats.defense,
                     fireRes: initialStats.fRes,
-                    waterRes:initialStats.wRes,
-                    thunderRes:initialStats.tRes,
-                    iceRes:initialStats.iRes, 
-                    dragonRes:initialStats.dRes
+                    waterRes: initialStats.wRes,
+                    thunderRes: initialStats.tRes,
+                    iceRes: initialStats.iRes,
+                    dragonRes: initialStats.dRes,
                 };
             });
         };
@@ -98,52 +101,75 @@ export default function Stats(props) {
     }, [state, weapon, helm, arms, chest, coil, legs, skills]);
 
     return (
-        <div className="glass-card stats-container">
-            <div className="glass-card-header">
-                <h2>Stats</h2>
+        <div>
+            <div
+                className="glass-card"
+                style={{ width: "300px", margin: "15px 0px 5px 5px" }}
+            >
+                <div className="glass-card-header">
+                    <h2 className="pad-left-10">Stats</h2>
+                </div>
+                <div
+                    className="glass-card-content"
+                    style={{ display: "flex", flexDirection: "column" }}
+                >
+                    <StatItem
+                        statName="Attack"
+                        value={currentStats.attack}
+                    ></StatItem>
+                    <StatItem
+                        statName="Defense"
+                        value={currentStats.defense}
+                    ></StatItem>
+                    <StatItem
+                        statName="Affinity"
+                        value={currentStats.affinity}
+                    ></StatItem>
+                </div>
             </div>
             <div
-                className="glass-card-content"
-                style={{ display: "flex", flexDirection: "column" }}
+                className="glass-card"
+                style={{ width: "300px", margin: "5px 0px 5px 5px" }}
             >
-                <StatItem
-                    statName="Attack"
-                    value={currentStats.attack}
-                ></StatItem>
-                <StatItem
-                    statName="Defense"
-                    value={currentStats.defense}
-                ></StatItem>
-                <div className="dotted-linebreak"></div>
-                <StatItem
-                    statName="Fire Resistance"
-                    value={currentStats.fireRes}
-                ></StatItem>
-                <StatItem
-                    statName="Water Resistance"
-                    value={currentStats.waterRes}
-                ></StatItem>
-                <StatItem
-                    statName="Thunder Resistance"
-                    value={currentStats.thunderRes}
-                ></StatItem>
-                <StatItem
-                    statName="Ice Resistance"
-                    value={currentStats.iceRes}
-                ></StatItem>
-                <StatItem
-                    statName="Dragon Resistance"
-                    value={currentStats.dragonRes}
-                ></StatItem>
+                <div className="glass-card-header">
+                    <h2 className="pad-left-10">Resistances</h2>
+                </div>
+                <div className="glass-card-content">
+                    <StatItem
+                        statName="Fire Resistance"
+                        value={currentStats.fireRes}
+                    ></StatItem>
+                    <StatItem
+                        statName="Water Resistance"
+                        value={currentStats.waterRes}
+                    ></StatItem>
+                    <StatItem
+                        statName="Thunder Resistance"
+                        value={currentStats.thunderRes}
+                    ></StatItem>
+                    <StatItem
+                        statName="Ice Resistance"
+                        value={currentStats.iceRes}
+                    ></StatItem>
+                    <StatItem
+                        statName="Dragon Resistance"
+                        value={currentStats.dragonRes}
+                    ></StatItem>
+                </div>
+            </div>
+            <div className="glass-card" style={{ margin: "10px 0px 5px 5px" }}>
+                <div className="glass-card-header">
+                    <h2 className="pad-left-10">Skills</h2>
+                </div>
+                <div className="glass-card-content">
 
-                <br />
-                <h3>Skills</h3>
                 {filteredSkills.map((skillObject) => (
                     <SkillItem
                         key={skillObject.skill.name}
                         skillObject={skillObject}
                     ></SkillItem>
                 ))}
+                </div>
             </div>
         </div>
     );

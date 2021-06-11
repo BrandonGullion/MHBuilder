@@ -1,6 +1,6 @@
 import React from "react";
 import { RiVipDiamondLine } from "react-icons/ri";
-import { IoIosCloseCircleOutline, IoMdClose } from "react-icons/io";
+import { IoMdClose } from "react-icons/io";
 import DecorationLvl1 from "./DecorationsSVG/DecorationLvl1";
 import DecorationLvl2 from "./DecorationsSVG/DecorationLvl2";
 import DecorationLvl3 from "./DecorationsSVG/DecorationLvl3";
@@ -82,42 +82,31 @@ export default function DecorationItem(props) {
         <div className="flex-container">
             <div
                 id="deco-container1"
-                className="glass-card deco-container rounded-corners"
+                className="glass-card deco-container-1 rounded-corners white-border-hover"
+                style={{padding:"0px"}}
             >
                 {GenerateDecoIcon(armorPiece.decoSlot1Lvl)}
                 {/* Decoration 1  */}
                 <span className="deco-content">Deco Name</span>
-                <IoIosCloseCircleOutline
-                    id="remove-deco-1"
-                    className="remove-circle-right"
-                    onClick={() => console.log("Clicked!")}
-                ></IoIosCloseCircleOutline>
             </div>
             <div
                 id="deco-container2"
-                className=" glass-card deco-container rounded-corners"
+                className=" glass-card deco-container-2 rounded-corners white-border-hover"
+                style={{padding:"0px"}}
             >
                 {/* Decoration 2  */}
                 {GenerateDecoIcon(armorPiece.decoSlot2Lvl)}
 
                 <span className="deco-content">Deco Name</span>
-                <IoIosCloseCircleOutline
-                    id="remove-deco-2"
-                    className="remove-circle-right"
-                ></IoIosCloseCircleOutline>
             </div>
             <div
                 id="deco-container3"
-                className="glass-card deco-container rounded-corners"
+                className="glass-card deco-container-3 rounded-corners white-border-hover"
+                style={{padding:"0px"}}
             >
                 {/* Decoration 3  */}
                 {GenerateDecoIcon(armorPiece.decoSlot3Lvl)}
-
                 <span className="deco-content">Deco Name</span>
-                <IoIosCloseCircleOutline
-                    id="remove-deco-3"
-                    className="remove-circle-right"
-                ></IoIosCloseCircleOutline>
             </div>
         </div>
     );

@@ -12,51 +12,65 @@ export default function SharpnessBar(props) {
     } = props;
 
     return (
-        <div className="weapon-sharpness-bar">
-            <div
-                id="redSharpness"
-                style={{
-                    height: "10px",
-                    backgroundColor: "red",
-                    width: `${redSharpness}%`,
-                }}
-            ></div>
-            <div
-                id="orangeSharpness"
-                style={{
-                    height: "10px",
-                    backgroundColor: "orange",
-                    width: `${orangeSharpness}%`,
-                }}
-            ></div>
-            <div
-                id="yellowSharpness"
-                style={{
-                    height: "10px",
-                    backgroundColor: "yellow",
-                    width: `${yellowSharpness}%`,
-                }}
-            ></div>
-            <div
-                id="greenSharpness"
-                style={{
-                    height: "10px",
-                    backgroundColor: "green",
-                    width: `${greenSharpness}%`,
-                }}
-            ></div>
-            <div
-                id="blueSharpness"
-                style={{height:"10px", backgroundColor:"blue", width: `${blueSharpness}%` }}
-            ></div>
-            <div
-                id="whiteSharpness"
-                style={{height:"10px", backgroundColor:"white", width: `${whiteSharpness}%` }}
-            ></div>
-            <div
-                id="purpleSharpness"
-                style={{ height:"10px", backgroundColor:"purpleSharpness", width: `${purpleSharpness}%` }}
-            ></div>
+        <div className="weapon-sharpness-container">
+            <div className="weapon-sharpness-bar">
+                <div
+                    id="redSharpness"
+                    style={{
+                        height: "10px",
+                        backgroundColor: "#c7362c",
+                        width: `${redSharpness}%`,
+                    }}
+                ></div>
+                <div
+                    id="orangeSharpness"
+                    style={{
+                        height: "10px",
+                        backgroundColor: "#de7e1f",
+                        width: `${orangeSharpness}%`,
+                    }}
+                ></div>
+                <div
+                    id="yellowSharpness"
+                    style={{
+                        height: "10px",
+                        backgroundColor: "#e3b249",
+                        width: `${yellowSharpness}%`,
+                    }}
+                ></div>
+                <div
+                    id="greenSharpness"
+                    style={{
+                        height: "10px",
+                        backgroundColor: "#36a836",
+                        width: `${greenSharpness}%`,
+                    }}
+                ></div>
+                <div
+                    id="blueSharpness"
+                    style={{
+                        height: "10px",
+                        backgroundColor: "#444fdb",
+                        width: `${blueSharpness}%`,
+                    }}
+                ></div>
+                <div
+                    id="whiteSharpness"
+                    style={{
+                        height: "10px",
+                        backgroundColor: "white",
+                        width: `${whiteSharpness}%`,
+                    }}
+                ></div>
+                <div
+                    id="purpleSharpness"
+                    style={{
+                        height: "10px",
+                        backgroundColor: "purpleSharpness",
+                        width: `${purpleSharpness}%`,
+                    }}
+                ></div>
+            </div>
         </div>
     );
 }

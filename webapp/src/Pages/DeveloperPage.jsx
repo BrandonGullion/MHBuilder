@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
-import lightBowgunData from "../SeedingDataFromWebsite/lightBowgunData"
-import heavyBowgunData from "../SeedingDataFromWebsite/heavyBowgunData";
+import swordAndShieldData from "../SeedingDataFromWebsite/swordAndShieldData";
 
 export default function DeveloperPage() {
     // Generates a list of skills to select
@@ -454,7 +453,7 @@ export default function DeveloperPage() {
                 <button onClick={handleRampageSkillSubmit}>Submit</button>
                 <hr></hr>
                 <div>
-                    <button onClick={() => handleWeaponSeedSubmit(heavyBowgunData)}>Seed Great Sword</button>
+                    <button onClick={() => handleWeaponSeedSubmit(swordAndShieldData)}>Seed Great Sword</button>
                 </div>
             </div>
         </div>

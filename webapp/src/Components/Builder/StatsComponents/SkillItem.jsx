@@ -12,7 +12,7 @@ export default function SkillItem(props) {
         <Popup
             content={<SkillPopUp skillObject={skillObject}></SkillPopUp>}
             trigger={
-                <div style={{ display: "flex", position: "relative", cursor:"pointer", margin:"5px 0px" }}>
+                <div style={{ display: "flex", position: "relative", cursor:"pointer", margin:"10px 0px" }}>
                     <FiHexagon
                         style={{
                             fontSize: "10px",

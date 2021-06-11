@@ -1,6 +1,7 @@
 :root {
     --background: #242a31;
     --header-background: #2b343b;
+    --light-background: #3d464d;
     --icone-hover: #3c444b;
     --hightlightblue: #00adb5;
     --lightergrey: #cccccc;
@@ -11,7 +12,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: var(--test);
+    background-color: var(--light-background);
     padding-left: 80px;
     padding-top: 15px;
     font-family: "Open Sans", sans-serif;
@@ -103,7 +104,6 @@ h5 {
     border-radius: 3px 3px 0 0;
 }
 
-
 /********************* Syncfusion Combobox *********************/
 
 .e-ddl.e-input-group.e-control-wrapper.e-input {
@@ -112,19 +112,26 @@ h5 {
     color: var(--lightergrey) !important;
 }
 
-.e-ddl.e-input-group.e-control-wrapper.e-input-focus::before, .e-ddl.e-input-group.e-control-wrapper.e-input-focus::after {
+.e-ddl.e-input-group.e-control-wrapper.e-input-focus::before,
+.e-ddl.e-input-group.e-control-wrapper.e-input-focus::after {
     background: var(--hightlightblue) !important;
 }
 
-
-
 /* This is for the drop down hover, focus and text color*/
-.e-dropdownbase .e-list-item.e-item-focus, .e-dropdownbase .e-list-item.e-active, .e-dropdownbase .e-list-item.e-active.e-hover, .e-dropdownbase .e-list-item.e-hover {
+.e-dropdownbase .e-list-item.e-item-focus,
+.e-dropdownbase .e-list-item.e-active,
+.e-dropdownbase .e-list-item.e-active.e-hover,
+.e-dropdownbase .e-list-item.e-hover {
     background-color: var(--lightergrey) !important;
     color: var(--header-background) !important;
 }
 
-.e-float-input.e-input-group:not(.e-float-icon-left) .e-float-line::before,.e-float-input.e-control-wrapper.e-input-group:not(.e-float-icon-left) .e-float-line::before,.e-float-input.e-input-group:not(.e-float-icon-left) .e-float-line::after,.e-float-input.e-control-wrapper.e-input-group:not(.e-float-icon-left) .e-float-line::after {
+.e-float-input.e-input-group:not(.e-float-icon-left) .e-float-line::before,
+.e-float-input.e-control-wrapper.e-input-group:not(.e-float-icon-left)
+    .e-float-line::before,
+.e-float-input.e-input-group:not(.e-float-icon-left) .e-float-line::after,
+.e-float-input.e-control-wrapper.e-input-group:not(.e-float-icon-left)
+    .e-float-line::after {
     background-color: #2319b8 !important;
 }
 
@@ -134,20 +141,32 @@ h5 {
 .e-input-group.e-float-icon-left:not(.e-float-input) .e-input-in-wrap::after,
 .e-input-group.e-control-wrapper:not(.e-float-icon-left):not(.e-float-input)::before,
 .e-input-group.e-control-wrapper:not(.e-float-icon-left):not(.e-float-input)::after,
-.e-input-group.e-control-wrapper.e-float-icon-left:not(.e-float-input) .e-input-in-wrap::before,
-.e-input-group.e-control-wrapper.e-float-icon-left:not(.e-float-input) .e-input-in-wrap::after {
-  background: var(--hightlightblue) !important;
+.e-input-group.e-control-wrapper.e-float-icon-left:not(.e-float-input)
+    .e-input-in-wrap::before,
+.e-input-group.e-control-wrapper.e-float-icon-left:not(.e-float-input)
+    .e-input-in-wrap::after {
+    background: var(--hightlightblue) !important;
 }
 
 .e-float-input.e-input-group:not(.e-float-icon-left) .e-float-line::before,
 .e-float-input.e-input-group:not(.e-float-icon-left) .e-float-line::after,
-.e-float-input.e-input-group.e-float-icon-left .e-input-in-wrap .e-float-line::before,
-.e-float-input.e-input-group.e-float-icon-left .e-input-in-wrap .e-float-line::after,
-.e-float-input.e-control-wrapper.e-input-group:not(.e-float-icon-left) .e-float-line::before,
-.e-float-input.e-control-wrapper.e-input-group:not(.e-float-icon-left) .e-float-line::after,
-.e-float-input.e-control-wrapper.e-input-group.e-float-icon-left .e-input-in-wrap .e-float-line::before,
-.e-float-input.e-control-wrapper.e-input-group.e-float-icon-left .e-input-in-wrap .e-float-line::after {
-  background: var(--hightlightblue) !important;
+.e-float-input.e-input-group.e-float-icon-left
+    .e-input-in-wrap
+    .e-float-line::before,
+.e-float-input.e-input-group.e-float-icon-left
+    .e-input-in-wrap
+    .e-float-line::after,
+.e-float-input.e-control-wrapper.e-input-group:not(.e-float-icon-left)
+    .e-float-line::before,
+.e-float-input.e-control-wrapper.e-input-group:not(.e-float-icon-left)
+    .e-float-line::after,
+.e-float-input.e-control-wrapper.e-input-group.e-float-icon-left
+    .e-input-in-wrap
+    .e-float-line::before,
+.e-float-input.e-control-wrapper.e-input-group.e-float-icon-left
+    .e-input-in-wrap
+    .e-float-line::after {
+    background: var(--hightlightblue) !important;
 }
 
 .e-input-group input.e-input,
@@ -164,14 +183,14 @@ h5 {
 .e-input-group.e-control-wrapper.e-disabled input.e-input,
 .e-input-group.e-disabled textarea.e-input,
 .e-input-group.e-control-wrapper.e-disabled textarea.e-input {
-  background: none;
-  color: var(--lightergrey) !important;
+    background: none;
+    color: var(--lightergrey) !important;
 }
 
-.e-input-group .e-input-group-icon, .e-input-group.e-control-wrapper .e-input-group-icon {
+.e-input-group .e-input-group-icon,
+.e-input-group.e-control-wrapper .e-input-group-icon {
     font-size: 18px !important;
 }
-
 
 /********************* Website scrollbars *********************/
 
@@ -201,7 +220,7 @@ h5 {
 /********************* Classes *********************/
 
 .root-div {
-    padding-top: 10px;
+    padding-top: 15px;
     padding-left: 5px;
     padding-right: 5px;
     width: 100%;
@@ -234,7 +253,7 @@ h5 {
 }
 
 .rounded-corners {
-    border-radius: 5px;
+    border-radius: 2px;
 }
 
 .justify-space-around {
@@ -307,15 +326,48 @@ h5 {
 
 .glass-card {
     color: var(--lightergrey);
-    margin: 5px;
+    margin: 5px 0px 5px 0px;
     position: relative;
     overflow: hidden;
     background: linear-gradient(
         to right bottom,
         rgba(255, 255, 255, 0.1),
-        rgba(255, 255, 255, 0.09)
+        rgba(255, 255, 255, 0.2)
     );
     backdrop-filter: blur(2rem);
+}
+
+.glass-card-current-weapon {
+    color: var(--lightergrey);
+    margin: 5px 0px 5px 0px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+        to right bottom,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.3)
+    );
+    backdrop-filter: blur(2rem);
+}
+
+.glass-card-weapon-item {
+    color: var(--lightergrey);
+    margin: 5px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+        to right bottom,
+        rgba(255, 255, 255, 0.05),
+        rgba(255, 255, 255, 0.1)
+    );
+    backdrop-filter: blur(2rem);
+}
+
+.glass-card-no-background {
+    color: var(--lightergrey);
+    margin: 5px;
+    position: relative;
+    overflow: hidden;
 }
 
 .glass-card-banner {
@@ -458,9 +510,30 @@ h5 {
     margin: 0;
 }
 
-.deco-container {
+.deco-container-1 {
     display: flex;
     justify-content: left;
+    position:relative;
+    color:var(--lightergrey);
+    margin: 0px 5px 5px 0px;
+    width: 100%;
+    height: 35px;
+    min-width: 120px;
+}
+
+.deco-container-2 {
+    display: flex;
+    justify-content: left;
+    margin: 0px 5px 5px 5px;
+    width: 100%;
+    height: 35px;
+    min-width: 120px;
+}
+
+.deco-container-3 {
+    display: flex;
+    justify-content: left;
+    margin: 0px 0px 5px 5px;
     width: 100%;
     height: 35px;
     min-width: 120px;
@@ -491,7 +564,7 @@ h5 {
 }
 
 .select-container {
-    margin: 15px 0 0 0;
+    margin: 15px 5px 0px 5px;
 }
 
 .stats-container {
@@ -520,7 +593,7 @@ h5 {
     transition: 0.1s;
     padding: 3px;
     border-color: transparent;
-    border-radius: 5px;
+    border-radius: 2px;
 }
 
 .white-border-hover:hover {
@@ -535,13 +608,16 @@ h5 {
     border-color: white;
 }
 
-.select-equipment-no-armor{
+.select-equipment-no-armor {
     margin-top: 3px;
 }
 
 .stat-item-container {
-    position: relative;
-    padding: 7px;
+    position:relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 10px;
     margin: 5px;
 }
 
@@ -552,7 +628,8 @@ h5 {
 
 .stat-item-container label {
     position: absolute;
-    right: 0;
+    top:-1px;
+    right: 0px;
 }
 
 .skill-level-indicator-over {
@@ -575,32 +652,32 @@ h5 {
     width: 40px;
 }
 
-.armor-popup{
+.armor-popup {
     background-color: var(--header-background);
     border-radius: 3px;
     border-width: 2px;
     border-style: solid;
     border-color: var(--hightlightblue);
-    color:var(--lightergrey);
-    padding: 5px  20px 5px 25px;
+    color: var(--lightergrey);
+    padding: 5px 20px 5px 25px;
 }
 
-.skill-popup{
+.skill-popup {
     background-color: var(--header-background);
     border-radius: 3px;
     border-width: 2px;
     border-style: solid;
     border-color: var(--hightlightblue);
-    color:var(--lightergrey);
-    padding: 5px  20px 5px 25px;
+    color: var(--lightergrey);
+    padding: 5px 20px 5px 25px;
 }
 
-.radio-button{
+.radio-button {
     border-color: var(--lightergrey);
     border-style: solid;
     border-radius: 3px;
     border-width: 2px;
-    color:var(--lightergrey);
+    color: var(--lightergrey);
     cursor: pointer;
     margin-top: 15px;
     padding: 10px 10px 0 10px;
@@ -608,20 +685,26 @@ h5 {
     z-index: 5;
 }
 
-.radio-button:hover{
+.radio-button:hover {
     border-color: var(--hightlightblue);
 }
 
-.radio-button label{
+.radio-button label {
     cursor: pointer;
 }
 
-.weapon-sharpness-bar{
+.weapon-sharpness-container{
+    position: absolute;
+    top:0px;
+    right: 10px;
+}
+
+.weapon-sharpness-bar {
     border-radius: 10px;
     border-width: 1px;
     overflow: hidden;
     background-color: var(--icone-hover);
-    width: 150px;
+    width: 130px;
     height: 10px;
     display: flex;
     justify-content: left;

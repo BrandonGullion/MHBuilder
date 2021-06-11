@@ -20,24 +20,26 @@ export default function BuilderPage() {
         coil: { skills: [] },
         legs: { skills: [] },
         currentSkills: [],
-        weaponDeco1: {},
-        weaponDeco2: {},
-        weaponDeco3: {},
-        helmDeco1: {},
-        helmDeco2: {},
-        helmDeco3: {},
-        chestDeco1: {},
-        chestDeco2: {},
-        chestDeco3: {},
-        armsDeco1: {},
-        armsDeco2: {},
-        armsDeco3: {},
-        coilDeco1: {},
-        coilDeco2: {},
-        coilDeco3: {},
-        legsDeco1: {},
-        legsDeco2: {},
-        legsDeco3: {},
+        decorations: {
+            weaponDeco1: {},
+            weaponDeco2: {},
+            weaponDeco3: {},
+            helmDeco1: {},
+            helmDeco2: {},
+            helmDeco3: {},
+            chestDeco1: {},
+            chestDeco2: {},
+            chestDeco3: {},
+            armsDeco1: {},
+            armsDeco2: {},
+            armsDeco3: {},
+            coilDeco1: {},
+            coilDeco2: {},
+            coilDeco3: {},
+            legsDeco1: {},
+            legsDeco2: {},
+            legsDeco3: {},
+        },
     };
 
     /* Gathers all of the skills from each armor component
@@ -64,6 +66,15 @@ export default function BuilderPage() {
         return skillArray;
     };
 
+    /* Takes in the current state, and desired decoration to be set from modal
+    sets decoration based on which button was selected, payload is an object containing
+    both the selected skill and the button id that will be used to determine which 
+    property in the state will be updated */
+
+    const handleDecorationSet = (state, payload) => {
+        return state.decorations;
+    };
+
     // Reducer function
     const [state, dispatch] = useReducer(reducer, initialState);
     const { helm, chest, arms, coil, legs, weapon } = state;
@@ -87,6 +98,8 @@ export default function BuilderPage() {
             // This means no dependency on state further down in components
             case "SET_CURRENT_SKILLS":
                 return { ...state, skills: populateSkills(state) };
+            case "SET_DECORATION":
+                return { ...state, decorations: handleDecorationSet(state, action.payload) };
             default:
                 return state;
         }
@@ -131,7 +144,7 @@ export default function BuilderPage() {
 
     // Components that are loaded only when data is present
     return (
-        <div className="builder-page-container row">
+        <div className="builder-page row">
             <CurrentEquipment
                 currentWeapon={weapon}
                 currentHelm={helm}
