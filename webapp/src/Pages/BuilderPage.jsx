@@ -8,6 +8,7 @@ export default function BuilderPage() {
     // These are to be populated by the api
     const [armors, setArmors] = useState([]);
     const [weapons, setWeapons] = useState([]);
+    const [skills, setSkills] = useState([]);
 
     // Initial Builder Page State
     const initialState = {
@@ -42,7 +43,7 @@ export default function BuilderPage() {
         },
     };
 
-    /* Gathers all of the skills from each armor component
+    /* Gathers all of the skills from each armor component and decorations
      * This must be called before the reducer function so that the
      * Function is loaded before getting called
      */
@@ -62,6 +63,14 @@ export default function BuilderPage() {
                     });
                 }
             });
+
+            /* Goes over all of the decoration properties in the state and adds any present 
+               skills to the skills list to be returned */
+            for(const property in state.decorations){
+                if(state.decorations[property].name !== undefined){
+                    skillArray.push(state.decorations[property]);
+                }
+            }
         }
         return skillArray;
     };
@@ -71,10 +80,12 @@ export default function BuilderPage() {
     both the selected skill and the button id that will be used to determine which 
     property in the state will be updated */
 
+    
     const handleDecorationSet = (state, payload) => {
+        const {armorType, slotNumber, skill} = payload;
         return state.decorations;
     };
-
+    
     // Reducer function
     const [state, dispatch] = useReducer(reducer, initialState);
     const { helm, chest, arms, coil, legs, weapon } = state;
@@ -109,6 +120,7 @@ export default function BuilderPage() {
     useEffect(() => {
         getDataFromApi("http://localhost:5000/api/armor", setArmors);
         getDataFromApi("http://localhost:5000/api/weapon", setWeapons);
+        getDataFromApi("http://localhost:5000/api/skill", setSkills);
     }, []);
 
     // Set the initial values when the armor and weapon property gets data from api
@@ -129,8 +141,6 @@ export default function BuilderPage() {
         dispatch({ type: "SET_WEAPON", payload: weapons[0] });
     }, [weapons]);
 
-    console.log(state.currentSkills);
-
     // Check if items are loaded before loading dependent components
     if (
         helm === undefined &&
@@ -148,7 +158,8 @@ export default function BuilderPage() {
     return (
         <div className="builder-page row">
             <CurrentEquipment
-                skills={state.skills}
+                skills={skills}
+                dispatch={dispatch}
                 currentWeapon={weapon}
                 currentHelm={helm}
                 currentChest={chest}

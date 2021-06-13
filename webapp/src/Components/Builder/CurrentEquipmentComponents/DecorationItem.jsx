@@ -26,7 +26,7 @@ export default function DecorationItem(props) {
         if (armorPiece !== undefined) {
             setModalState((prevState) => ({
                 ...prevState,
-                armorType: armorPiece.armorType,
+                armorType: armorPiece.type,
             }));
         }
     }, [armorPiece]);
@@ -36,6 +36,7 @@ export default function DecorationItem(props) {
             backgroundColor: "rgba(10,10,20,0.5)",
         },
         content: {
+            backgroundColor: "#3d464d",
             top: "40%",
             left: "40%",
             transform: "translate(-30%,-30%)",
@@ -111,7 +112,6 @@ export default function DecorationItem(props) {
 
     // Opens the modal only if you are able to put a deco in said slot
     const openModal = (currentDecoPosition, armorPieceSlotLvl) => {
-        console.log(armorPieceSlotLvl);
         if (armorPieceSlotLvl > 0) {
             setModalState((prevState) => ({
                 ...prevState,
@@ -130,17 +130,21 @@ export default function DecorationItem(props) {
         }));
     };
 
-    const onDecoSelect = (desiredDecoration) => {};
-
+    
     // Makes sure that all armor pieces are loaded bofore trying to load anything
     if (armorPiece === undefined) {
         return <div></div>;
     }
-
+    
     return (
         <div className="flex-container">
             <Modal isOpen={modalState.isOpen} style={customStyle}>
-                <ModalDecoList skills={skills}></ModalDecoList>
+                <ModalDecoList
+                    modalState={modalState}
+                    skills={skills}
+                    closeModal={closeModal}
+                    dispatch={dispatch}
+                ></ModalDecoList>
             </Modal>
             <div
                 id="deco-container1"

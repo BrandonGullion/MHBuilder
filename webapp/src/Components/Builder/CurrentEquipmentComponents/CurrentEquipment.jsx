@@ -16,6 +16,7 @@ export default function CurrentEquipment(props) {
         currentCoil,
         currentLegs,
         setCurrentSkills,
+        dispatch,
     } = props;
 
     return (
@@ -29,9 +30,9 @@ export default function CurrentEquipment(props) {
             <WeaponDecoGroup
                 skills={skills}
                 currentWeapon={currentWeapon}
+                dispatch={dispatch}
                 setCurrentSkills={setCurrentSkills}
             ></WeaponDecoGroup>
-
             <div
                 className="glass-card-header"
                 style={{ margin: "10px 0px 5px 0px" }}
@@ -39,27 +40,32 @@ export default function CurrentEquipment(props) {
                 <h2 className="pad-left-10">Current Armor</h2>
             </div>
             <HelmDecoGroup
+                dispatch={dispatch}
                 skills={skills}
                 currentHelm={currentHelm}
                 setCurrentSkills={setCurrentSkills}
             ></HelmDecoGroup>
             <ChestDecoGroup
+                dispatch={dispatch}
                 skills={skills}
                 currentChest={currentChest}
                 setCurrentSkills={setCurrentSkills}
             ></ChestDecoGroup>
             <ArmDecoGroup
+                dispatch={dispatch}
                 skills={skills}
                 currentArms={currentArms}
                 setCurrentSkills={setCurrentSkills}
             ></ArmDecoGroup>
             <CoilDecoGroup
                 skills={skills}
+                dispatch={dispatch}
                 currentCoil={currentCoil}
                 setCurrentSkills={setCurrentSkills}
             ></CoilDecoGroup>
             <LegDecoGroup
                 currentLegs={currentLegs}
+                dispatch={dispatch}
                 skills={skills}
                 setCurrentSkills={setCurrentSkills}
             ></LegDecoGroup>
