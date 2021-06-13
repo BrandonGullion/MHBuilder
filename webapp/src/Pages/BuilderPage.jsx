@@ -97,7 +97,7 @@ export default function BuilderPage() {
             // Use the current state present in the builder page to go over skills,
             // This means no dependency on state further down in components
             case "SET_CURRENT_SKILLS":
-                return { ...state, skills: populateSkills(state) };
+                return { ...state, currentSkills: populateSkills(state) };
             case "SET_DECORATION":
                 return { ...state, decorations: handleDecorationSet(state, action.payload) };
             default:
@@ -129,6 +129,8 @@ export default function BuilderPage() {
         dispatch({ type: "SET_WEAPON", payload: weapons[0] });
     }, [weapons]);
 
+    console.log(state.currentSkills);
+
     // Check if items are loaded before loading dependent components
     if (
         helm === undefined &&
@@ -146,6 +148,7 @@ export default function BuilderPage() {
     return (
         <div className="builder-page row">
             <CurrentEquipment
+                skills={state.skills}
                 currentWeapon={weapon}
                 currentHelm={helm}
                 currentChest={chest}

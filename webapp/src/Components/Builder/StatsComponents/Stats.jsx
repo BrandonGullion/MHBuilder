@@ -37,7 +37,7 @@ export const filterSkills = (skillsArray, setCurrentSkills) => {
 
 export default function Stats(props) {
     const { state } = props;
-    const { helm, chest, arms, coil, legs, weapon, skills } = state;
+    const { helm, chest, arms, coil, legs, weapon, currentSkills } = state;
 
     const [currentStats, setCurrentStats] = useState({});
     const [filteredSkills, setFilteredSkills] = useState([]);
@@ -97,8 +97,8 @@ export default function Stats(props) {
         };
 
         populateStats();
-        filterSkills(skills, setFilteredSkills);
-    }, [state, weapon, helm, arms, chest, coil, legs, skills]);
+        filterSkills(currentSkills, setFilteredSkills);
+    }, [state, weapon, helm, arms, chest, coil, legs, currentSkills]);
 
     return (
         <div>

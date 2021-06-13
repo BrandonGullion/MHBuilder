@@ -15,6 +15,7 @@ import BowgunInfoBar from "./BowgunInfoBar";
 import MelodyBar from "./MelodyBar";
 
 export default function WeaponItem(props) {
+    
     const { weapon, dispatch } = props;
     let isSharpness = false;
 

@@ -69,7 +69,7 @@ export default function WeaponTabContent(props) {
         switch (weapon.type) {
             case weaponTypes.sns:
                 weaponArrays.snsArray.push(
-                    <div className="white-border-hover">
+                    <div key={weapon.id} className="white-border-hover">
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
@@ -80,7 +80,7 @@ export default function WeaponTabContent(props) {
                 break;
             case weaponTypes.gs:
                 weaponArrays.gsArray.push(
-                    <div className="white-border-hover">
+                    <div key={weapon.id} className="white-border-hover">
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
@@ -91,7 +91,7 @@ export default function WeaponTabContent(props) {
                 break;
             case weaponTypes.db:
                 weaponArrays.dbArray.push(
-                    <div className="white-border-hover">
+                    <div key={weapon.id} className="white-border-hover">
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
@@ -102,7 +102,7 @@ export default function WeaponTabContent(props) {
                 break;
             case weaponTypes.ls:
                 weaponArrays.lsArray.push(
-                    <div className="white-border-hover">
+                    <div key={weapon.id} className="white-border-hover">
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
@@ -113,7 +113,7 @@ export default function WeaponTabContent(props) {
                 break;
             case weaponTypes.ha:
                 weaponArrays.haArray.push(
-                    <div className="white-border-hover">
+                    <div key={weapon.id} className="white-border-hover">
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
@@ -124,7 +124,7 @@ export default function WeaponTabContent(props) {
                 break;
             case weaponTypes.hh:
                 weaponArrays.hhArray.push(
-                    <div className="white-border-hover">
+                    <div key={weapon.id} className="white-border-hover">
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
@@ -135,7 +135,7 @@ export default function WeaponTabContent(props) {
                 break;
             case weaponTypes.la:
                 weaponArrays.laArray.push(
-                    <div className="white-border-hover">
+                    <div key={weapon.id} className="white-border-hover">
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
@@ -146,7 +146,7 @@ export default function WeaponTabContent(props) {
                 break;
             case weaponTypes.gl:
                 weaponArrays.glArray.push(
-                    <div className="white-border-hover">
+                    <div key={weapon.id} className="white-border-hover">
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
@@ -157,7 +157,7 @@ export default function WeaponTabContent(props) {
                 break;
             case weaponTypes.sa:
                 weaponArrays.saArray.push(
-                    <div className="white-border-hover">
+                    <div key={weapon.id} className="white-border-hover">
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
@@ -168,7 +168,7 @@ export default function WeaponTabContent(props) {
                 break;
             case weaponTypes.cb:
                 weaponArrays.cbArray.push(
-                    <div className="white-border-hover">
+                    <div key={weapon.id} className="white-border-hover">
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
@@ -179,7 +179,7 @@ export default function WeaponTabContent(props) {
                 break;
             case weaponTypes.ig:
                 weaponArrays.igArray.push(
-                    <div className="white-border-hover">
+                    <div key={weapon.id} className="white-border-hover">
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
@@ -190,7 +190,7 @@ export default function WeaponTabContent(props) {
                 break;
             case weaponTypes.bo:
                 weaponArrays.boArray.push(
-                    <div className="white-border-hover">
+                    <div key={weapon.id} className="white-border-hover">
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
@@ -201,9 +201,8 @@ export default function WeaponTabContent(props) {
                 break;
             case weaponTypes.hb:
                 weaponArrays.hbArray.push(
-                    <div className="white-border-hover">
+                    <div key={weapon.id} className="white-border-hover">
                         <WeaponItem
-                            key={weapon.id}
                             weapon={weapon}
                             dispatch={dispatch}
                         ></WeaponItem>
@@ -212,7 +211,7 @@ export default function WeaponTabContent(props) {
                 break;
             case weaponTypes.lb:
                 weaponArrays.lbArray.push(
-                    <div className="white-border-hover">
+                    <div key={weapon.id} className="white-border-hover">
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}

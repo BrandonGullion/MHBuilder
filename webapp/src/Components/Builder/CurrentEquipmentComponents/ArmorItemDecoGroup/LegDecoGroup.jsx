@@ -4,12 +4,12 @@ import DecorationItem from "../DecorationItem";
 
 export default function LegDecoGroup(props) {
     
-    const {setCurrentSkills, currentLegs} = props;
+    const {setCurrentSkills, currentLegs, skills} = props;
 
     return (
         <div>
             <ArmorItem armorPiece={currentLegs} setCurrentSkills={setCurrentSkills}></ArmorItem>
-            <DecorationItem armorPiece={currentLegs} setCurrentSkills={setCurrentSkills}></DecorationItem>
+            <DecorationItem armorPiece={currentLegs} skills={skills} setCurrentSkills={setCurrentSkills}></DecorationItem>
         </div>
     );
 }
