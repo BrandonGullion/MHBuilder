@@ -66,8 +66,8 @@ export default function BuilderPage() {
 
             /* Goes over all of the decoration properties in the state and adds any present 
                skills to the skills list to be returned */
-            for(const property in state.decorations){
-                if(state.decorations[property].name !== undefined){
+            for (const property in state.decorations) {
+                if (state.decorations[property].name !== undefined) {
                     skillArray.push(state.decorations[property]);
                 }
             }
@@ -80,12 +80,24 @@ export default function BuilderPage() {
     both the selected skill and the button id that will be used to determine which 
     property in the state will be updated */
 
-    
     const handleDecorationSet = (state, payload) => {
-        const {armorType, slotNumber, skill} = payload;
-        return state.decorations;
+        const { equipment, slotNumber, skill } = payload;
+
+        // preps the property for the decoration state
+        let prop = `${equipment.type
+            .charAt(0)
+            .toLowerCase()}${equipment.type.slice(1)}Deco${slotNumber}`;
+
+        if (skill !== undefined) {
+            state.decorations[prop] = skill;
+            state.skills.push(skill);
+            return state.decorations;
+        } else {
+            console.log("An error setting the decoration has occurred");
+            return state.decorations;
+        }
     };
-    
+
     // Reducer function
     const [state, dispatch] = useReducer(reducer, initialState);
     const { helm, chest, arms, coil, legs, weapon } = state;
@@ -110,7 +122,10 @@ export default function BuilderPage() {
             case "SET_CURRENT_SKILLS":
                 return { ...state, currentSkills: populateSkills(state) };
             case "SET_DECORATION":
-                return { ...state, decorations: handleDecorationSet(state, action.payload) };
+                return {
+                    ...state,
+                    decorations: handleDecorationSet(state, action.payload),
+                };
             default:
                 return state;
         }
@@ -173,6 +188,7 @@ export default function BuilderPage() {
                 dispatch={dispatch}
             ></SelectEquipment>
             <Stats state={state}></Stats>
+            <button onClick={() => console.log(state)}>Check state</button>
         </div>
     );
 }

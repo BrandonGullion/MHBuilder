@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 
 // Try to use the context to get access to the dispatch
-export default function ModalDecoList(props) {
+export default function ModalDecoContent(props) {
     const { modalState, dispatch, skills, closeModal } = props;
 
+    const [selectedSkill, setSelectedSkill] = useState({});
+
     const handleDecoSelect = (skill) => {
-        dispatch("", {})
+        setSelectedSkill(skill)
+    };
+    
+    const handleDecoSubmit = () => {
+        dispatch({ type: "SET_DECORATION" , payload:{equipment:modalState.armor, slotNumber:modalState.currentDecoSlot, skill:selectedSkill}});
     }
 
     return (
@@ -44,11 +50,16 @@ export default function ModalDecoList(props) {
                     style={{ position: "relative", bottom: "5px", left: "3px" }}
                 ></IoMdClose>
             </div>
-            <div style={{ overflowY: "scroll", height: "420px" }}>
+            <div style={{ overflowY: "scroll", height: "400px" }}>
                 {skills.map((skill) => (
                     <div
+                        key={skill.id}
                         onClick={() => handleDecoSelect(skill)}
-                        className="glass-card white-border-hover"
+                        className={
+                            skill.id === selectedSkill.id
+                                ? "glass-card white-border-hover active-item-border"
+                                : "glass-card white-border-hover"
+                        }
                         style={{
                             zIndex: "5",
                             padding: "5px",
@@ -70,6 +81,16 @@ export default function ModalDecoList(props) {
                         </div>
                     </div>
                 ))}
+            </div>
+            <div
+                onClick={handleDecoSubmit}
+                className="default-button"
+                style={{
+                    float: "right",
+                    margin: "5px 10px",
+                }}
+            >
+                Confirm
             </div>
         </div>
     );

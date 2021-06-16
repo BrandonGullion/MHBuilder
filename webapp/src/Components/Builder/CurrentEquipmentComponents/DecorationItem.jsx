@@ -5,7 +5,7 @@ import DecorationLvl1 from "./DecorationsSVG/DecorationLvl1";
 import DecorationLvl2 from "./DecorationsSVG/DecorationLvl2";
 import DecorationLvl3 from "./DecorationsSVG/DecorationLvl3";
 import Modal from "react-modal";
-import ModalDecoList from "./ModalDecoList";
+import ModalDecoContent from "./ModalDecoContent";
 
 export default function DecorationItem(props) {
     /* Passed in deco object to be updated depending on 
@@ -20,13 +20,14 @@ export default function DecorationItem(props) {
         currentDecoSlot: 0,
     });
 
+
     // Sets the armor type to the modal state for dispatch function once the armor piece
     // information has been recieved from the api
     useEffect(() => {
         if (armorPiece !== undefined) {
             setModalState((prevState) => ({
                 ...prevState,
-                armorType: armorPiece.type,
+                armor: armorPiece,
             }));
         }
     }, [armorPiece]);
@@ -136,15 +137,20 @@ export default function DecorationItem(props) {
         return <div></div>;
     }
     
+    let armorType = `${armorPiece.type
+        .charAt(0)
+        .toLowerCase()}${armorPiece.type.slice(1)}`;
+
+
     return (
         <div className="flex-container">
             <Modal isOpen={modalState.isOpen} style={customStyle}>
-                <ModalDecoList
+                <ModalDecoContent
                     modalState={modalState}
                     skills={skills}
                     closeModal={closeModal}
                     dispatch={dispatch}
-                ></ModalDecoList>
+                ></ModalDecoContent>
             </Modal>
             <div
                 id="deco-container1"
@@ -153,7 +159,7 @@ export default function DecorationItem(props) {
             >
                 {GenerateDecoIcon(armorPiece.decoSlot1Lvl)}
                 {/* Decoration 1  */}
-                <span className="deco-content">Deco Name</span>
+                <span className="deco-content">{}</span>
             </div>
             <div
                 id="deco-container2"

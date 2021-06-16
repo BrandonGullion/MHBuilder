@@ -597,7 +597,7 @@ h5 {
 }
 
 .white-border-hover:hover {
-    border-radius: 5px;
+    border-radius: 2px;
     border-color: var(--hightlightblue);
     border-style: solid;
     border-width: 2px;
@@ -616,7 +616,7 @@ h5 {
 }
 
 .deco-white-border-hover:hover {
-    border-radius: 5px;
+    border-radius: 2px;
     border-color: var(--hightlightblue);
     border-style: solid;
     border-width: 2px;
@@ -625,6 +625,14 @@ h5 {
 
 .deco-white-border-hover:active {
     border-color: white;
+}
+
+.active-item-border{
+    border-radius: 2px;
+    border-color: white;
+    border-style: solid;
+    border-width: 2px;
+    cursor: pointer;
 }
 
 .select-equipment-no-armor {
@@ -728,4 +736,22 @@ h5 {
     display: flex;
     justify-content: left;
     margin: 11px 0 10px 30px;
+}
+
+.default-button {
+    border-radius: 3px;
+    color:var(--lightergrey);
+    border-color: var(--lightergrey);
+    border-style: solid;
+    padding: 3px 10px;
+    transition:0.2s;
+    cursor: pointer;
+}
+
+.default-button:hover{
+    border-color:var(--hightlightblue);
+}
+
+.default-button:active{
+    border-color: white;
 }

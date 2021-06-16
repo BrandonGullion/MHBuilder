@@ -26,7 +26,6 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Skill>>> GetSkills()
         {
-            Console.WriteLine("Gathering Skills...");
             return await _context.Skills.ToListAsync();
         }
 
