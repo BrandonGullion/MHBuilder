@@ -13,6 +13,7 @@ export default function ModalDecoContent(props) {
     
     const handleDecoSubmit = () => {
         dispatch({ type: "SET_DECORATION" , payload:{equipment:modalState.armor, slotNumber:modalState.currentDecoSlot, skill:selectedSkill}});
+        dispatch({type:"SET_CURRENT_SKILLS"});
     }
 
     return (

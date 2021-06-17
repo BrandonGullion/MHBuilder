@@ -4,7 +4,7 @@ import { ComboBoxComponent } from "@syncfusion/ej2-react-dropdowns";
 
 export default function WeaponTabContent(props) {
     // Weapon api data and useReducer dispatch
-    const { weapons, dispatch } = props;
+    const { weapons } = props;
 
     // Weapon type for quick access
     const weaponTypes = {
@@ -65,6 +65,7 @@ export default function WeaponTabContent(props) {
     };
 
     // Filters the weapons into their seperate arrays
+    // This could be made smaller by using string to id props...
     weapons.forEach((weapon) => {
         switch (weapon.type) {
             case weaponTypes.sns:
@@ -73,7 +74,6 @@ export default function WeaponTabContent(props) {
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
-                            dispatch={dispatch}
                         ></WeaponItem>
                     </div>
                 );
@@ -84,7 +84,6 @@ export default function WeaponTabContent(props) {
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
-                            dispatch={dispatch}
                         ></WeaponItem>
                     </div>
                 );
@@ -95,7 +94,6 @@ export default function WeaponTabContent(props) {
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
-                            dispatch={dispatch}
                         ></WeaponItem>
                     </div>
                 );
@@ -106,7 +104,6 @@ export default function WeaponTabContent(props) {
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
-                            dispatch={dispatch}
                         ></WeaponItem>
                     </div>
                 );
@@ -117,7 +114,6 @@ export default function WeaponTabContent(props) {
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
-                            dispatch={dispatch}
                         ></WeaponItem>
                     </div>
                 );
@@ -128,7 +124,6 @@ export default function WeaponTabContent(props) {
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
-                            dispatch={dispatch}
                         ></WeaponItem>
                     </div>
                 );
@@ -139,7 +134,6 @@ export default function WeaponTabContent(props) {
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
-                            dispatch={dispatch}
                         ></WeaponItem>
                     </div>
                 );
@@ -150,7 +144,6 @@ export default function WeaponTabContent(props) {
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
-                            dispatch={dispatch}
                         ></WeaponItem>
                     </div>
                 );
@@ -161,7 +154,6 @@ export default function WeaponTabContent(props) {
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
-                            dispatch={dispatch}
                         ></WeaponItem>
                     </div>
                 );
@@ -172,7 +164,6 @@ export default function WeaponTabContent(props) {
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
-                            dispatch={dispatch}
                         ></WeaponItem>
                     </div>
                 );
@@ -183,7 +174,6 @@ export default function WeaponTabContent(props) {
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
-                            dispatch={dispatch}
                         ></WeaponItem>
                     </div>
                 );
@@ -194,7 +184,6 @@ export default function WeaponTabContent(props) {
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
-                            dispatch={dispatch}
                         ></WeaponItem>
                     </div>
                 );
@@ -204,7 +193,6 @@ export default function WeaponTabContent(props) {
                     <div key={weapon.id} className="white-border-hover">
                         <WeaponItem
                             weapon={weapon}
-                            dispatch={dispatch}
                         ></WeaponItem>
                     </div>
                 );
@@ -215,7 +203,6 @@ export default function WeaponTabContent(props) {
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
-                            dispatch={dispatch}
                         ></WeaponItem>
                     </div>
                 );

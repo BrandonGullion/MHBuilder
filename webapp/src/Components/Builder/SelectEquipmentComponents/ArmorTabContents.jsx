@@ -4,7 +4,7 @@ import EquipmentSet from "./EquipmentSet";
 
 export default function ArmorTabContents(props) {
     // List of armors that will be iterated over
-    const { dispatch, armors } = props;
+    const {armors} = props;
 
     const armorRanks = {
         highRank: "HighRank",
@@ -39,7 +39,6 @@ export default function ArmorTabContents(props) {
                     <EquipmentSet
                         key={armorArray[0].armorSetId}
                         armorArray={armorArray}
-                        dispatch={dispatch}
                     ></EquipmentSet>
                 ));
             case armorRanks.lowRank:
@@ -47,7 +46,6 @@ export default function ArmorTabContents(props) {
                     <EquipmentSet
                         key={armorArray[0].armorSetId}
                         armorArray={armorArray}
-                        dispatch={dispatch}
                     ></EquipmentSet>
                 ));
             default:

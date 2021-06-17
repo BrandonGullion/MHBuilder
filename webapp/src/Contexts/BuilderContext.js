@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useReducer, useContext } from "react";
-import CurrentEquipment from "../Components/Builder/CurrentEquipmentComponents/CurrentEquipment";
-import SelectEquipment from "../Components/Builder/SelectEquipmentComponents/SelectEquipment";
-import Stats from "../Components/Builder/StatsComponents/Stats";
+import { createContext, useState, useReducer, useEffect } from "react";
 import { getDataFromApi } from "../Api/agent";
-import { BuilderContext } from "../Contexts/BuilderContext";
 
-export default function BuilderPage() {
+export const BuilderDispatchContext = createContext();
+export const BuilderStateContext = createContext();
+
+export const BuilderContext = (props) => {
     // These are to be populated by the api
     const [armors, setArmors] = useState([]);
     const [weapons, setWeapons] = useState([]);
@@ -156,39 +155,11 @@ export default function BuilderPage() {
         dispatch({ type: "SET_WEAPON", payload: weapons[0] });
     }, [weapons]);
 
-    // Check if items are loaded before loading dependent components
-    if (
-        helm === undefined &&
-        chest === undefined &&
-        arms === undefined &&
-        coil === undefined &&
-        legs === undefined &&
-        weapon === undefined
-    ) {
-        // Replace with a dimmer that will disapear when the data is loaded
-        return <div>Loading</div>;
-    }
-
-    // Components that are loaded only when data is present
     return (
-        <div className="builder-page row">
-            <BuilderContext>
-                <CurrentEquipment
-                    skills={skills}
-                    dispatch={dispatch}
-                    currentWeapon={weapon}
-                    currentHelm={helm}
-                    currentChest={chest}
-                    currentArms={arms}
-                    currentCoil={coil}
-                    currentLegs={legs}
-                ></CurrentEquipment>
-                <SelectEquipment
-                    weapons={weapons}
-                    armors={armors}
-                ></SelectEquipment>
-                <Stats></Stats>
-            </BuilderContext>
-        </div>
+        <BuilderDispatchContext.Provider value={dispatch}>
+            <BuilderStateContext.Provider value={state}>
+                {props.children}
+            </BuilderStateContext.Provider>
+        </BuilderDispatchContext.Provider>
     );
-}
+};

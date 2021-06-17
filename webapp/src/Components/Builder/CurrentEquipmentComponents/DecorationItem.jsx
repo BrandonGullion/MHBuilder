@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { RiVipDiamondLine } from "react-icons/ri";
 import { IoMdClose } from "react-icons/io";
 import DecorationLvl1 from "./DecorationsSVG/DecorationLvl1";
@@ -6,11 +6,12 @@ import DecorationLvl2 from "./DecorationsSVG/DecorationLvl2";
 import DecorationLvl3 from "./DecorationsSVG/DecorationLvl3";
 import Modal from "react-modal";
 import ModalDecoContent from "./ModalDecoContent";
+import { BuilderContext, BuilderDispatchContext, BuilderStateContext } from "../../../Contexts/BuilderContext";
+
 
 export default function DecorationItem(props) {
     /* Passed in deco object to be updated depending on 
      the deco item clicked */
-
     const lineThickness = "1px";
     const lineColor = "white";
 
@@ -131,16 +132,16 @@ export default function DecorationItem(props) {
         }));
     };
 
-    
     // Makes sure that all armor pieces are loaded bofore trying to load anything
     if (armorPiece === undefined) {
         return <div></div>;
     }
-    
-    let armorType = `${armorPiece.type
-        .charAt(0)
-        .toLowerCase()}${armorPiece.type.slice(1)}`;
 
+    if (armorPiece.type !== undefined) {
+        let armorType = `${armorPiece.type
+            .charAt(0)
+            .toLowerCase()}${armorPiece.type.slice(1)}`;
+    }
 
     return (
         <div className="flex-container">

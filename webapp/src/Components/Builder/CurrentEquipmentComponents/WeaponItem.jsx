@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import { BsShieldShaded, BsDropletHalf, BsLightning } from "react-icons/bs";
 import {
     GiBroadsword,
@@ -13,10 +13,12 @@ import { ImFire } from "react-icons/im";
 import { IoSnow } from "react-icons/io5";
 import BowgunInfoBar from "./BowgunInfoBar";
 import MelodyBar from "./MelodyBar";
+import { BuilderDispatchContext } from "../../../Contexts/BuilderContext";
 
 export default function WeaponItem(props) {
     
-    const { weapon, dispatch } = props;
+    const dispatch = useContext(BuilderDispatchContext);
+    const { weapon } = props;
     let isSharpness = false;
 
     if (

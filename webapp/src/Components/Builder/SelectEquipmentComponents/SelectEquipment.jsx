@@ -5,7 +5,7 @@ import WeaponTabContent from "./WeaponTabContent";
 
 export default function SelectEquipment(props) {
     // List of armors that will be iterated over
-    const { dispatch, armors, weapons } = props;
+    const { armors, weapons } = props;
 
     return (
         <div className="glass-card select-container">
@@ -23,12 +23,11 @@ export default function SelectEquipment(props) {
                         <div>
                             <ArmorTabContents
                                 armors={armors}
-                                dispatch={dispatch}
                             ></ArmorTabContents>
                         </div>
                         {/* Weapon Components */}
                         <div style={{transition:"0.2s",width:"400px"}}>
-                            <WeaponTabContent weapons={weapons} dispatch={dispatch}></WeaponTabContent>
+                            <WeaponTabContent weapons={weapons}></WeaponTabContent>
                         </div>
                     </div>
                 </TabComponent>

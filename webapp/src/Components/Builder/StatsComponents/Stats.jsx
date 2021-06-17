@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { BuilderStateContext } from "../../../Contexts/BuilderContext";
 import SkillItem from "./SkillItem";
 import StatItem from "./StatItem";
 
@@ -35,8 +36,8 @@ export const filterSkills = (skillsArray, setCurrentSkills) => {
     setCurrentSkills(tempSkillArray);
 };
 
-export default function Stats(props) {
-    const { state } = props;
+export default function Stats() {
+    const  state  = useContext(BuilderStateContext);
     const { helm, chest, arms, coil, legs, weapon, currentSkills } = state;
 
     const [currentStats, setCurrentStats] = useState({});

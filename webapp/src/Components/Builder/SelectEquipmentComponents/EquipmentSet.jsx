@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Popup } from "semantic-ui-react";
 import {
     GiShoulderArmor,
@@ -9,9 +9,10 @@ import {
 } from "react-icons/gi";
 import { BsSlashSquare } from "react-icons/bs";
 import ArmorPopUp from "./ArmorPopUp";
+import { BuilderDispatchContext } from "../../../Contexts/BuilderContext";
 
 export default function EquipmentSet(props) {
-    const { dispatch } = props;
+    const dispatch = useContext(BuilderDispatchContext);
 
     // Set the passed in armor set array value
     const armorArray = props.armorArray;
