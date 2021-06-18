@@ -1,18 +1,15 @@
-import { createContext, useState, useReducer, useEffect } from "react";
-import { getDataFromApi } from "../Api/agent";
+import axios from "axios";
+import { createContext, useReducer, useEffect } from "react";
 
 export const BuilderDispatchContext = createContext();
 export const BuilderStateContext = createContext();
 
 export const BuilderContext = (props) => {
-    // These are to be populated by the api
-    const [armors, setArmors] = useState([]);
-    const [weapons, setWeapons] = useState([]);
-    const [skills, setSkills] = useState([]);
 
     // Initial Builder Page State
     const initialState = {
         armors: [],
+        weapons: [],
         skills: [],
         weapon: {},
         helm: { skills: [] },
@@ -99,7 +96,6 @@ export const BuilderContext = (props) => {
 
     // Reducer function
     const [state, dispatch] = useReducer(reducer, initialState);
-    const { helm, chest, arms, coil, legs, weapon } = state;
 
     // Reducer function for entire armor page
     function reducer(state, action) {
@@ -116,6 +112,12 @@ export const BuilderContext = (props) => {
                 return { ...state, legs: action.payload };
             case "SET_WEAPON":
                 return { ...state, weapon: action.payload };
+            case "SET_SKILLS":
+                return { ...state, skills: action.payload };
+            case "SET_ARMORS":
+                return { ...state, armors: action.payload };
+            case "SET_WEAPONS":
+                return { ...state, weapons: action.payload };
             // Use the current state present in the builder page to go over skills,
             // This means no dependency on state further down in components
             case "SET_CURRENT_SKILLS":
@@ -132,28 +134,40 @@ export const BuilderContext = (props) => {
 
     // Gets the initial values from the api
     useEffect(() => {
-        getDataFromApi("http://localhost:5000/api/armor", setArmors);
-        getDataFromApi("http://localhost:5000/api/weapon", setWeapons);
-        getDataFromApi("http://localhost:5000/api/skill", setSkills);
+        axios
+            .get("http://localhost:5000/api/armor")
+            .then((response) =>
+                dispatch({ type: "SET_ARMORS", payload: response.data })
+            );
+        axios
+            .get("http://localhost:5000/api/weapon")
+            .then((response) =>
+                dispatch({ type: "SET_WEAPONS", payload: response.data })
+            );
+        axios
+            .get("http://localhost:5000/api/skill")
+            .then((response) =>
+                dispatch({ type: "SET_SKILLS", payload: response.data })
+            );
     }, []);
 
     // Set the initial values when the armor and weapon property gets data from api
     useEffect(() => {
-        dispatch({ type: "SET_HELM", payload: armors[0] });
-        dispatch({ type: "SET_CHEST", payload: armors[1] });
-        dispatch({ type: "SET_ARMS", payload: armors[2] });
-        dispatch({ type: "SET_COIL", payload: armors[3] });
-        dispatch({ type: "SET_LEGS", payload: armors[4] });
+        dispatch({ type: "SET_HELM", payload: state.armors[0] });
+        dispatch({ type: "SET_CHEST", payload: state.armors[1] });
+        dispatch({ type: "SET_ARMS", payload: state.armors[2] });
+        dispatch({ type: "SET_COIL", payload: state.armors[3] });
+        dispatch({ type: "SET_LEGS", payload: state.armors[4] });
         dispatch({
             type: "SET_CURRENT_SKILLS",
             payload: populateSkills(state),
         });
-    }, [armors]);
+    }, [state.armors]);
 
     // Grabs the first weapon from the returned weapon array and sets it to currently equip weapon
     useEffect(() => {
-        dispatch({ type: "SET_WEAPON", payload: weapons[0] });
-    }, [weapons]);
+        dispatch({ type: "SET_WEAPON", payload: state.weapons[0] });
+    }, [state.weapons]);
 
     return (
         <BuilderDispatchContext.Provider value={dispatch}>

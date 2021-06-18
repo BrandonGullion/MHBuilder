@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import WeaponItem from "../CurrentEquipmentComponents/WeaponItem";
 import { ComboBoxComponent } from "@syncfusion/ej2-react-dropdowns";
+import { BuilderStateContext } from "../../../Contexts/BuilderContext";
 
-export default function WeaponTabContent(props) {
+export default function WeaponTabContent() {
+
+    const state = useContext(BuilderStateContext);
+    
     // Weapon api data and useReducer dispatch
-    const { weapons } = props;
+    const { weapons } = state;
 
     // Weapon type for quick access
     const weaponTypes = {

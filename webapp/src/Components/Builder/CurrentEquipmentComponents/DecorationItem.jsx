@@ -6,16 +6,22 @@ import DecorationLvl2 from "./DecorationsSVG/DecorationLvl2";
 import DecorationLvl3 from "./DecorationsSVG/DecorationLvl3";
 import Modal from "react-modal";
 import ModalDecoContent from "./ModalDecoContent";
-import { BuilderContext, BuilderDispatchContext, BuilderStateContext } from "../../../Contexts/BuilderContext";
+import { BuilderDispatchContext} from "../../../Contexts/BuilderContext";
 
 
 export default function DecorationItem(props) {
+
+    const dispatch = useContext(BuilderDispatchContext);
+
     /* Passed in deco object to be updated depending on 
      the deco item clicked */
     const lineThickness = "1px";
     const lineColor = "white";
 
-    const { armorPiece, dispatch, skills } = props;
+    // The armor piece should not be accessed through context due to one 
+    // component affecting many different armor types 
+    const { armorPiece } = props;
+
     const [modalState, setModalState] = useState({
         isOpen: false,
         currentDecoSlot: 0,
@@ -137,18 +143,11 @@ export default function DecorationItem(props) {
         return <div></div>;
     }
 
-    if (armorPiece.type !== undefined) {
-        let armorType = `${armorPiece.type
-            .charAt(0)
-            .toLowerCase()}${armorPiece.type.slice(1)}`;
-    }
-
     return (
         <div className="flex-container">
             <Modal isOpen={modalState.isOpen} style={customStyle}>
                 <ModalDecoContent
                     modalState={modalState}
-                    skills={skills}
                     closeModal={closeModal}
                     dispatch={dispatch}
                 ></ModalDecoContent>

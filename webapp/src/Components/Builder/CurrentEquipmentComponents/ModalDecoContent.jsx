@@ -1,20 +1,34 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { IoMdClose } from "react-icons/io";
+import {
+    BuilderDispatchContext,
+    BuilderStateContext,
+} from "../../../Contexts/BuilderContext";
 
 // Try to use the context to get access to the dispatch
 export default function ModalDecoContent(props) {
-    const { modalState, dispatch, skills, closeModal } = props;
+    const { modalState, closeModal } = props;
+
+    const state = useContext(BuilderStateContext);
+    const dispatch = useContext(BuilderDispatchContext);
 
     const [selectedSkill, setSelectedSkill] = useState({});
 
     const handleDecoSelect = (skill) => {
-        setSelectedSkill(skill)
+        setSelectedSkill(skill);
     };
-    
+
     const handleDecoSubmit = () => {
-        dispatch({ type: "SET_DECORATION" , payload:{equipment:modalState.armor, slotNumber:modalState.currentDecoSlot, skill:selectedSkill}});
-        dispatch({type:"SET_CURRENT_SKILLS"});
-    }
+        dispatch({
+            type: "SET_DECORATION",
+            payload: {
+                equipment: modalState.armor,
+                slotNumber: modalState.currentDecoSlot,
+                skill: selectedSkill,
+            },
+        });
+        dispatch({ type: "SET_CURRENT_SKILLS" });
+    };
 
     return (
         <div>
@@ -52,7 +66,7 @@ export default function ModalDecoContent(props) {
                 ></IoMdClose>
             </div>
             <div style={{ overflowY: "scroll", height: "400px" }}>
-                {skills.map((skill) => (
+                {state.skills.map((skill) => (
                     <div
                         key={skill.id}
                         onClick={() => handleDecoSelect(skill)}

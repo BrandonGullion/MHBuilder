@@ -1,10 +1,12 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
+import { BuilderStateContext } from "../../../Contexts/BuilderContext";
 import RadioButton from "../../ReUsable/RadioButton";
 import EquipmentSet from "./EquipmentSet";
 
-export default function ArmorTabContents(props) {
+export default function ArmorTabContents() {
     // List of armors that will be iterated over
-    const {armors} = props;
+    const state = useContext(BuilderStateContext);
+    const {armors} = state;
 
     const armorRanks = {
         highRank: "HighRank",
