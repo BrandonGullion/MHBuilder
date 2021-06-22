@@ -11,6 +11,10 @@ namespace Data
         public DbSet<Weapon> Weapons { get; set; }
         public DbSet<RampageSkill> RampageSkills { get; set; }
 
+        public DbSet<Fixes> Fixes { get; set; }
+
+        public DbSet<Update> Updates { get; set; }
+
         public DataContext (DbContextOptions options) : base(options)
         {
 

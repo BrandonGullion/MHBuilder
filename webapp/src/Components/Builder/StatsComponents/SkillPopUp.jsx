@@ -18,8 +18,8 @@ export default function SkillPopUp(props) {
     return (
         <div className="skill-popup">
             {skillDescriptions.map((description, index) => (
-                <div style={index + 1 === count ? {color:"#00adb5"}:{}}>
-                    <label key={index}>Level {index + 1}</label>
+                <div key={index} style={index + 1 === count ? {color:"#00adb5"}:{}}>
+                    <label>Level {index + 1}</label>
                     <p style={{ fontSize: "14px" }}>{description}</p>
                     {index < skillDescriptions.length - 1 ? (
                         <div className="dotted-linebreak"

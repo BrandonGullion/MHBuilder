@@ -14,7 +14,7 @@ export default function CoilDecoGroup(props) {
                 setCurrentSkills={setCurrentSkills}
             ></ArmorItem>
             <DecorationItem
-                armorPiece={state.coil}
+                equipment={state.coil}
                 setCurrentSkills={setCurrentSkills}
             ></DecorationItem>
         </div>

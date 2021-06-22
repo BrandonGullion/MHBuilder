@@ -14,7 +14,7 @@ export default function LegDecoGroup(props) {
                 setCurrentSkills={setCurrentSkills}
             ></ArmorItem>
             <DecorationItem
-                armorPiece={state.legs}
+                equipment={state.legs}
                 setCurrentSkills={setCurrentSkills}
             ></DecorationItem>
         </div>

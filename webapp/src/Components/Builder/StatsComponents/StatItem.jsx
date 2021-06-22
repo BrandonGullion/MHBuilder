@@ -6,7 +6,7 @@ export default function StatItem(props) {
     return (
         <div className="stat-item-container">
             <h4>{statName}</h4>
-            <label>{value}</label>
+            <label>{value === undefined ? "" : value.toString()}</label>
         </div>
     );
 }

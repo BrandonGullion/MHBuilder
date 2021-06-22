@@ -18,7 +18,7 @@ export default function WeaponDecoGroup(props) {
         <div>
             <CurrentWeaponItem weapon={state.weapon}></CurrentWeaponItem>
             <DecorationItem
-                armorPiece={state.weapon}
+                equipment={state.weapon}
                 skills={skills}
             ></DecorationItem>
         </div>

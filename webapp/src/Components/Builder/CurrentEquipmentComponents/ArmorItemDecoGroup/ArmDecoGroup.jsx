@@ -14,7 +14,7 @@ export default function ArmDecoGroup(props) {
                 setCurrentSkills={setCurrentSkills}
             ></ArmorItem>
             <DecorationItem
-                armorPiece={state.arms}
+                equipment={state.arms}
                 setCurrentSkills={setCurrentSkills}
             ></DecorationItem>
         </div>

@@ -14,7 +14,7 @@ export default function ChestDecoGroup(props) {
                 setCurrentSkills={setCurrentSkills}
             ></ArmorItem>
             <DecorationItem
-                armorPiece={state.chest}
+                equipment={state.chest}
                 setCurrentSkills={setCurrentSkills}
             ></DecorationItem>
         </div>

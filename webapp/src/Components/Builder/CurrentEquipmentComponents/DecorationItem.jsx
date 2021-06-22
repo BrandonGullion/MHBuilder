@@ -6,39 +6,45 @@ import DecorationLvl2 from "./DecorationsSVG/DecorationLvl2";
 import DecorationLvl3 from "./DecorationsSVG/DecorationLvl3";
 import Modal from "react-modal";
 import ModalDecoContent from "./ModalDecoContent";
-import { BuilderDispatchContext} from "../../../Contexts/BuilderContext";
-
+import {
+    BuilderDispatchContext,
+    BuilderStateContext,
+} from "../../../Contexts/BuilderContext";
 
 export default function DecorationItem(props) {
-
     const dispatch = useContext(BuilderDispatchContext);
+    const state = useContext(BuilderStateContext);
+
+    let equipmentType = "";
 
     /* Passed in deco object to be updated depending on 
      the deco item clicked */
     const lineThickness = "1px";
     const lineColor = "white";
 
-    // The armor piece should not be accessed through context due to one 
-    // component affecting many different armor types 
-    const { armorPiece } = props;
+    // The armor piece should not be accessed through context due to one
+    // component affecting many different armor types
+    const { equipment } = props;
 
     const [modalState, setModalState] = useState({
         isOpen: false,
         currentDecoSlot: 0,
+        currentDecoLvl:0,
+        armor:{},
     });
-
 
     // Sets the armor type to the modal state for dispatch function once the armor piece
     // information has been recieved from the api
     useEffect(() => {
-        if (armorPiece !== undefined) {
+        if (equipment !== undefined) {
             setModalState((prevState) => ({
                 ...prevState,
-                armor: armorPiece,
+                armor: equipment,
             }));
         }
-    }, [armorPiece]);
+    }, [equipment]);
 
+    // Style for the modal
     const customStyle = {
         overlay: {
             backgroundColor: "rgba(10,10,20,0.5)",
@@ -51,6 +57,7 @@ export default function DecorationItem(props) {
         },
     };
 
+    // Linking the modal to the root element to avoid errors
     Modal.setAppElement("#root");
 
     //  Returns an icon depending on the deco slot level
@@ -118,13 +125,31 @@ export default function DecorationItem(props) {
             : `glass-card deco-container-${decoPosition} rounded-corners`;
     };
 
+    // Returns a string
+    const returnDecoString = (state, equipmentType, decoSlot) => {
+        if (
+            state.decorations[`${equipmentType}Deco${decoSlot}`] === undefined
+        ) {
+            return "--";
+        } else if (
+            state.decorations[`${equipmentType}Deco${decoSlot}`].jewelName ===
+            undefined
+        ) {
+            return "--";
+        } else {
+            return state.decorations[`${equipmentType}Deco${decoSlot}`]
+                .jewelName;
+        }
+    };
+
     // Opens the modal only if you are able to put a deco in said slot
-    const openModal = (currentDecoPosition, armorPieceSlotLvl) => {
-        if (armorPieceSlotLvl > 0) {
+    const openModal = (currentDecoPosition, equipmentSlotLvl) => {
+        if (equipmentSlotLvl > 0) {
             setModalState((prevState) => ({
                 ...prevState,
                 isOpen: true,
                 currentDecoSlot: currentDecoPosition,
+                currentDecoLvl: equipmentSlotLvl,
             }));
         }
     };
@@ -139,8 +164,21 @@ export default function DecorationItem(props) {
     };
 
     // Makes sure that all armor pieces are loaded bofore trying to load anything
-    if (armorPiece === undefined) {
+    if (equipment === undefined) {
         return <div></div>;
+    }
+
+    if (equipment.type !== undefined) {
+        // it must be a weapon
+        if (equipment.damage !== undefined) {
+            equipmentType = "weapon";
+        }
+        // It must be armor
+        else {
+            equipmentType = `${equipment.type
+                .charAt(0)
+                .toLowerCase()}${equipment.type.slice(1)}`;
+        }
     }
 
     return (
@@ -154,32 +192,38 @@ export default function DecorationItem(props) {
             </Modal>
             <div
                 id="deco-container1"
-                className={generateDecoClasses(armorPiece.decoSlot1Lvl, 1)}
-                onClick={() => openModal(1, armorPiece.decoSlot1Lvl)}
+                className={generateDecoClasses(equipment.decoSlot1Lvl, 1)}
+                onClick={() => openModal(1, equipment.decoSlot1Lvl)}
             >
-                {GenerateDecoIcon(armorPiece.decoSlot1Lvl)}
+                {GenerateDecoIcon(equipment.decoSlot1Lvl)}
                 {/* Decoration 1  */}
-                <span className="deco-content">{}</span>
+                <span className="deco-content">
+                    {returnDecoString(state, equipmentType, 1)}
+                </span>
             </div>
             <div
                 id="deco-container2"
-                className={generateDecoClasses(armorPiece.decoSlot2Lvl, 2)}
-                onClick={() => openModal(2, armorPiece.decoSlot2Lvl)}
+                className={generateDecoClasses(equipment.decoSlot2Lvl, 2)}
+                onClick={() => openModal(2, equipment.decoSlot2Lvl)}
             >
                 {/* Decoration 2  */}
-                {GenerateDecoIcon(armorPiece.decoSlot2Lvl)}
+                {GenerateDecoIcon(equipment.decoSlot2Lvl)}
 
-                <span className="deco-content">Deco Name</span>
+                <span className="deco-content">
+                    {returnDecoString(state, equipmentType, 2)}
+                </span>
             </div>
             <div
                 id="deco-container3"
-                className={generateDecoClasses(armorPiece.decoSlot3Lvl, 3)}
+                className={generateDecoClasses(equipment.decoSlot3Lvl, 3)}
                 style={{ padding: "0px" }}
-                onClick={() => openModal(3, armorPiece.decoSlot3Lvl)}
+                onClick={() => openModal(3, equipment.decoSlot3Lvl)}
             >
                 {/* Decoration 3  */}
-                {GenerateDecoIcon(armorPiece.decoSlot3Lvl)}
-                <span className="deco-content">Deco Name</span>
+                {GenerateDecoIcon(equipment.decoSlot3Lvl)}
+                <span className="deco-content">
+                    {returnDecoString(state, equipmentType, 3)}
+                </span>
             </div>
         </div>
     );
