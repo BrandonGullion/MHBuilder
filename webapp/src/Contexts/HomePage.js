@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, createContext } from "react";
 
 export const HomePageDispatchContext = createContext();
 export const HomePageStateContext = createContext();
@@ -9,6 +9,8 @@ export const HomePageContext = (props) => {
         updates: [],
         fixes: [],
     };
+
+    const [state, dispatch] = useReducer(reducer, initialState);
 
     function reducer(state, action) {
         switch (action.type) {
@@ -21,13 +23,12 @@ export const HomePageContext = (props) => {
         }
     }
 
-    const [state, dispatch] = useReducer(reducer, state);
 
     useEffect(() => {
         try {
             // Gets the latest updates
             axios
-                .get("http://localhost:5000/api/updates")
+                .get("http://localhost:5000/api/update")
                 .then((res) =>
                     dispatch({ type: "SET_UPDATES", payload: res.data })
                 );

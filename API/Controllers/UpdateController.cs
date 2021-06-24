@@ -32,6 +32,7 @@ namespace API.Controllers
             try
             {
                 Update Update = JsonConvert.DeserializeObject<Update>(StringData);
+                Update.DateCreated = DateTime.Now.ToString("dd MMMM yyyy");
                 _context.Updates.Add(Update);
                 await _context.SaveChangesAsync();
                 return Ok();

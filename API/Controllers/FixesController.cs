@@ -31,6 +31,7 @@ namespace API.Controllers
             try
             {
                 Fixes Fix = JsonConvert.DeserializeObject<Fixes>(StringData);
+                Fix.DateCreated = DateTime.Now.ToString("dd MMMM yyyy");
                 _context.Fixes.Add(Fix);
                 await _context.SaveChangesAsync();
                 return Ok();

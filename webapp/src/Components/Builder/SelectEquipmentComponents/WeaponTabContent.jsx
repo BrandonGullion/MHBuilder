@@ -2,11 +2,24 @@ import React, { useContext, useState } from "react";
 import WeaponItem from "../CurrentEquipmentComponents/WeaponItem";
 import { ComboBoxComponent } from "@syncfusion/ej2-react-dropdowns";
 import { BuilderStateContext } from "../../../Contexts/BuilderContext";
+import SnSIcon from "../../SVGIcons/SnSIcon";
+import LongSwordIcon from "../../SVGIcons/LongSwordIcon";
+import BowIcon from "../../SVGIcons/BowIcon";
+import ChargeBladeIcon from "../../SVGIcons/ChargeBladeIcon";
+import DualBladeIcon from "../../SVGIcons/DualBladeIcon";
+import GunLanceIcon from "../../SVGIcons/GunLanceIcon";
+import GreatSwordIcon from "../../SVGIcons/GreatSwordIcon";
+import HammerIcon from "../../SVGIcons/HammerIcon";
+import HBGIcon from "../../SVGIcons/HBGIcon";
+import InsectGlaiveIcon from "../../SVGIcons/InsectGlaiveIcon";
+import LanceIcon from "../../SVGIcons/LanceIcon";
+import LBGIcon from "../../SVGIcons/LBGIcon";
+import SwitchAxeIcon from "../../SVGIcons/SwitchAxeIcon";
+import HuntingHornIcon from "../../SVGIcons/HuntingHornIcon";
 
 export default function WeaponTabContent() {
-
     const state = useContext(BuilderStateContext);
-    
+
     // Weapon api data and useReducer dispatch
     const { weapons } = state;
 
@@ -78,6 +91,15 @@ export default function WeaponTabContent() {
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
+                            weaponImage={
+                                <SnSIcon
+                                    iconStyle={{
+                                        color: "#ccc",
+                                        height: "60px",
+                                        width: "60px",
+                                    }}
+                                ></SnSIcon>
+                            }
                         ></WeaponItem>
                     </div>
                 );
@@ -88,6 +110,15 @@ export default function WeaponTabContent() {
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
+                            weaponImage={
+                                <GreatSwordIcon
+                                    iconStyle={{
+                                        color: "#ccc",
+                                        height: "60px",
+                                        width: "60px",
+                                    }}
+                                ></GreatSwordIcon>
+                            }
                         ></WeaponItem>
                     </div>
                 );
@@ -98,6 +129,15 @@ export default function WeaponTabContent() {
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
+                            weaponImage={
+                                <DualBladeIcon
+                                    iconStyle={{
+                                        color: "#ccc",
+                                        height: "60px",
+                                        width: "60px",
+                                    }}
+                                ></DualBladeIcon>
+                            }
                         ></WeaponItem>
                     </div>
                 );
@@ -108,6 +148,15 @@ export default function WeaponTabContent() {
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
+                            weaponImage={
+                                <LongSwordIcon
+                                    iconStyle={{
+                                        color: "#ccc",
+                                        height: "60px",
+                                        width: "60px",
+                                    }}
+                                ></LongSwordIcon>
+                            }
                         ></WeaponItem>
                     </div>
                 );
@@ -118,6 +167,15 @@ export default function WeaponTabContent() {
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
+                            weaponImage={
+                                <HammerIcon
+                                    iconStyle={{
+                                        color: "#ccc",
+                                        height: "60px",
+                                        width: "60px",
+                                    }}
+                                ></HammerIcon>
+                            }
                         ></WeaponItem>
                     </div>
                 );
@@ -128,6 +186,15 @@ export default function WeaponTabContent() {
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
+                            weaponImage={
+                                <HuntingHornIcon
+                                    iconStyle={{
+                                        color: "#ccc",
+                                        height: "60px",
+                                        width: "60px",
+                                    }}
+                                ></HuntingHornIcon>
+                            }
                         ></WeaponItem>
                     </div>
                 );
@@ -138,6 +205,15 @@ export default function WeaponTabContent() {
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
+                            weaponImage={
+                                <LanceIcon
+                                    iconStyle={{
+                                        color: "#ccc",
+                                        height: "60px",
+                                        width: "60px",
+                                    }}
+                                ></LanceIcon>
+                            }
                         ></WeaponItem>
                     </div>
                 );
@@ -148,6 +224,15 @@ export default function WeaponTabContent() {
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
+                            weaponImage={
+                                <GunLanceIcon
+                                    iconStyle={{
+                                        color: "#ccc",
+                                        height: "60px",
+                                        width: "60px",
+                                    }}
+                                ></GunLanceIcon>
+                            }
                         ></WeaponItem>
                     </div>
                 );
@@ -158,6 +243,15 @@ export default function WeaponTabContent() {
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
+                            weaponImage={
+                                <SwitchAxeIcon
+                                    iconStyle={{
+                                        color: "#ccc",
+                                        height: "60px",
+                                        width: "60px",
+                                    }}
+                                ></SwitchAxeIcon>
+                            }
                         ></WeaponItem>
                     </div>
                 );
@@ -168,6 +262,15 @@ export default function WeaponTabContent() {
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
+                            weaponImage={
+                                <ChargeBladeIcon
+                                    iconStyle={{
+                                        color: "#ccc",
+                                        height: "60px",
+                                        width: "60px",
+                                    }}
+                                ></ChargeBladeIcon>
+                            }
                         ></WeaponItem>
                     </div>
                 );
@@ -178,6 +281,15 @@ export default function WeaponTabContent() {
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
+                            weaponImage={
+                                <InsectGlaiveIcon
+                                    iconStyle={{
+                                        color: "#ccc",
+                                        height: "60px",
+                                        width: "60px",
+                                    }}
+                                ></InsectGlaiveIcon>
+                            }
                         ></WeaponItem>
                     </div>
                 );
@@ -188,6 +300,15 @@ export default function WeaponTabContent() {
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
+                            weaponImage={
+                                <BowIcon
+                                    iconStyle={{
+                                        color: "#ccc",
+                                        height: "60px",
+                                        width: "60px",
+                                    }}
+                                ></BowIcon>
+                            }
                         ></WeaponItem>
                     </div>
                 );
@@ -197,6 +318,15 @@ export default function WeaponTabContent() {
                     <div key={weapon.id} className="white-border-hover">
                         <WeaponItem
                             weapon={weapon}
+                            weaponImage={
+                                <HBGIcon
+                                    iconStyle={{
+                                        color: "#ccc",
+                                        height: "60px",
+                                        width: "60px",
+                                    }}
+                                ></HBGIcon>
+                            }
                         ></WeaponItem>
                     </div>
                 );
@@ -207,6 +337,15 @@ export default function WeaponTabContent() {
                         <WeaponItem
                             key={weapon.id}
                             weapon={weapon}
+                            weaponImage={
+                                <LBGIcon
+                                    iconStyle={{
+                                        color: "#ccc",
+                                        height: "60px",
+                                        width: "60px",
+                                    }}
+                                ></LBGIcon>
+                            }
                         ></WeaponItem>
                     </div>
                 );
@@ -255,7 +394,7 @@ export default function WeaponTabContent() {
     };
 
     return (
-        <div style={{overflowY:"scroll", maxHeight:"700px"}}>
+        <div style={{ overflowY: "scroll", maxHeight: "700px" }}>
             <div style={{ padding: "10px 10px" }}>
                 <ComboBoxComponent
                     fields={weaponFields}

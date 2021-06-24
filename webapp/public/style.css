@@ -423,17 +423,10 @@ h5 {
 }
 
 .linebreak {
-    background: radial-gradient(
-        ellipse at 50% -100%,
-        rgba(255, 255, 255, 0.6) 0,
-        rgba(255, 255, 255, 0.01) 70%
-    );
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
-    content: "";
-    display: block;
-    height: 6px;
-    margin-top: 10px;
-    width: 100%;
+    background: var(--lightergrey);
+    height: 1pt;
+    margin: 30px 0px;
+    width: 95%;
 }
 
 .update-date {
@@ -608,7 +601,6 @@ h5 {
     border-color: white;
 }
 
-
 .deco-white-border-hover {
     transition: 0.1s;
     border-color: transparent;
@@ -627,7 +619,7 @@ h5 {
     border-color: white;
 }
 
-.active-item-border{
+.active-item-border {
     border-radius: 2px;
     border-color: white;
     border-style: solid;
@@ -740,18 +732,46 @@ h5 {
 
 .default-button {
     border-radius: 3px;
-    color:var(--lightergrey);
+    color: var(--lightergrey);
     border-color: var(--lightergrey);
     border-style: solid;
     padding: 3px 10px;
-    transition:0.2s;
+    transition: 0.2s;
     cursor: pointer;
 }
 
-.default-button:hover{
-    border-color:var(--hightlightblue);
+.default-button:hover {
+    border-color: var(--hightlightblue);
 }
 
-.default-button:active{
+.default-button:active {
     border-color: white;
+}
+
+.index-button {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+    color: var(--lightergrey) !important;
+    width: 200px;
+    font-size: 32px;
+    padding: 10px 50px;
+    border: var(--lightergrey) 2px solid;
+    border-radius: 3px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.index-button:hover {
+    text-decoration: none;
+    color: var(--hightlightblue) !important;
+    border-color: var(--hightlightblue);
+    box-shadow: 0px 0px 10px 2px var(--hightlightblue);
+}
+
+.index-button:active {
+    border-color: white;
+    color: white;
+    box-shadow: 0px 0px 10px 2px white;
 }
