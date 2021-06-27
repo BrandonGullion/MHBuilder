@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function HBGIcon(props) {
-    const { iconStyle } = props;
-    const { color, width, height } = iconStyle;
+export default function HeavyBowgunIcon(props) {
+    const { style } = props;
+    const { color, width, height } = style;
 
     return (
         <div>

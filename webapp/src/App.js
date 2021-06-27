@@ -6,10 +6,10 @@ import { Fragment } from "react";
 import BuilderPage from "./Pages/BuilderPage";
 import Header from "./Components/Header";
 import DeveloperPage from "./Pages/DeveloperPage";
+import { BuilderContext } from "./Contexts/BuilderContext";
 import { HomePageContext } from "./Contexts/HomePage";
 
 function App() {
-
     return (
         <Fragment>
             <Router>
@@ -22,7 +22,9 @@ function App() {
                         </HomePageContext>
                     </Route>
                     <Route path="/builder">
-                        <BuilderPage></BuilderPage>
+                        <BuilderContext>
+                            <BuilderPage></BuilderPage>
+                        </BuilderContext>
                     </Route>
                     <Route path="/dev">
                         <DeveloperPage></DeveloperPage>

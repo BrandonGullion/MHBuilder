@@ -2,20 +2,7 @@ import React, { useContext, useState } from "react";
 import WeaponItem from "../CurrentEquipmentComponents/WeaponItem";
 import { ComboBoxComponent } from "@syncfusion/ej2-react-dropdowns";
 import { BuilderStateContext } from "../../../Contexts/BuilderContext";
-import SnSIcon from "../../SVGIcons/SnSIcon";
-import LongSwordIcon from "../../SVGIcons/LongSwordIcon";
-import BowIcon from "../../SVGIcons/BowIcon";
-import ChargeBladeIcon from "../../SVGIcons/ChargeBladeIcon";
-import DualBladeIcon from "../../SVGIcons/DualBladeIcon";
-import GunLanceIcon from "../../SVGIcons/GunLanceIcon";
-import GreatSwordIcon from "../../SVGIcons/GreatSwordIcon";
-import HammerIcon from "../../SVGIcons/HammerIcon";
-import HBGIcon from "../../SVGIcons/HBGIcon";
-import InsectGlaiveIcon from "../../SVGIcons/InsectGlaiveIcon";
-import LanceIcon from "../../SVGIcons/LanceIcon";
-import LBGIcon from "../../SVGIcons/LBGIcon";
-import SwitchAxeIcon from "../../SVGIcons/SwitchAxeIcon";
-import HuntingHornIcon from "../../SVGIcons/HuntingHornIcon";
+
 
 export default function WeaponTabContent() {
     const state = useContext(BuilderStateContext);
@@ -64,337 +51,34 @@ export default function WeaponTabContent() {
     const [desiredWeaponType, setDesiredWeaponType] = useState(weaponTypes.sns);
 
     // Object to hold all different weapon arrays
-    const weaponArrays = {
-        gsArray: [],
-        snsArray: [],
-        dbArray: [],
-        lsArray: [],
-        haArray: [],
-        saArray: [],
-        laArray: [],
-        glArray: [],
-        boArray: [],
-        cbArray: [],
-        igArray: [],
-        hhArray: [],
-        lbArray: [],
-        hbArray: [],
-    };
+    const weaponArrays = {};
 
     // Filters the weapons into their seperate arrays
     // This could be made smaller by using string to id props...
     weapons.forEach((weapon) => {
-        switch (weapon.type) {
-            case weaponTypes.sns:
-                weaponArrays.snsArray.push(
-                    <div key={weapon.id} className="white-border-hover">
-                        <WeaponItem
-                            key={weapon.id}
-                            weapon={weapon}
-                            weaponImage={
-                                <SnSIcon
-                                    iconStyle={{
-                                        color: "#ccc",
-                                        height: "60px",
-                                        width: "60px",
-                                    }}
-                                ></SnSIcon>
-                            }
-                        ></WeaponItem>
-                    </div>
-                );
-                break;
-            case weaponTypes.gs:
-                weaponArrays.gsArray.push(
-                    <div key={weapon.id} className="white-border-hover">
-                        <WeaponItem
-                            key={weapon.id}
-                            weapon={weapon}
-                            weaponImage={
-                                <GreatSwordIcon
-                                    iconStyle={{
-                                        color: "#ccc",
-                                        height: "60px",
-                                        width: "60px",
-                                    }}
-                                ></GreatSwordIcon>
-                            }
-                        ></WeaponItem>
-                    </div>
-                );
-                break;
-            case weaponTypes.db:
-                weaponArrays.dbArray.push(
-                    <div key={weapon.id} className="white-border-hover">
-                        <WeaponItem
-                            key={weapon.id}
-                            weapon={weapon}
-                            weaponImage={
-                                <DualBladeIcon
-                                    iconStyle={{
-                                        color: "#ccc",
-                                        height: "60px",
-                                        width: "60px",
-                                    }}
-                                ></DualBladeIcon>
-                            }
-                        ></WeaponItem>
-                    </div>
-                );
-                break;
-            case weaponTypes.ls:
-                weaponArrays.lsArray.push(
-                    <div key={weapon.id} className="white-border-hover">
-                        <WeaponItem
-                            key={weapon.id}
-                            weapon={weapon}
-                            weaponImage={
-                                <LongSwordIcon
-                                    iconStyle={{
-                                        color: "#ccc",
-                                        height: "60px",
-                                        width: "60px",
-                                    }}
-                                ></LongSwordIcon>
-                            }
-                        ></WeaponItem>
-                    </div>
-                );
-                break;
-            case weaponTypes.ha:
-                weaponArrays.haArray.push(
-                    <div key={weapon.id} className="white-border-hover">
-                        <WeaponItem
-                            key={weapon.id}
-                            weapon={weapon}
-                            weaponImage={
-                                <HammerIcon
-                                    iconStyle={{
-                                        color: "#ccc",
-                                        height: "60px",
-                                        width: "60px",
-                                    }}
-                                ></HammerIcon>
-                            }
-                        ></WeaponItem>
-                    </div>
-                );
-                break;
-            case weaponTypes.hh:
-                weaponArrays.hhArray.push(
-                    <div key={weapon.id} className="white-border-hover">
-                        <WeaponItem
-                            key={weapon.id}
-                            weapon={weapon}
-                            weaponImage={
-                                <HuntingHornIcon
-                                    iconStyle={{
-                                        color: "#ccc",
-                                        height: "60px",
-                                        width: "60px",
-                                    }}
-                                ></HuntingHornIcon>
-                            }
-                        ></WeaponItem>
-                    </div>
-                );
-                break;
-            case weaponTypes.la:
-                weaponArrays.laArray.push(
-                    <div key={weapon.id} className="white-border-hover">
-                        <WeaponItem
-                            key={weapon.id}
-                            weapon={weapon}
-                            weaponImage={
-                                <LanceIcon
-                                    iconStyle={{
-                                        color: "#ccc",
-                                        height: "60px",
-                                        width: "60px",
-                                    }}
-                                ></LanceIcon>
-                            }
-                        ></WeaponItem>
-                    </div>
-                );
-                break;
-            case weaponTypes.gl:
-                weaponArrays.glArray.push(
-                    <div key={weapon.id} className="white-border-hover">
-                        <WeaponItem
-                            key={weapon.id}
-                            weapon={weapon}
-                            weaponImage={
-                                <GunLanceIcon
-                                    iconStyle={{
-                                        color: "#ccc",
-                                        height: "60px",
-                                        width: "60px",
-                                    }}
-                                ></GunLanceIcon>
-                            }
-                        ></WeaponItem>
-                    </div>
-                );
-                break;
-            case weaponTypes.sa:
-                weaponArrays.saArray.push(
-                    <div key={weapon.id} className="white-border-hover">
-                        <WeaponItem
-                            key={weapon.id}
-                            weapon={weapon}
-                            weaponImage={
-                                <SwitchAxeIcon
-                                    iconStyle={{
-                                        color: "#ccc",
-                                        height: "60px",
-                                        width: "60px",
-                                    }}
-                                ></SwitchAxeIcon>
-                            }
-                        ></WeaponItem>
-                    </div>
-                );
-                break;
-            case weaponTypes.cb:
-                weaponArrays.cbArray.push(
-                    <div key={weapon.id} className="white-border-hover">
-                        <WeaponItem
-                            key={weapon.id}
-                            weapon={weapon}
-                            weaponImage={
-                                <ChargeBladeIcon
-                                    iconStyle={{
-                                        color: "#ccc",
-                                        height: "60px",
-                                        width: "60px",
-                                    }}
-                                ></ChargeBladeIcon>
-                            }
-                        ></WeaponItem>
-                    </div>
-                );
-                break;
-            case weaponTypes.ig:
-                weaponArrays.igArray.push(
-                    <div key={weapon.id} className="white-border-hover">
-                        <WeaponItem
-                            key={weapon.id}
-                            weapon={weapon}
-                            weaponImage={
-                                <InsectGlaiveIcon
-                                    iconStyle={{
-                                        color: "#ccc",
-                                        height: "60px",
-                                        width: "60px",
-                                    }}
-                                ></InsectGlaiveIcon>
-                            }
-                        ></WeaponItem>
-                    </div>
-                );
-                break;
-            case weaponTypes.bo:
-                weaponArrays.boArray.push(
-                    <div key={weapon.id} className="white-border-hover">
-                        <WeaponItem
-                            key={weapon.id}
-                            weapon={weapon}
-                            weaponImage={
-                                <BowIcon
-                                    iconStyle={{
-                                        color: "#ccc",
-                                        height: "60px",
-                                        width: "60px",
-                                    }}
-                                ></BowIcon>
-                            }
-                        ></WeaponItem>
-                    </div>
-                );
-                break;
-            case weaponTypes.hb:
-                weaponArrays.hbArray.push(
-                    <div key={weapon.id} className="white-border-hover">
-                        <WeaponItem
-                            weapon={weapon}
-                            weaponImage={
-                                <HBGIcon
-                                    iconStyle={{
-                                        color: "#ccc",
-                                        height: "60px",
-                                        width: "60px",
-                                    }}
-                                ></HBGIcon>
-                            }
-                        ></WeaponItem>
-                    </div>
-                );
-                break;
-            case weaponTypes.lb:
-                weaponArrays.lbArray.push(
-                    <div key={weapon.id} className="white-border-hover">
-                        <WeaponItem
-                            key={weapon.id}
-                            weapon={weapon}
-                            weaponImage={
-                                <LBGIcon
-                                    iconStyle={{
-                                        color: "#ccc",
-                                        height: "60px",
-                                        width: "60px",
-                                    }}
-                                ></LBGIcon>
-                            }
-                        ></WeaponItem>
-                    </div>
-                );
-                break;
-
-            default:
-                break;
+        // Create a new instance of an array if there is not one already present
+        if (weaponArrays[`${weapon.type}`] === undefined) {
+            weaponArrays[`${weapon.type}`] = [];
         }
+        weaponArrays[`${weapon.type}`].push(
+            <div key={weapon.id} className="white-border-hover">
+                <WeaponItem
+                    key={weapon.id}
+                    weapon={weapon}
+                ></WeaponItem>
+            </div>
+        );
     });
 
     // Returns an array of weapon items depending on the selected
     // Weapon type
+
     const renderWeapons = (desiredWeaponType) => {
-        switch (desiredWeaponType) {
-            case weaponTypes.gs:
-                return weaponArrays.gsArray;
-            case weaponTypes.sns:
-                return weaponArrays.snsArray;
-            case weaponTypes.db:
-                return weaponArrays.dbArray;
-            case weaponTypes.ls:
-                return weaponArrays.lsArray;
-            case weaponTypes.ha:
-                return weaponArrays.haArray;
-            case weaponTypes.hh:
-                return weaponArrays.hhArray;
-            case weaponTypes.la:
-                return weaponArrays.laArray;
-            case weaponTypes.gl:
-                return weaponArrays.glArray;
-            case weaponTypes.sa:
-                return weaponArrays.saArray;
-            case weaponTypes.cb:
-                return weaponArrays.cbArray;
-            case weaponTypes.ig:
-                return weaponArrays.igArray;
-            case weaponTypes.bo:
-                return weaponArrays.boArray;
-            case weaponTypes.hb:
-                return weaponArrays.hbArray;
-            case weaponTypes.lb:
-                return weaponArrays.lbArray;
-            default:
-                break;
-        }
+        return weaponArrays[desiredWeaponType];
     };
 
     return (
-        <div style={{ overflowY: "scroll", maxHeight: "700px" }}>
+        <div style={{ overflowY: "scroll", maxHeight: "669px" }}>
             <div style={{ padding: "10px 10px" }}>
                 <ComboBoxComponent
                     fields={weaponFields}

@@ -78,7 +78,7 @@ export default function ArmorTabContents() {
         <div
             style={{
                 overflowY: "scroll",
-                maxHeight: "700px",
+                maxHeight: "669px",
                 paddingRight: "10px",
             }}
         >

@@ -5,42 +5,42 @@ import DualBladeIcon from "../SVGIcons/DualBladeIcon";
 import GreatSwordIcon from "../SVGIcons/GreatSwordIcon";
 import GunLanceIcon from "../SVGIcons/GunLanceIcon";
 import HammerIcon from "../SVGIcons/HammerIcon";
-import HBGIcon from "../SVGIcons/HBGIcon";
+import HeavyBowgunIcon from "../SVGIcons/HeavyBowgunIcon";
 import HuntingHornIcon from "../SVGIcons/HuntingHornIcon";
 import LongSwordIcon from "../SVGIcons/LongSwordIcon";
-import SnSIcon from "../SVGIcons/SnSIcon";
+import SwordAndShieldIcon from "../SVGIcons/SwordAndShieldIcon";
 import SwitchAxeIcon from "../SVGIcons/SwitchAxeIcon";
-import InsectGlaiveIcon from "../SVGIcons/HBGIcon";
+import InsectGlaiveIcon from "../SVGIcons/InsectGlaiveIcon";
 import LanceIcon from "../SVGIcons/LanceIcon";
-import LBGIcon from "../SVGIcons/LBGIcon";
+import LightBowgunIcon from "../SVGIcons/LightBowgunIcon";
 
 export default function WeaponBanner() {
     return (
         <div style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ display: "flex" }}>
                 <BowIcon
-                    iconStyle={{
+                    style={{
                         color: "#ccc",
                         width: "100px",
                         height: "100px",
                     }}
                 ></BowIcon>
                 <ChargeBladeIcon
-                    iconStyle={{
+                    style={{
                         color: "#ccc",
                         width: "100px",
                         height: "100px",
                     }}
                 ></ChargeBladeIcon>
                 <DualBladeIcon
-                    iconStyle={{
+                    style={{
                         color: "#ccc",
                         width: "100px",
                         height: "100px",
                     }}
                 ></DualBladeIcon>
                 <GreatSwordIcon
-                    iconStyle={{
+                    style={{
                         color: "#ccc",
                         width: "100px",
                         height: "100px",
@@ -49,28 +49,28 @@ export default function WeaponBanner() {
             </div>
             <div style={{ display: "flex" }}>
                 <GunLanceIcon
-                    iconStyle={{
+                    style={{
                         color: "#ccc",
                         width: "100px",
                         height: "100px",
                     }}
                 ></GunLanceIcon>
                 <HammerIcon
-                    iconStyle={{
+                    style={{
                         color: "#ccc",
                         width: "100px",
                         height: "100px",
                     }}
                 ></HammerIcon>
-                <HBGIcon
-                    iconStyle={{
+                <HeavyBowgunIcon
+                    style={{
                         color: "#ccc",
                         width: "100px",
                         height: "100px",
                     }}
-                ></HBGIcon>
+                ></HeavyBowgunIcon>
                 <HuntingHornIcon
-                    iconStyle={{
+                    style={{
                         color: "#ccc",
                         width: "100px",
                         height: "100px",
@@ -79,28 +79,28 @@ export default function WeaponBanner() {
             </div>
             <div style={{ display: "flex" }}>
                 <InsectGlaiveIcon
-                    iconStyle={{
+                    style={{
                         color: "#ccc",
                         width: "100px",
                         height: "100px",
                     }}
                 ></InsectGlaiveIcon>
                 <LanceIcon
-                    iconStyle={{
+                    style={{
                         color: "#ccc",
                         width: "100px",
                         height: "100px",
                     }}
                 ></LanceIcon>
-                <LBGIcon
-                    iconStyle={{
+                <LightBowgunIcon
+                    style={{
                         color: "#ccc",
                         width: "100px",
                         height: "100px",
                     }}
-                ></LBGIcon>
+                ></LightBowgunIcon>
                 <LongSwordIcon
-                    iconStyle={{
+                    style={{
                         color: "#ccc",
                         width: "100px",
                         height: "100px",
@@ -109,15 +109,15 @@ export default function WeaponBanner() {
             </div>
 
             <div style={{ display: "flex", margin: "0px 0px 0px 100px" }}>
-                <SnSIcon
-                    iconStyle={{
+                <SwordAndShieldIcon
+                    style={{
                         color: "#ccc",
                         width: "100px",
                         height: "100px",
                     }}
-                ></SnSIcon>
+                ></SwordAndShieldIcon>
                 <SwitchAxeIcon
-                    iconStyle={{
+                    style={{
                         color: "#ccc",
                         width: "100px",
                         height: "100px",

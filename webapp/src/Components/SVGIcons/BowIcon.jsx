@@ -1,8 +1,8 @@
 import React from "react";
 
 export default function BowIcon(props) {
-    const { iconStyle } = props;
-    const { color, height, width } = iconStyle;
+    const { style } = props;
+    const { color, height, width } = style;
 
     return (
         <div>

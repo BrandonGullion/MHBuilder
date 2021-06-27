@@ -5,7 +5,6 @@ export const BuilderDispatchContext = createContext();
 export const BuilderStateContext = createContext();
 
 export const BuilderContext = (props) => {
-
     // Initial Builder Page State
     const initialState = {
         armors: [],
@@ -17,7 +16,9 @@ export const BuilderContext = (props) => {
         arms: { skills: [] },
         coil: { skills: [] },
         legs: { skills: [] },
+        loading: true,
         currentSkills: [],
+        talismanSkills: [],
         decorations: {
             weaponDeco1: {},
             weaponDeco2: {},
@@ -37,6 +38,9 @@ export const BuilderContext = (props) => {
             legsDeco1: {},
             legsDeco2: {},
             legsDeco3: {},
+            talismanDeco1: {},
+            talismanDeco2: {},
+            talismanDeco3: {},
         },
     };
 
@@ -68,6 +72,14 @@ export const BuilderContext = (props) => {
                     skillArray.push(state.decorations[property]);
                 }
             }
+
+            // If there are any selected skills in the talisman skill array, add
+            // them to the skill arrray list to be added to current skills
+            if (state.talismanSkills.length > 0) {
+                state.talismanSkills.forEach((skill) => {
+                    skillArray.push(skill);
+                });
+            }
         }
         return skillArray;
     };
@@ -93,6 +105,12 @@ export const BuilderContext = (props) => {
         console.log("An error setting the decoration has occurred");
         return state.decorations;
     };
+
+    // This is a function to allow for the components 2 seconds to load onto the screen
+    // after the data has been fetched
+    // async function stall(stallTime = 2000) {
+    //     await new Promise((resolve) => setTimeout(resolve, stallTime));
+    // }
 
     // Reducer function
     const [state, dispatch] = useReducer(reducer, initialState);
@@ -127,28 +145,28 @@ export const BuilderContext = (props) => {
                     ...state,
                     decorations: handleDecorationSet(state, action.payload),
                 };
+            case "SET_TALISMAN_SKILLS":
+                return { ...state, talismanSkills: action.payload };
+            case "SET_LOADING":
+                return { ...state, loading: action.payload };
             default:
                 return state;
         }
     }
 
+    // Do not like this but doing it to stop errors
+    const fetchData = async (url, dispatchType) => {
+        await axios
+            .get(url)
+            .then((res) => dispatch({ type: dispatchType, payload: res.data }));
+    };
+
     // Gets the initial values from the api
     useEffect(() => {
-        axios
-            .get("http://localhost:5000/api/armor")
-            .then((response) =>
-                dispatch({ type: "SET_ARMORS", payload: response.data })
-            );
-        axios
-            .get("http://localhost:5000/api/weapon")
-            .then((response) =>
-                dispatch({ type: "SET_WEAPONS", payload: response.data })
-            );
-        axios
-            .get("http://localhost:5000/api/skill")
-            .then((response) =>
-                dispatch({ type: "SET_SKILLS", payload: response.data })
-            );
+        fetchData("http://localhost:5000/api/armor", "SET_ARMORS");
+        fetchData("http://localhost:5000/api/weapon", "SET_WEAPONS");
+        fetchData("http://localhost:5000/api/skill", "SET_SKILLS");
+        dispatch({ type: "SET_LOADING", payload: false });
     }, []);
 
     // Set the initial values when the armor and weapon property gets data from api

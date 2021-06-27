@@ -1,8 +1,8 @@
 import React from "react";
 
 export default function HuntingHornIcon(props) {
-    const { iconStyle } = props;
-    const { color, width, height } = iconStyle;
+    const { style } = props;
+    const { color, width, height } = style;
 
     return (
         <div>

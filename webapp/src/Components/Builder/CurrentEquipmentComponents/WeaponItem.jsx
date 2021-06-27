@@ -6,12 +6,12 @@ import SharpnessBar from "../SharpnessBar";
 import BowgunInfoBar from "./BowgunInfoBar";
 import MelodyBar from "./MelodyBar";
 import { BuilderDispatchContext } from "../../../Contexts/BuilderContext";
-import { renderElement } from "../../../WeaponFunctions";
-
+import { renderElement, renderWeaponIcon } from "../../../WeaponFunctions";
 export default function WeaponItem(props) {
     const dispatch = useContext(BuilderDispatchContext);
-    const { weapon, weaponImage } = props;
+    const { weapon } = props;
     let isSharpness = false;
+    
 
     if (
         weapon.redSharpness !== 0 ||
@@ -49,10 +49,10 @@ export default function WeaponItem(props) {
 
                 <div
                     className="glass-card-header"
-                    style={{ padding:"0px 2px 2px 5px" }}
+                    style={{ padding: "0px 2px 2px 5px" }}
                 >
-                {/* Weapon Image */}
-                    {weaponImage === undefined ? <div></div> : weaponImage}
+                    {/* Weapon Image */}
+                    {renderWeaponIcon(weapon)}
                 </div>
                 <div className="glass-card-content armor-item-content">
                     <div>

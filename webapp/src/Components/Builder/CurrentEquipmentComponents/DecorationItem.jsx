@@ -24,13 +24,13 @@ export default function DecorationItem(props) {
 
     // The armor piece should not be accessed through context due to one
     // component affecting many different armor types
-    const { equipment } = props;
+    const { equipment, flexDirection } = props;
 
     const [modalState, setModalState] = useState({
         isOpen: false,
         currentDecoSlot: 0,
-        currentDecoLvl:0,
-        armor:{},
+        currentDecoLvl: 0,
+        armor: {},
     });
 
     // Sets the armor type to the modal state for dispatch function once the armor piece
@@ -119,10 +119,14 @@ export default function DecorationItem(props) {
         }
     };
 
-    const generateDecoClasses = (decoLvl, decoPosition) => {
-        return decoLvl > 0
-            ? `glass-card deco-container-${decoPosition} rounded-corners deco-white-border-hover`
-            : `glass-card deco-container-${decoPosition} rounded-corners`;
+    const generateDecoClasses = (decoLvl, decoPosition, equipmentType) => {
+        if (decoLvl > 0 && equipmentType !== "talisman") {
+            return `glass-card deco-container-${decoPosition} rounded-corners deco-white-border-hover`;
+        } else if (equipmentType === "talisman") {
+            return "glass-card talisman-deco-slot rounded-corners deco-white-border-hover";
+        } else {
+            return `glass-card deco-container-${decoPosition} rounded-corners`;
+        }
     };
 
     // Returns a string
@@ -182,7 +186,10 @@ export default function DecorationItem(props) {
     }
 
     return (
-        <div className="flex-container">
+        <div
+            className="flex-container"
+            style={{ flexDirection: `${flexDirection}` }}
+        >
             <Modal isOpen={modalState.isOpen} style={customStyle}>
                 <ModalDecoContent
                     modalState={modalState}
@@ -191,8 +198,13 @@ export default function DecorationItem(props) {
                 ></ModalDecoContent>
             </Modal>
             <div
+                style={{ display: "flex" }}
                 id="deco-container1"
-                className={generateDecoClasses(equipment.decoSlot1Lvl, 1)}
+                className={generateDecoClasses(
+                    equipment.decoSlot1Lvl,
+                    1,
+                    equipment.type
+                )}
                 onClick={() => openModal(1, equipment.decoSlot1Lvl)}
             >
                 {GenerateDecoIcon(equipment.decoSlot1Lvl)}
@@ -202,8 +214,13 @@ export default function DecorationItem(props) {
                 </span>
             </div>
             <div
+                style={{ display: "flex" }}
                 id="deco-container2"
-                className={generateDecoClasses(equipment.decoSlot2Lvl, 2)}
+                className={generateDecoClasses(
+                    equipment.decoSlot2Lvl,
+                    2,
+                    equipment.type
+                )}
                 onClick={() => openModal(2, equipment.decoSlot2Lvl)}
             >
                 {/* Decoration 2  */}
@@ -215,8 +232,12 @@ export default function DecorationItem(props) {
             </div>
             <div
                 id="deco-container3"
-                className={generateDecoClasses(equipment.decoSlot3Lvl, 3)}
-                style={{ padding: "0px" }}
+                className={generateDecoClasses(
+                    equipment.decoSlot3Lvl,
+                    3,
+                    equipment.type
+                )}
+                style={{ padding: "0px", display:"flex" }}
                 onClick={() => openModal(3, equipment.decoSlot3Lvl)}
             >
                 {/* Decoration 3  */}

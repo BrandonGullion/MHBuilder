@@ -1,13 +1,12 @@
 import React, { Fragment } from "react";
 import { BsShieldShaded } from "react-icons/bs";
 import {
-    GiBroadsword,
     GiSwordWound,
 } from "react-icons/gi";
 import { RiSwordFill } from "react-icons/ri";
 import SharpnessBar from "../../SharpnessBar";
 import BowgunInfoBar from "../BowgunInfoBar";
-import { renderElement } from "../../../../WeaponFunctions";
+import { renderElement, renderWeaponIcon } from "../../../../WeaponFunctions";
 import MelodyBar from "../MelodyBar";
 export default function WeaponItem(props) {
     const { weapon } = props;
@@ -27,7 +26,7 @@ export default function WeaponItem(props) {
     if (weapon !== undefined) {
         return (
             <div
-                style={{ fontSize: "14px", margin:"5px 0px" }}
+                style={{ fontSize: "14px", margin: "5px 0px" }}
                 className="glass-card-current-weapon armor-item rounded-corners"
             >
                 {isSharpness ? (
@@ -46,9 +45,9 @@ export default function WeaponItem(props) {
 
                 <div
                     className="glass-card-header"
-                    style={{ padding: "0px 15px 10px", fontSize: "2.2rem" }}
+                    style={{ padding: "0px 2px 2px 5px" }}
                 >
-                    <GiBroadsword></GiBroadsword>
+                    {renderWeaponIcon(weapon)}
                 </div>
                 <div className="glass-card-content armor-item-content">
                     <div>

@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function SnSIcon(props) {
-    const { iconStyle } = props;
-    const { color, width, height } = iconStyle;
+export default function SwordAndShieldIcon(props) {
+    const { style } = props;
+    const { color, width, height } = style;
 
     return (
         <div>
