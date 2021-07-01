@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import swordAndShieldData from "../SeedingDataFromWebsite/swordAndShieldData";
+import { DevStateContext } from "../Contexts/DevContext";
 
 export default function DeveloperPage() {
     // Generates a list of skills to select
@@ -10,6 +11,9 @@ export default function DeveloperPage() {
     const [skillListOptions, setSkillListOptions] = useState([]);
     const [rampageSkillList, setRampageSkillList] = useState([]);
     const [rampageSkillListOptions, setRampageSkillListOptions] = useState([]);
+
+    // Have access to the current signed in dev when making calls to the db
+    const state = useContext(DevStateContext);
 
     // Populate skill data at start of page loading
     useEffect(() => {
@@ -348,6 +352,11 @@ export default function DeveloperPage() {
                             }}
                             options={skillTypeOptions}
                         ></Dropdown>
+
+                        <label>Jewel Name</label>
+                        <input
+                            onChange={(e) => (skill.jewelName = e.target.value)}
+                        ></input>
 
                         <label>Max Level</label>
                         <input

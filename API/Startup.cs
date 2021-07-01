@@ -1,6 +1,9 @@
+using API.Extensions;
 using Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -37,6 +40,8 @@ namespace API
             services.AddDbContext<DataContext>(opt => {
                 opt.UseSqlite(_config.GetConnectionString("DefaultConnection"));
             });
+
+            services.AddIdentityServices(_config);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +58,8 @@ namespace API
 
             app.UseCors();
 
+            // This order is important
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -1,9 +1,8 @@
 import React, { Fragment } from "react";
 import { FaRegEdit } from "react-icons/fa";
-import { BiHomeAlt, BiHelpCircle } from "react-icons/bi";
+import { BiHomeAlt } from "react-icons/bi";
 import { HiOutlineMail } from "react-icons/hi";
 import {MdDeveloperMode} from "react-icons/md";
-
 
 export default function Navbar(){
     return (
@@ -18,12 +17,12 @@ export default function Navbar(){
                 <a href="/">
                     <HiOutlineMail className="sidebar-icon"></HiOutlineMail>
                 </a>
-                <a href="/">
-                    <BiHelpCircle className="sidebar-icon"></BiHelpCircle>
-                </a>
                 <a href="/dev">
                     <MdDeveloperMode className="sidebar-icon"></MdDeveloperMode>
                 </a>
+                <a href="/login">Login</a>
+
+                <a href="/dev">Dev</a>
             </div>
         </Fragment>
     );

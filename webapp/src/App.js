@@ -8,6 +8,9 @@ import Header from "./Components/Header";
 import DeveloperPage from "./Pages/DeveloperPage";
 import { BuilderContext } from "./Contexts/BuilderContext";
 import { HomePageContext } from "./Contexts/HomePage";
+import LoginPage from "./Pages/LoginPage";
+import DevContext from "./Contexts/DevContext";
+import PrivateRoute from "./Components/PrivateRoute";
 
 function App() {
     return (
@@ -26,9 +29,14 @@ function App() {
                             <BuilderPage></BuilderPage>
                         </BuilderContext>
                     </Route>
-                    <Route path="/dev">
-                        <DeveloperPage></DeveloperPage>
-                    </Route>
+                    <DevContext>
+                        <PrivateRoute exact path="/dev">
+                            <DeveloperPage></DeveloperPage>
+                        </PrivateRoute>
+                        <Route exact path="/login">
+                            <LoginPage></LoginPage>
+                        </Route>
+                    </DevContext>
                 </Switch>
             </Router>
         </Fragment>

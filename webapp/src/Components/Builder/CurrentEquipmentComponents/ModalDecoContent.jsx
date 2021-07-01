@@ -20,9 +20,12 @@ export default function ModalDecoContent(props) {
     const filterSkills = (skills, decoSlotLvl) => {
         let array = [];
         skills.forEach((skill) => {
-            let jewelLvl = skill.jewelName.split("");
-            if (jewelLvl[jewelLvl.length - 1] <= decoSlotLvl.toString()) {
-                array.push(skill);
+            // If statement removes any skills that are not available as decorations
+            if (skill.jewelName !== undefined && skill.jewelName !== "" && skill.jewelName !== null) {
+                let jewelLvl = skill.jewelName.split("");
+                if (jewelLvl[jewelLvl.length - 1] <= decoSlotLvl.toString()) {
+                    array.push(skill);
+                }
             }
         });
         return array;
@@ -124,7 +127,7 @@ export default function ModalDecoContent(props) {
                             fontSize: "14px",
                             margin: "5px 0px",
                             cursor: "pointer",
-                            backdropFilter:"none",
+                            backdropFilter: "none",
                         }}
                     >
                         <div style={{ width: "100%" }} key={skill.id}>

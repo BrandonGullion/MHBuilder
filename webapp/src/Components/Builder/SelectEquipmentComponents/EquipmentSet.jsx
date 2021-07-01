@@ -50,7 +50,7 @@ export default function EquipmentSet(props) {
     });
 
     return (
-        <div style={{ width: "300px" }}>
+        <div>
             <div>
                 <p className="pad-left-10 pad-tb-10 current-set-label">
                     {currentSet} Set
@@ -83,7 +83,6 @@ export default function EquipmentSet(props) {
                         <BsSlashSquare className="glass-card-header armor-item-icon rounded-corners"></BsSlashSquare>
                     </div>
                 )}
-                {/* Chest Armor Piece */}
                 {/* Helm Armor Piece */}
                 {chest.name !== undefined ? (
                     <Popup

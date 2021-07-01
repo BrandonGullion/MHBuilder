@@ -96,9 +96,9 @@ export const BuilderContext = (props) => {
             .charAt(0)
             .toLowerCase()}${equipment.type.slice(1)}Deco${slotNumber}`;
 
+        // There is an error in logic right here, should not be pushing anything to the state.skills
         if (skill !== undefined) {
             state.decorations[prop] = skill;
-            state.skills.push(skill);
             return state.decorations;
         }
 
