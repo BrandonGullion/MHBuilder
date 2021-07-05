@@ -55,7 +55,7 @@ export default function Index() {
             >
                 <BulletinBoardComponent></BulletinBoardComponent>
                 <div
-                    style={{ display: "flex", justifyContent: "space-evenly", paddingTop:"30px" }}
+                    style={{ display: "flex", justifyContent: "space-evenly", paddingTop:"30px", marginRight:"60px" }}
                 >
                     <UpdateDisplay></UpdateDisplay>
                     {/* Center line break */}

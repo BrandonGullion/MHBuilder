@@ -9,6 +9,7 @@ export const HomePageContext = (props) => {
     const initialState = {
         updates: [],
         fixes: [],
+        bulletins: [],
     };
 
     const [state, dispatch] = useReducer(reducer, initialState);
@@ -19,6 +20,8 @@ export const HomePageContext = (props) => {
                 return { ...state, updates: action.payload };
             case "SET_FIXES":
                 return { ...state, fixes: action.payload };
+            case "SET_BULLETINS":
+                return { ...state, bulletins: action.payload };
             default:
                 break;
         }
@@ -33,6 +36,9 @@ export const HomePageContext = (props) => {
             // Gets the lates fixes
             agent.Fixes.list().then((response) =>
                 dispatch({ type: "SET_FIXES", payload: response })
+            );
+            agent.Bulletins.list().then((response) =>
+                dispatch({ type: "SET_BULLETINS", payload: response })
             );
         } catch (error) {
             console.log(error);

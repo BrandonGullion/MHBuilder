@@ -30,6 +30,7 @@ namespace API.Controllers
         {
             try
             {
+                bulletin.Date = DateTime.Now.ToString("dd MMMM yyyy");
                 _context.Bulletins.Add(bulletin);
                 await _context.SaveChangesAsync();
                 return Ok();
@@ -37,7 +38,7 @@ namespace API.Controllers
             catch (Exception ex)
             {
                 System.Console.WriteLine(ex);
-                return BadRequest();
+                return BadRequest("Unable to add bulletin to the db");
             }
         }
     }
