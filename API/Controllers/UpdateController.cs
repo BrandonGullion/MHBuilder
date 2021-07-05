@@ -6,6 +6,7 @@ using Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
@@ -26,6 +27,7 @@ namespace API.Controllers
 
 
         // Add Update
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> AddUpdate(object data){
             var StringData = data.ToString();

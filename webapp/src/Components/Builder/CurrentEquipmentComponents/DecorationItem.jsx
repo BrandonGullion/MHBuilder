@@ -1,15 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { RiVipDiamondLine } from "react-icons/ri";
-import { IoMdClose } from "react-icons/io";
-import DecorationLvl1 from "./DecorationsSVG/DecorationLvl1";
-import DecorationLvl2 from "./DecorationsSVG/DecorationLvl2";
-import DecorationLvl3 from "./DecorationsSVG/DecorationLvl3";
 import Modal from "react-modal";
 import ModalDecoContent from "./ModalDecoContent";
 import {
     BuilderDispatchContext,
     BuilderStateContext,
 } from "../../../Contexts/BuilderContext";
+import { GenerateDecoIcon, generateDecoClasses, returnDecoString } from "../../../Helpers/DecoFunctions";
 
 export default function DecorationItem(props) {
     const dispatch = useContext(BuilderDispatchContext);
@@ -59,92 +55,6 @@ export default function DecorationItem(props) {
 
     // Linking the modal to the root element to avoid errors
     Modal.setAppElement("#root");
-
-    //  Returns an icon depending on the deco slot level
-    const GenerateDecoIcon = (decorationSlot) => {
-        switch (decorationSlot) {
-            case 1:
-                return (
-                    <div className="glass-card-header">
-                        <DecorationLvl1
-                            height="20px"
-                            width="20px"
-                            lineColor={lineColor}
-                            lineThickness={lineThickness}
-                        ></DecorationLvl1>
-                    </div>
-                );
-            case 2:
-                return (
-                    <div className="glass-card-header">
-                        <DecorationLvl2
-                            height="20px"
-                            width="20px"
-                            lineColor={lineColor}
-                            lineThickness={lineThickness}
-                        ></DecorationLvl2>
-                    </div>
-                );
-            case 3:
-                return (
-                    <div className="glass-card-header">
-                        <DecorationLvl3
-                            height="20px"
-                            width="20px"
-                            lineColor={lineColor}
-                            lineThickness={lineThickness}
-                        ></DecorationLvl3>
-                    </div>
-                );
-            default:
-                return (
-                    <div className="glass-card-header">
-                        <RiVipDiamondLine
-                            style={{
-                                padding: "10px",
-                                position: "relative",
-                                bottom: "6px",
-                            }}
-                        ></RiVipDiamondLine>
-                        <IoMdClose
-                            style={{
-                                position: "absolute",
-                                top: "6px",
-                                left: "13px",
-                                fontSize: "20px",
-                            }}
-                        ></IoMdClose>
-                    </div>
-                );
-        }
-    };
-
-    const generateDecoClasses = (decoLvl, decoPosition, equipmentType) => {
-        if (decoLvl > 0 && equipmentType !== "talisman") {
-            return `glass-card deco-container-${decoPosition} rounded-corners deco-white-border-hover`;
-        } else if (equipmentType === "talisman") {
-            return "glass-card talisman-deco-slot rounded-corners deco-white-border-hover";
-        } else {
-            return `glass-card deco-container-${decoPosition} rounded-corners`;
-        }
-    };
-
-    // Returns a string
-    const returnDecoString = (state, equipmentType, decoSlot) => {
-        if (
-            state.decorations[`${equipmentType}Deco${decoSlot}`] === undefined
-        ) {
-            return "--";
-        } else if (
-            state.decorations[`${equipmentType}Deco${decoSlot}`].jewelName ===
-            undefined
-        ) {
-            return "--";
-        } else {
-            return state.decorations[`${equipmentType}Deco${decoSlot}`]
-                .jewelName;
-        }
-    };
 
     // Opens the modal only if you are able to put a deco in said slot
     const openModal = (currentDecoPosition, equipmentSlotLvl) => {
@@ -207,7 +117,7 @@ export default function DecorationItem(props) {
                 )}
                 onClick={() => openModal(1, equipment.decoSlot1Lvl)}
             >
-                {GenerateDecoIcon(equipment.decoSlot1Lvl)}
+                {GenerateDecoIcon(equipment.decoSlot1Lvl, lineColor, lineThickness)}
                 {/* Decoration 1  */}
                 <span className="deco-content">
                     {returnDecoString(state, equipmentType, 1)}
@@ -224,7 +134,7 @@ export default function DecorationItem(props) {
                 onClick={() => openModal(2, equipment.decoSlot2Lvl)}
             >
                 {/* Decoration 2  */}
-                {GenerateDecoIcon(equipment.decoSlot2Lvl)}
+                {GenerateDecoIcon(equipment.decoSlot2Lvl, lineColor, lineThickness)}
 
                 <span className="deco-content">
                     {returnDecoString(state, equipmentType, 2)}
@@ -237,11 +147,11 @@ export default function DecorationItem(props) {
                     3,
                     equipment.type
                 )}
-                style={{ padding: "0px", display:"flex" }}
+                style={{ padding: "0px", display: "flex" }}
                 onClick={() => openModal(3, equipment.decoSlot3Lvl)}
             >
                 {/* Decoration 3  */}
-                {GenerateDecoIcon(equipment.decoSlot3Lvl)}
+                {GenerateDecoIcon(equipment.decoSlot3Lvl, lineColor, lineThickness)}
                 <span className="deco-content">
                     {returnDecoString(state, equipmentType, 3)}
                 </span>

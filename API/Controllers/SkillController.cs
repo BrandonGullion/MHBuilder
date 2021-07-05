@@ -9,6 +9,7 @@ using System;
 using Newtonsoft.Json;
 using System.IO;
 using Newtonsoft.Json.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
@@ -29,9 +30,9 @@ namespace API.Controllers
             return await _context.Skills.ToListAsync();
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> CreateSkill(object data){
-
             try
             {
                 // Adds the skill to the database 
@@ -49,7 +50,7 @@ namespace API.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return NotFound();
+                return BadRequest();
             }
 
         } 

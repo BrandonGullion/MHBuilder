@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useReducer, createContext } from "react";
+import agent from "../Api/agent";
 
 export const HomePageDispatchContext = createContext();
 export const HomePageStateContext = createContext();
@@ -23,21 +24,16 @@ export const HomePageContext = (props) => {
         }
     }
 
-
     useEffect(() => {
         try {
             // Gets the latest updates
-            axios
-                .get("http://localhost:5000/api/update")
-                .then((res) =>
-                    dispatch({ type: "SET_UPDATES", payload: res.data })
-                );
-            // Gets the lates fixes 
-            axios
-                .get("http://localhost:5000/api/fixes")
-                .then((res) =>
-                    dispatch({ type: "SET_FIXES", payload: res.data })
-                );
+            agent.Updates.list().then((response) =>
+                dispatch({ type: "SET_UPDATES", payload: response })
+            );
+            // Gets the lates fixes
+            agent.Fixes.list().then((response) =>
+                dispatch({ type: "SET_FIXES", payload: response })
+            );
         } catch (error) {
             console.log(error);
         }

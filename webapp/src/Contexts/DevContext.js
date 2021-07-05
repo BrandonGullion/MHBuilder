@@ -1,4 +1,5 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useEffect, useReducer } from "react";
+import agent from "../Api/agent";
 
 export const DevStateContext = createContext();
 export const DevDispatchContext = createContext();
@@ -11,6 +12,8 @@ export default function DevContext(props) {
             token: "",
         },
         isAuthenticated: false,
+        rampageSkills: [],
+        skills: [],
     };
 
     const reducer = (state, action) => {
@@ -25,12 +28,25 @@ export default function DevContext(props) {
                 return { ...state };
             case "LOG_OUT":
                 break;
+            case "SET_SKILLS":
+                return { ...state, skills: action.payload };
+            case "SET_RAMPAGE_SKILLS":
+                return { ...state, rampageSkills: action.payload };
             default:
                 break;
         }
     };
-
+    
     const [state, dispatch] = useReducer(reducer, initialState);
+
+    useEffect(() => {
+        agent.Skills.list().then((response) =>
+            dispatch({ type: "SET_SKILLS", payload: response })
+        );
+        agent.RampageSkills.list().then((response) =>
+            dispatch({ type: "SET_RAMPAGE_SKILLS", payload: response })
+        );
+    }, []);
 
     return (
         <DevStateContext.Provider value={state}>

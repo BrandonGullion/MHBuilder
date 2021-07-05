@@ -175,7 +175,8 @@ export default function Stats() {
                 style={{
                     margin: "5px 0 0 5px",
                     height: "364px",
-                    overflow: "scroll",
+                    overflowY:"auto",
+                    overflowX:"hidden"
                 }}
                 className="glass-card glass-card-content"
             >

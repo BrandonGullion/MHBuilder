@@ -35,6 +35,7 @@ export default function ModalDecoContent(props) {
         setDecoLvlFilteredSkills(
             filterSkills(state.skills, modalState.currentDecoLvl)
         );
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     // once the decolvlfiltered skills are updated, then create a copy that can be used for the search function

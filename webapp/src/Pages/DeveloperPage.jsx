@@ -2,44 +2,41 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
-import swordAndShieldData from "../SeedingDataFromWebsite/swordAndShieldData";
 import { DevStateContext } from "../Contexts/DevContext";
+import agent from "../Api/agent";
 
 export default function DeveloperPage() {
     // Generates a list of skills to select
-    const [skillList, setSkillList] = useState([]);
     const [skillListOptions, setSkillListOptions] = useState([]);
-    const [rampageSkillList, setRampageSkillList] = useState([]);
     const [rampageSkillListOptions, setRampageSkillListOptions] = useState([]);
 
     // Have access to the current signed in dev when making calls to the db
     const state = useContext(DevStateContext);
 
-    // Populate skill data at start of page loading
-    useEffect(() => {
-        // Gets a list of skills to be displayed in the select tag
-        axios.get("http://localhost:5000/api/skill").then((response) => {
-            setSkillList(response.data);
-        });
-        axios.get("http://localhost:5000/api/RampageSkill").then((response) => {
-            setRampageSkillList(response.data);
-        });
-    }, []);
+    // This will send a new auth header along with all api calls, this does not affect the get requests,
+    // but is needed to post to the
+    axios.interceptors.request.use((config) => {
+        const token = state.user.token;
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+    });
 
     // Whenever the skill list is updated, then the skill list options will be updated
     useEffect(() => {
-        skillList.sort((a, b) => (a.name > b.name ? 1 : -1));
-        skillList.forEach((skill) => {
+        state.skills.sort((a, b) => (a.name > b.name ? 1 : -1));
+        state.skills.forEach((skill) => {
             setSkillListOptions((prevArray) => [
                 ...prevArray,
                 { key: skill.id, value: skill.id, label: skill.name },
             ]);
         });
-    }, [skillList]);
+    }, [state.skills]);
 
     useEffect(() => {
-        rampageSkillList.sort((a, b) => (a.name > b.name ? 1 : -1));
-        rampageSkillList.forEach((rampageSkill) => {
+        state.rampageSkills.sort((a, b) => (a.name > b.name ? 1 : -1));
+        state.rampageSkills.forEach((rampageSkill) => {
             setRampageSkillListOptions((prevArray) => [
                 ...prevArray,
                 {
@@ -49,45 +46,44 @@ export default function DeveloperPage() {
                 },
             ]);
         });
-    }, [rampageSkillList]);
+    }, [state.rampageSkills]);
 
     // Submits armor to the db
     const handleArmorSubmit = () => {
         console.log("Armor Post request made");
-
-        console.log(armor);
-
-        axios
-            .post("http://localhost:5000/api/armor", armor)
-            .then((response) => console.log(response));
+        agent.Armors.create(armor);
     };
     // Submits new skill to db
     const handleSkillSubmit = () => {
         console.log("Skill Post request made");
-        axios
-            .post("http://localhost:5000/api/skill", skill)
-            .then((response) => console.log(response));
+        agent.Skills.create(skill);
     };
 
     const handleWeaponSubmit = () => {
         console.log("Weapon Post request made");
-        axios
-            .post("http://localhost:5000/api/weapon", weapon)
-            .then((response) => console.log(response));
+        agent.Weapons.create(weapon).then((response) => console.log(response));
     };
 
     const handleRampageSkillSubmit = () => {
         console.log("Weapon Post request made");
-        axios
-            .post("http://localhost:5000/api/rampageskill", rampageSkill)
-            .then((response) => console.log(response));
+        agent.RampageSkills.create(rampageSkill).then((response) =>
+            console.log(response)
+        );
     };
 
-    const handleWeaponSeedSubmit = (data) => {
-        axios
-            .post("http://localhost:5000/api/weapon", data)
-            .then((response) => console.log(response));
+    const handleBulletinSubmit = () => {
+        agent.Bulletins.create(bulletin).then((res) => console.log(res));
     };
+
+    const handleUserSubmit = () => {
+        agent.Users.create(user).then((res) => console.log(res));
+    };
+
+    // const handleWeaponSeedSubmit = (data) => {
+    //     axios
+    //         .post("http://localhost:5000/api/weapon", data)
+    //         .then((response) => console.log(response));
+    // };
 
     // Skill type array for skill drop down menu
     const skillTypeOptions = [
@@ -118,6 +114,17 @@ export default function DeveloperPage() {
     const fix = {
         title: "",
         content: "",
+    };
+
+    const bulletin = {
+        title: "",
+        content: "",
+    };
+
+    const user = {
+        displayName: "",
+        username: "",
+        password: "",
     };
 
     // Armor to be passed to the database
@@ -184,15 +191,11 @@ export default function DeveloperPage() {
     };
 
     const handleUpdateSubmit = () => {
-        axios
-            .post("http://localhost:5000/api/update", update)
-            .then((res) => console.log(res));
+        agent.Updates.create(update).then((res) => console.log(res));
     };
 
     const handleFixesSubmit = () => {
-        axios
-            .post("http://localhost:5000/api/fixes", fix)
-            .then((res) => console.log(res));
+        agent.Fixes.create(fix).then((res) => console.log(res));
     };
 
     return (
@@ -507,13 +510,7 @@ export default function DeveloperPage() {
                     <button onClick={handleRampageSkillSubmit}>Submit</button>
                     <hr></hr>
                     <div>
-                        <button
-                            onClick={() =>
-                                handleWeaponSeedSubmit(swordAndShieldData)
-                            }
-                        >
-                            Seed Great Sword
-                        </button>
+                        <button>Seed Great Sword</button>
                     </div>
                 </div>
             </div>
@@ -553,6 +550,45 @@ export default function DeveloperPage() {
                         onChange={(e) => (update.content = e.target.value)}
                     ></textarea>
                     <button onClick={handleUpdateSubmit}>Save</button>
+                </div>
+                <div
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        marginLeft: "10px",
+                    }}
+                >
+                    <label>Add Bulletin</label>
+                    <input
+                        placeholder="Title"
+                        onChange={(e) => (bulletin.title = e.target.value)}
+                    ></input>
+                    <textarea
+                        placeholder="Content"
+                        onChange={(e) => (bulletin.content = e.target.value)}
+                    ></textarea>
+                    <button onClick={handleBulletinSubmit}>Submit</button>
+                </div>
+                <div
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        marginLeft: "10px",
+                    }}
+                >
+                    <label>Add User</label>
+                    <input
+                        placeholder="Username"
+                        onChange={(e) => {
+                            user.username = e.target.value;
+                            user.displayName = e.target.value;
+                            }}
+                    ></input>
+                    <input
+                        placeholder="Password"
+                        onChange={(e) => (user.password = e.target.value)}
+                    ></input>
+                    <button onClick={handleUserSubmit}>Submit</button>
                 </div>
             </div>
         </div>

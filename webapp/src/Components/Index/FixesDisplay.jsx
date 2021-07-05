@@ -8,7 +8,7 @@ export default function FixesDisplay() {
     const {fixes} = state;
 
     return (
-        <div style={{ display: "flex", flexDirection: "column", marginTop:"30px" }}>
+        <div style={{ display: "flex", flexDirection: "column" }}>
             <div
                 style={{
                     textAlign: "center",
@@ -16,7 +16,7 @@ export default function FixesDisplay() {
                     fontSize: "24px",
                 }}
             >
-                Fixes
+                Current bugs / Fixes
             </div>
             {fixes.map((fix, fixId) => (
                 <FixesItem

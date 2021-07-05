@@ -6,43 +6,39 @@ using Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 
 namespace API.Controllers
 {
-    public class WeaponController : BaseApiController
+    public class BulletinController : BaseApiController
     {
         private readonly DataContext _context;
-        public WeaponController(DataContext context)
+        public BulletinController(DataContext context)
         {
             _context = context;
         }
 
+
         [HttpGet]
-        public async Task<ActionResult<List<Weapon>>> GetWeapons()
+        public async Task<ActionResult<List<Bulletin>>> GetBulletins()
         {
-            return await _context.Weapons.ToListAsync();
+            return await _context.Bulletins.ToListAsync();
         }
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> CreateWeapon(object data) 
+        public async Task<ActionResult> CreateBulletin (Bulletin bulletin)
         {
             try
             {
-                var stringData = data.ToString();
-                Weapon weapon = JsonConvert.DeserializeObject<Weapon>(stringData);
-                _context.Add(weapon);
+                _context.Bulletins.Add(bulletin);
                 await _context.SaveChangesAsync();
                 return Ok();
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
-                return NotFound();
+                System.Console.WriteLine(ex);
+                return BadRequest();
             }
         }
-
     }
 }

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import axios from "axios";
 import { DevDispatchContext, DevStateContext } from "../Contexts/DevContext";
 import { useHistory } from "react-router-dom";
+import agent from "../Api/agent";
 
 export default function LoginPage() {
     const history = useHistory();
@@ -10,8 +10,7 @@ export default function LoginPage() {
     const user = { username: "", password: "" };
 
     const handleSubmit = () => {
-        axios
-            .post("http://localhost:5000/api/account/login", user)
+        agent.Users.login(user)
             .then((res) => {
                 // Only hit this point if the user has a successful log in
                 if (res.status === 200) {
@@ -53,6 +52,7 @@ export default function LoginPage() {
                     color: "#ccc",
                     background: "none",
                     borderStyle: "solid",
+                    borderRadius: "3px",
                 }}
                 onChange={(e) => (user.username = e.target.value)}
             ></input>
@@ -66,7 +66,7 @@ export default function LoginPage() {
                     color: "#ccc",
                     background: "none",
                     borderStyle: "solid",
-                    borderRadius:"3px"
+                    borderRadius: "3px",
                 }}
                 onChange={(e) => (user.password = e.target.value)}
             ></input>

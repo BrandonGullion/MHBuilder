@@ -11,6 +11,7 @@ import { HomePageContext } from "./Contexts/HomePage";
 import LoginPage from "./Pages/LoginPage";
 import DevContext from "./Contexts/DevContext";
 import PrivateRoute from "./Components/PrivateRoute";
+import ContactPage from "./Pages/ContactPage";
 
 function App() {
     return (
@@ -24,7 +25,10 @@ function App() {
                             <Index></Index>
                         </HomePageContext>
                     </Route>
-                    <Route path="/builder">
+                    <Route exact path="/contact">
+                        <ContactPage></ContactPage>
+                    </Route>
+                    <Route exact path="/builder">
                         <BuilderContext>
                             <BuilderPage></BuilderPage>
                         </BuilderContext>

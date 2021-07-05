@@ -44,9 +44,13 @@ namespace API.Controllers
             return Unauthorized();
         }
 
+        [Authorize]
         [HttpPost("register")]
-        public async Task<ActionResult<UserDto>> RegisterUser(RegisterDto registerDto)
+        public async Task<ActionResult<UserDto>> RegisterUser(object data)
         {
+            var stringData = data.ToString();
+            var registerDto = JsonConvert.DeserializeObject<RegisterDto>(stringData);
+            
             // Only need to check for the user name
             if(await _userManager.Users.AnyAsync(x => x.UserName == registerDto.UserName))
             {

@@ -5,9 +5,6 @@ import { DevStateContext } from "../Contexts/DevContext";
 export default function PrivateRoute({ children, ...rest }) {
     
     const state = useContext(DevStateContext);
-    console.log(state);
-    console.log(state.isAuthenticated);
-    console.log(state.isAuthenticated === true);
 
     return (
         <Route

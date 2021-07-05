@@ -27,7 +27,6 @@ export default function TalismanTabContent() {
     // each change in the decorations for the talisman
     const createSkillList = () => {
         const skillArray = [];
-        console.log(firstSkill);
         if (firstSkill.name !== undefined) {
             for (let i = 0; i < firstSkillLvl; i++) {
                 skillArray.push(firstSkill);
@@ -50,6 +49,7 @@ export default function TalismanTabContent() {
 
     useEffect(() => {
         createSkillList();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [
         firstSkill,
         secondSkill,
@@ -75,6 +75,7 @@ export default function TalismanTabContent() {
             });
             setSkillOptions(skillOptionsArray);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state.skills, skillOptions.length]);
 
     return (

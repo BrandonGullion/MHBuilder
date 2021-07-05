@@ -217,6 +217,10 @@ h5 {
     background: var(--background);
 }
 
+::-webkit-scrollbar-corner {
+    background-color: red;
+}
+
 /********************* Classes *********************/
 
 .root-div {
@@ -662,12 +666,10 @@ h5 {
 
 .dotted-linebreak {
     border-style: dotted;
-    position: relative;
     border-color: white;
     border-width: 0 0 5px 0;
     opacity: 0.5;
-    left: 40%;
-    margin: 20px 0 0 0;
+    margin: 10px auto 10px auto;
     width: 40px;
 }
 
@@ -778,4 +780,28 @@ h5 {
 
 .talisman-decoration-slot {
     margin: 0px;
+}
+
+.default-input {
+    background: transparent;
+    border: solid 1px #ccc;
+    border-radius: 3px;
+    color: white;
+    padding: 5px 10px;
+    transition: 0.2s;
+    margin: 5px;
+}
+
+.default-input:focus {
+    box-shadow: 0px 0px 10px -3px var(--hightlightblue);
+    border: solid 1px var(--hightlightblue);
+    outline-width: 0;
+}
+
+.default-input::placeholder {
+    color: #ccc;
+}
+
+.weapon-prop-dropdown {
+    width: 105px;
 }

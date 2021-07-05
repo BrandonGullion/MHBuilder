@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useReducer, useEffect } from "react";
+import agent from "../Api/agent";
 
 export const BuilderDispatchContext = createContext();
 export const BuilderStateContext = createContext();
@@ -16,7 +17,6 @@ export const BuilderContext = (props) => {
         arms: { skills: [] },
         coil: { skills: [] },
         legs: { skills: [] },
-        loading: true,
         currentSkills: [],
         talismanSkills: [],
         decorations: {
@@ -108,9 +108,19 @@ export const BuilderContext = (props) => {
 
     // This is a function to allow for the components 2 seconds to load onto the screen
     // after the data has been fetched
-    // async function stall(stallTime = 2000) {
-    //     await new Promise((resolve) => setTimeout(resolve, stallTime));
-    // }
+
+    // Goes over the decoration prop 3 times for the given equipment type
+    // So that when the armor piece is changed then the deco's will be reset
+    const resetArmorDeco = (equipment, state) => {
+        if (equipment !== undefined) {
+            for (let i = 1; i < 4; i++) {
+                let prop = `${equipment.type
+                    .charAt(0)
+                    .toLowerCase()}${equipment.type.slice(1)}Deco${i}`;
+                state.decorations[prop] = {};
+            }
+        }
+    };
 
     // Reducer function
     const [state, dispatch] = useReducer(reducer, initialState);
@@ -119,16 +129,22 @@ export const BuilderContext = (props) => {
     function reducer(state, action) {
         switch (action.type) {
             case "SET_HELM":
+                resetArmorDeco(action.payload, state);
                 return { ...state, helm: action.payload };
             case "SET_CHEST":
+                resetArmorDeco(action.payload, state);
                 return { ...state, chest: action.payload };
             case "SET_ARMS":
+                resetArmorDeco(action.payload, state);
                 return { ...state, arms: action.payload };
             case "SET_COIL":
+                resetArmorDeco(action.payload, state);
                 return { ...state, coil: action.payload };
             case "SET_LEGS":
+                resetArmorDeco(action.payload, state);
                 return { ...state, legs: action.payload };
             case "SET_WEAPON":
+                resetArmorDeco(action.payload, state);
                 return { ...state, weapon: action.payload };
             case "SET_SKILLS":
                 return { ...state, skills: action.payload };
@@ -154,19 +170,17 @@ export const BuilderContext = (props) => {
         }
     }
 
-    // Do not like this but doing it to stop errors
-    const fetchData = async (url, dispatchType) => {
-        await axios
-            .get(url)
-            .then((res) => dispatch({ type: dispatchType, payload: res.data }));
-    };
-
     // Gets the initial values from the api
     useEffect(() => {
-        fetchData("http://localhost:5000/api/armor", "SET_ARMORS");
-        fetchData("http://localhost:5000/api/weapon", "SET_WEAPONS");
-        fetchData("http://localhost:5000/api/skill", "SET_SKILLS");
-        dispatch({ type: "SET_LOADING", payload: false });
+        agent.Armors.list().then((response) =>
+            dispatch({ type: "SET_ARMORS", payload: response })
+        );
+        agent.Weapons.list().then((response) =>
+            dispatch({ type: "SET_WEAPONS", payload: response })
+        );
+        agent.Skills.list().then((response) =>
+            dispatch({ type: "SET_SKILLS", payload: response })
+        );
     }, []);
 
     // Set the initial values when the armor and weapon property gets data from api
@@ -180,6 +194,7 @@ export const BuilderContext = (props) => {
             type: "SET_CURRENT_SKILLS",
             payload: populateSkills(state),
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state.armors]);
 
     // Grabs the first weapon from the returned weapon array and sets it to currently equip weapon
