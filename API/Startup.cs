@@ -28,13 +28,7 @@ namespace API
         {
             services.AddControllers();
             // This allows for outside api to access the information present 
-            services.AddCors(options => options.AddPolicy("CorsPolicy", policy => 
-            {
-                policy.AllowAnyHeader()
-                      .AllowAnyMethod()
-                      .AllowCredentials()
-                      .WithOrigins("http://localhost:3000");
-            }));
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
