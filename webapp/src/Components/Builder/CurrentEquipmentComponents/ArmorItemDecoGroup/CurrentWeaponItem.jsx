@@ -1,19 +1,13 @@
 import React, { Fragment } from "react";
-import { BsShieldShaded, BsDropletHalf, BsLightning } from "react-icons/bs";
+import { BsShieldShaded } from "react-icons/bs";
 import {
-    GiBroadsword,
     GiSwordWound,
-    GiSeaDragon,
-    GiLightningTrio,
-    GiMineExplosion,
 } from "react-icons/gi";
-import { RiSwordFill, RiZzzLine, RiBubbleChartLine } from "react-icons/ri";
+import { RiSwordFill } from "react-icons/ri";
 import SharpnessBar from "../../SharpnessBar";
-import { ImFire } from "react-icons/im";
-import { IoSnow } from "react-icons/io5";
 import BowgunInfoBar from "../BowgunInfoBar";
+import { renderElement, renderWeaponIcon } from "../../../../WeaponFunctions";
 import MelodyBar from "../MelodyBar";
-
 export default function WeaponItem(props) {
     const { weapon } = props;
     let isSharpness = false;
@@ -29,133 +23,10 @@ export default function WeaponItem(props) {
         isSharpness = true;
     }
 
-    const renderElement = (weapon) => {
-        switch (weapon.elementType) {
-            case "Fire":
-                return (
-                    <div>
-                        <ImFire
-                            style={{
-                                padding: "6 10 10 10",
-                                color: "#bd2117",
-                                fontSize: "18px",
-                            }}
-                            className="icon"
-                        ></ImFire>
-                    </div>
-                );
-            case "Water":
-                return (
-                    <div>
-                        <BsDropletHalf
-                            style={{
-                                padding: "6 10 10 10",
-                                color: "#47a6ff",
-                                fontSize: "18px",
-                            }}
-                            className="icon"
-                        ></BsDropletHalf>
-                    </div>
-                );
-            case "Thunder":
-                return (
-                    <div>
-                        <BsLightning
-                            style={{
-                                padding: "6 10 10 10",
-                                color: "#f6ff45",
-                                fontSize: "18px",
-                            }}
-                            className="icon"
-                        ></BsLightning>
-                    </div>
-                );
-            case "Dragon":
-                return (
-                    <div>
-                        <GiSeaDragon
-                            style={{
-                                padding: "6 10 10 10",
-                                color: "#b372db",
-                                fontSize: "18px",
-                            }}
-                            className="icon"
-                        ></GiSeaDragon>
-                    </div>
-                );
-            case "Ice":
-                return (
-                    <div>
-                        <IoSnow
-                            style={{
-                                padding: "6 10 10 10",
-                                color: "#6efaff",
-                                fontSize: "18px",
-                            }}
-                            className="icon"
-                        ></IoSnow>
-                    </div>
-                );
-            case "Sleep":
-                return (
-                    <div>
-                        <RiZzzLine
-                            style={{
-                                padding: "5 10 10 10",
-                                color: "#57cdff",
-                                fontSize: "18px",
-                            }}
-                            className="icon"
-                        ></RiZzzLine>
-                    </div>
-                );
-            case "Paralysis":
-                return (
-                    <div>
-                        <GiLightningTrio
-                            style={{
-                                padding: "5 10 10 10",
-                                color: "#d6db35",
-                                fontSize: "18px",
-                            }}
-                            className="icon"
-                        ></GiLightningTrio>
-                    </div>
-                );
-            case "Poison":
-                return (
-                    <div>
-                        <RiBubbleChartLine
-                            style={{
-                                padding: "5 10 10 10",
-                                color: "#df94ff",
-                                fontSize: "18px",
-                            }}
-                            className="icon"
-                        ></RiBubbleChartLine>
-                    </div>
-                );
-            case "Blast":
-                return (
-                    <div>
-                        <GiMineExplosion
-                            style={{
-                                padding: "5 10 10 10",
-                                color: "#ffb96e",
-                                fontSize: "18px",
-                            }}
-                        ></GiMineExplosion>
-                    </div>
-                );
-            default:
-                break;
-        }
-    };
-
     if (weapon !== undefined) {
         return (
             <div
-                style={{ fontSize: "14px", margin:"5px 0px" }}
+                style={{ fontSize: "14px", margin: "5px 0px" }}
                 className="glass-card-current-weapon armor-item rounded-corners"
             >
                 {isSharpness ? (
@@ -174,9 +45,9 @@ export default function WeaponItem(props) {
 
                 <div
                     className="glass-card-header"
-                    style={{ padding: "0px 15px 10px", fontSize: "2.2rem" }}
+                    style={{ padding: "0px 2px 2px 5px" }}
                 >
-                    <GiBroadsword></GiBroadsword>
+                    {renderWeaponIcon(weapon)}
                 </div>
                 <div className="glass-card-content armor-item-content">
                     <div>

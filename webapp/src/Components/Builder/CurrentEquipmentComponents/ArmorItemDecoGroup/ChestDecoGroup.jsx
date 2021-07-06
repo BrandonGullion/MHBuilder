@@ -1,20 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
+import { BuilderStateContext } from "../../../../Contexts/BuilderContext";
 import ArmorItem from "../ArmorItem";
 import DecorationItem from "../DecorationItem";
 
 export default function ChestDecoGroup(props) {
-    const { currentChest, setCurrentSkills, skills, dispatch } = props;
+    const { setCurrentSkills } = props;
+    const state = useContext(BuilderStateContext);
 
     return (
         <div>
             <ArmorItem
-                armorPiece={currentChest}
+                armorPiece={state.chest}
                 setCurrentSkills={setCurrentSkills}
             ></ArmorItem>
             <DecorationItem
-                dispatch={dispatch}
-                armorPiece={currentChest}
-                skills={skills}
+                equipment={state.chest}
                 setCurrentSkills={setCurrentSkills}
             ></DecorationItem>
         </div>

@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Classes;
+using Microsoft.AspNetCore.Identity;
 
 namespace Data
 {
@@ -52,5 +54,20 @@ namespace Data
             context.SaveChanges();
 
         }
+
+        public static async Task SeedUser (DataContext context, UserManager<DevUser> userManager)
+        {
+            // If there are no users, execute data
+            if(!userManager.Users.Any()){
+                var users = new List<DevUser>{
+                    new DevUser{DisplayName="MHBuilder Dev. User", UserName="DevelopmentUser" }
+                };
+
+                foreach (var user in users){
+                    await userManager.CreateAsync(user, "Pa$$w0rd");
+                }
+            }    
+        }
+    
     }
 }

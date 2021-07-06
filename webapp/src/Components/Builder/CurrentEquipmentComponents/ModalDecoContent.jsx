@@ -1,35 +1,97 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
+import {
+    BuilderDispatchContext,
+    BuilderStateContext,
+} from "../../../Contexts/BuilderContext";
+import { filterList } from "../../../SearchFunctions";
 
 // Try to use the context to get access to the dispatch
 export default function ModalDecoContent(props) {
-    const { modalState, dispatch, skills, closeModal } = props;
+    const { modalState, closeModal } = props;
+
+    const state = useContext(BuilderStateContext);
+    const dispatch = useContext(BuilderDispatchContext);
 
     const [selectedSkill, setSelectedSkill] = useState({});
+    const [filteredSkills, setFilteredSkills] = useState([]);
+    const [decoLvlFilteredSkills, setDecoLvlFilteredSkills] = useState([]);
+
+    const filterSkills = (skills, decoSlotLvl) => {
+        let array = [];
+        skills.forEach((skill) => {
+            // If statement removes any skills that are not available as decorations
+            if (skill.jewelName !== undefined && skill.jewelName !== "" && skill.jewelName !== null) {
+                let jewelLvl = skill.jewelName.split("");
+                if (jewelLvl[jewelLvl.length - 1] <= decoSlotLvl.toString()) {
+                    array.push(skill);
+                }
+            }
+        });
+        return array;
+    };
+
+    useEffect(() => {
+        setDecoLvlFilteredSkills(
+            filterSkills(state.skills, modalState.currentDecoLvl)
+        );
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    // once the decolvlfiltered skills are updated, then create a copy that can be used for the search function
+    useEffect(() => {
+        setFilteredSkills(decoLvlFilteredSkills);
+    }, [decoLvlFilteredSkills]);
 
     const handleDecoSelect = (skill) => {
-        setSelectedSkill(skill)
+        setSelectedSkill(skill);
     };
-    
+
     const handleDecoSubmit = () => {
-        dispatch({ type: "SET_DECORATION" , payload:{equipment:modalState.armor, slotNumber:modalState.currentDecoSlot, skill:selectedSkill}});
-    }
+        if (selectedSkill.name !== undefined) {
+            dispatch({
+                type: "SET_DECORATION",
+                payload: {
+                    equipment: modalState.armor,
+                    slotNumber: modalState.currentDecoSlot,
+                    skill: selectedSkill,
+                },
+            });
+            dispatch({ type: "SET_CURRENT_SKILLS" });
+            closeModal();
+        }
+    };
+
+    const handleSearchChange = (searchCriteria) => {
+        setFilteredSkills(filterList(searchCriteria, decoLvlFilteredSkills));
+    };
 
     return (
         <div>
-            <div style={{ color: "#cccccc", fontSize: "20px" }}>
-                Select a decoration
-            </div>
-            <div style={{ width: "100%" }}>
-                <label style={{ width: "20%", color: "#cccccc" }}>
-                    Skill Name
-                </label>
-                <label style={{ width: "25%", color: "#cccccc" }}>
-                    Decoration Name
-                </label>
-                <label style={{ width: "55%", color: "#cccccc" }}>
-                    Description
-                </label>
+            <div style={{ position: "relative" }}>
+                <div style={{ color: "#cccccc", fontSize: "20px" }}>
+                    Select a decoration
+                </div>
+                <div style={{ width: "100%" }}>
+                    <label style={{ width: "20%", color: "#cccccc" }}>
+                        Skill Name
+                    </label>
+                    <label style={{ width: "25%", color: "#cccccc" }}>
+                        Decoration Name
+                    </label>
+                    <label style={{ width: "55%", color: "#cccccc" }}>
+                        Description
+                    </label>
+                    <input
+                        placeholder="Search"
+                        style={{
+                            position: "absolute",
+                            top: "29px",
+                            right: "20px",
+                        }}
+                        onChange={(e) => handleSearchChange(e.target.value)}
+                    ></input>
+                </div>
             </div>
             <div
                 onClick={() => closeModal()}
@@ -51,9 +113,9 @@ export default function ModalDecoContent(props) {
                 ></IoMdClose>
             </div>
             <div style={{ overflowY: "scroll", height: "400px" }}>
-                {skills.map((skill) => (
+                {filteredSkills.map((skill, skillId) => (
                     <div
-                        key={skill.id}
+                        key={skillId}
                         onClick={() => handleDecoSelect(skill)}
                         className={
                             skill.id === selectedSkill.id
@@ -66,6 +128,7 @@ export default function ModalDecoContent(props) {
                             fontSize: "14px",
                             margin: "5px 0px",
                             cursor: "pointer",
+                            backdropFilter: "none",
                         }}
                     >
                         <div style={{ width: "100%" }} key={skill.id}>

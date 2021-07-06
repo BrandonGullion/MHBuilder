@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Popup } from "semantic-ui-react";
 import {
     GiShoulderArmor,
@@ -9,9 +9,10 @@ import {
 } from "react-icons/gi";
 import { BsSlashSquare } from "react-icons/bs";
 import ArmorPopUp from "./ArmorPopUp";
+import { BuilderDispatchContext } from "../../../Contexts/BuilderContext";
 
 export default function EquipmentSet(props) {
-    const { dispatch } = props;
+    const dispatch = useContext(BuilderDispatchContext);
 
     // Set the passed in armor set array value
     const armorArray = props.armorArray;
@@ -49,7 +50,7 @@ export default function EquipmentSet(props) {
     });
 
     return (
-        <div style={{ width: "300px" }}>
+        <div>
             <div>
                 <p className="pad-left-10 pad-tb-10 current-set-label">
                     {currentSet} Set
@@ -82,7 +83,6 @@ export default function EquipmentSet(props) {
                         <BsSlashSquare className="glass-card-header armor-item-icon rounded-corners"></BsSlashSquare>
                     </div>
                 )}
-                {/* Chest Armor Piece */}
                 {/* Helm Armor Piece */}
                 {chest.name !== undefined ? (
                     <Popup

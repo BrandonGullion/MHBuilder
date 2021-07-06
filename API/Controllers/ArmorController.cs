@@ -1,5 +1,6 @@
 ﻿using Classes;
 using Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -54,6 +55,7 @@ namespace API.Controllers
             // return await _context.Armors.Include(armor => armor.Skills).ToListAsync();
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> CreateArmor(object data){
             try
@@ -87,6 +89,22 @@ namespace API.Controllers
             {
                 Console.WriteLine(ex);
                 return BadRequest();
+            }
+        }
+
+        [Authorize]
+        [HttpPost("addmany")]
+        public async Task<IActionResult> CreateSkills (List<Armor> Armors)
+        {
+            try
+            {
+                _context.Armors.AddRange(Armors);
+                await _context.SaveChangesAsync();
+                return Ok();
+            }
+            catch (System.Exception)
+            {
+                return BadRequest("Not able to save the list of items");
             }
         }
 

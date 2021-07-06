@@ -10,6 +10,7 @@ export default function SkillItem(props) {
 
     return (
         <Popup
+            position="left center"
             content={<SkillPopUp skillObject={skillObject}></SkillPopUp>}
             trigger={
                 <div style={{ display: "flex", position: "relative", cursor:"pointer", margin:"10px 0px" }}>

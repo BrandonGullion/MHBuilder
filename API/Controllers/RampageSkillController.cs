@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Classes;
 using Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -24,6 +25,7 @@ namespace API.Controllers
             return await _context.RampageSkills.ToListAsync();
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> CreateRampageSkill(object data)
         {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Classes;
 using Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -24,14 +25,15 @@ namespace API.Controllers
             return await _context.Weapons.ToListAsync();
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> CreateWeapon(object data) 
         {
             try
             {
                 var stringData = data.ToString();
-                List<Weapon> dataList = JsonConvert.DeserializeObject<List<Weapon>>(stringData);
-                _context.AddRange(dataList);
+                Weapon weapon = JsonConvert.DeserializeObject<Weapon>(stringData);
+                _context.Add(weapon);
                 await _context.SaveChangesAsync();
                 return Ok();
             }
@@ -39,6 +41,21 @@ namespace API.Controllers
             {
                 Console.WriteLine(ex);
                 return NotFound();
+            }
+        }
+        [Authorize]
+        [HttpPost("addmany")]
+        public async Task<IActionResult> CreateSkills (List<Weapon> Weapons)
+        {
+            try
+            {
+                _context.Weapons.AddRange(Weapons);
+                await _context.SaveChangesAsync();
+                return Ok();
+            }
+            catch (System.Exception)
+            {
+                return BadRequest("Not able to save the list of items");
             }
         }
 

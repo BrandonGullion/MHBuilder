@@ -1,33 +1,78 @@
-import React, { Fragment } from "react";
+import React from "react";
+import FixesDisplay from "../Components/Index/FixesDisplay";
+import UpdateDisplay from "../Components/Index/UpdateDisplay";
+import WeaponBanner from "../Components/Index/WeaponBanner";
+import BulletinBoardComponent from "../Components/Index/BulletinBoardComponent";
 
-export default function Index({children}) {
+export default function Index() {
     return (
-        <Fragment>
-            <div className="update-fix-container">
-                {/* Center Glass card for updates  */}
+        <div>
+            {/* Banner Tags */}
+            <div style={{ display: "flex", justifyContent: "center" }}>
                 <div
-                    className="glass-card glass-card-fill"
-                    style={{ marginTop: "15px" }}
+                    style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        margin: "150px 10% 0 0",
+                    }}
                 >
-                    <div className="glass-card-header">
-                        <h2>Latest Updates</h2>
+                    <div style={{ display: "flex", flexDirection: "column" }}>
+                        <label
+                            style={{
+                                fontSize: "40px",
+                                color: "#ccc",
+                            }}
+                        >
+                            Your dream build starts
+                        </label>
+                        <div
+                            style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                margin: "0",
+                            }}
+                        >
+                            <a className="index-button" href="/builder">
+                                Here
+                            </a>
+                        </div>
                     </div>
-                    <div className="glass-card-content">{children}</div>
                 </div>
-
-                {/* Fixes log */}
-                <div
-                    className="glass-card glass-card-fill"
-                    style={{ marginTop: "15px" }}
-                >
-                    <div className="glass-card-header">
-                        <h2>Latest Fixes</h2>
-                    </div>
-                    <div className="glass-card-content">
-                        {/* Insert the lastest fixes components */}
-                    </div>
+                <div style={{ margin: "80px 0 0 0" }}>
+                    <WeaponBanner></WeaponBanner>
                 </div>
             </div>
-        </Fragment>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+                <hr className="linebreak" />
+            </div>
+            {/* Update and Fix Component */}
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    flexDirection: "column",
+                }}
+            >
+                <BulletinBoardComponent></BulletinBoardComponent>
+                <div
+                    style={{ display: "flex", justifyContent: "space-evenly", paddingTop:"30px", marginRight:"60px" }}
+                >
+                    <UpdateDisplay></UpdateDisplay>
+                    {/* Center line break */}
+                    <div
+                        style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            height: "450px",
+                            borderColor: "#ccc",
+                            borderWidth: "0 0 0 1px",
+                            borderStyle: "solid",
+                            margin: "10px 70px",
+                        }}
+                    ></div>
+                    <FixesDisplay></FixesDisplay>
+                </div>
+            </div>
+        </div>
     );
 }
