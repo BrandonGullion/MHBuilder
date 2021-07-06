@@ -13,7 +13,7 @@ export default function PrivateRoute({ children, ...rest }) {
                 return state.isAuthenticated === true ? (
                     children
                 ) : (
-                    <Redirect to="/login"></Redirect>
+                    <Redirect to="/login" ></Redirect>
                 );
             }}
         ></Route>

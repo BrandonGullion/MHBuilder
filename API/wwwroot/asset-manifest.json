@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d88dfca5.chunk.css",
+    "main.js": "/static/js/main.ddb7d139.chunk.js",
+    "main.js.map": "/static/js/main.ddb7d139.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.6caed126.js",
+    "runtime-main.js.map": "/static/js/runtime-main.6caed126.js.map",
+    "static/css/2.73f79d26.chunk.css": "/static/css/2.73f79d26.chunk.css",
+    "static/js/2.dec416f2.chunk.js": "/static/js/2.dec416f2.chunk.js",
+    "static/js/2.dec416f2.chunk.js.map": "/static/js/2.dec416f2.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.73f79d26.chunk.css.map": "/static/css/2.73f79d26.chunk.css.map",
+    "static/css/main.d88dfca5.chunk.css.map": "/static/css/main.d88dfca5.chunk.css.map",
+    "static/js/2.dec416f2.chunk.js.LICENSE.txt": "/static/js/2.dec416f2.chunk.js.LICENSE.txt",
+    "static/media/Element_Dragon_Icon.7f9575cf.png": "/static/media/Element_Dragon_Icon.7f9575cf.png",
+    "static/media/Status_Blastblight_Icon.c1d4b968.png": "/static/media/Status_Blastblight_Icon.c1d4b968.png",
+    "static/media/Status_Sleep_Icon.21d7f52c.png": "/static/media/Status_Sleep_Icon.21d7f52c.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6caed126.js",
+    "static/css/2.73f79d26.chunk.css",
+    "static/js/2.dec416f2.chunk.js",
+    "static/css/main.d88dfca5.chunk.css",
+    "static/js/main.ddb7d139.chunk.js"
+  ]
+}

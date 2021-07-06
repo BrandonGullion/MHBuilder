@@ -43,6 +43,21 @@ namespace API.Controllers
                 return NotFound();
             }
         }
+        [Authorize]
+        [HttpPost("addmany")]
+        public async Task<IActionResult> CreateSkills (List<Weapon> Weapons)
+        {
+            try
+            {
+                _context.Weapons.AddRange(Weapons);
+                await _context.SaveChangesAsync();
+                return Ok();
+            }
+            catch (System.Exception)
+            {
+                return BadRequest("Not able to save the list of items");
+            }
+        }
 
     }
 }

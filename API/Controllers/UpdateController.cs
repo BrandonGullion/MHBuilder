@@ -45,5 +45,21 @@ namespace API.Controllers
                 return NotFound();
             }
         }
+
+        [Authorize]
+        [HttpPost("addmany")]
+        public async Task<IActionResult> CreateSkills (List<Update> Updates)
+        {
+            try
+            {
+                _context.Updates.AddRange(Updates);
+                await _context.SaveChangesAsync();
+                return Ok();
+            }
+            catch (System.Exception)
+            {
+                return BadRequest("Not able to save the list of items");
+            }
+        }
     }
 }

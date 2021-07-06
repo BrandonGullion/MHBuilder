@@ -1,0 +1,810 @@
+:root {
+    --background: #242a31;
+    --header-background: #2b343b;
+    --light-background: #3d464d;
+    --icone-hover: #3c444b;
+    --hightlightblue: #00adb5;
+    --lightergrey: #cccccc;
+    --test: #313841;
+}
+
+/********************* Tags *********************/
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-background);
+    padding-left: 80px;
+    padding-top: 15px;
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.5;
+}
+
+p {
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+}
+
+/*********************** Id's *************************/
+
+/* Ease-in and out close button while hovered, also click effects  */
+#deco-container1:hover #remove-deco-1 {
+    opacity: 1;
+}
+
+#deco-container1:active #remove-deco-1 {
+    background-color: var(--icone-hover);
+}
+
+#deco-container2:hover #remove-deco-2 {
+    opacity: 1;
+}
+
+#deco-container2:active #remove-deco-2 {
+    background-color: var(--icone-hover);
+}
+
+#deco-container3:hover #remove-deco-3 {
+    opacity: 1;
+}
+
+#deco-container3:active #remove-deco-3 {
+    background-color: var(--icone-hover);
+}
+
+/********************* Syncfusion Tab *********************/
+
+/* Header tab color */
+.e-tab .e-tab-header .e-toolbar-item.e-active .e-tab-text,
+.e-tab .e-tab-header .e-toolbar-item .e-active .e-tab-icon {
+    color: var(--lightergrey) !important;
+    font-family: "Open Sans", sans-serif !important;
+    font-size: 1rem;
+    text-transform: none;
+}
+
+/* Inactive tab */
+.e-tab .e-tab-header .e-toolbar-item .e-tab-text {
+    font-family: "Open Sans", sans-serif !important;
+    font-size: 1rem !important;
+    font-weight: 500;
+    text-transform: none !important;
+}
+
+/* Active indicator color */
+.e-tab .e-tab-header .e-indicator {
+    background: var(--lightergrey) !important;
+}
+
+/* non active header color */
+.e-tab .e-tab-header .e-toolbar-item .e-tab-wrap {
+    border-radius: 0;
+    color: rgba(0, 0, 0, 1) !important;
+}
+
+.e-tab .e-tab-header .e-toolbar-item .e-tab-wrap:hover {
+    transition: 0.2s;
+    border-radius: 3px 3px 0 0;
+    border-color: var(--hightlightblue) !important;
+}
+
+.e-tab .e-tab-header .e-toolbar-item .e-tab-wrap {
+    transition: 0.2s;
+    border-style: solid;
+    border-width: 2px;
+    border-color: transparent;
+    border-radius: 3px 3px 0 0;
+}
+
+/********************* Syncfusion Combobox *********************/
+
+.e-ddl.e-input-group.e-control-wrapper.e-input {
+    margin: 0 10px !important;
+    font-size: 16px;
+    color: var(--lightergrey) !important;
+}
+
+.e-ddl.e-input-group.e-control-wrapper.e-input-focus::before,
+.e-ddl.e-input-group.e-control-wrapper.e-input-focus::after {
+    background: var(--hightlightblue) !important;
+}
+
+/* This is for the drop down hover, focus and text color*/
+.e-dropdownbase .e-list-item.e-item-focus,
+.e-dropdownbase .e-list-item.e-active,
+.e-dropdownbase .e-list-item.e-active.e-hover,
+.e-dropdownbase .e-list-item.e-hover {
+    background-color: var(--lightergrey) !important;
+    color: var(--header-background) !important;
+}
+
+.e-float-input.e-input-group:not(.e-float-icon-left) .e-float-line::before,
+.e-float-input.e-control-wrapper.e-input-group:not(.e-float-icon-left)
+    .e-float-line::before,
+.e-float-input.e-input-group:not(.e-float-icon-left) .e-float-line::after,
+.e-float-input.e-control-wrapper.e-input-group:not(.e-float-icon-left)
+    .e-float-line::after {
+    background-color: #2319b8 !important;
+}
+
+.e-input-group:not(.e-float-icon-left):not(.e-float-input)::before,
+.e-input-group:not(.e-float-icon-left):not(.e-float-input)::after,
+.e-input-group.e-float-icon-left:not(.e-float-input) .e-input-in-wrap::before,
+.e-input-group.e-float-icon-left:not(.e-float-input) .e-input-in-wrap::after,
+.e-input-group.e-control-wrapper:not(.e-float-icon-left):not(.e-float-input)::before,
+.e-input-group.e-control-wrapper:not(.e-float-icon-left):not(.e-float-input)::after,
+.e-input-group.e-control-wrapper.e-float-icon-left:not(.e-float-input)
+    .e-input-in-wrap::before,
+.e-input-group.e-control-wrapper.e-float-icon-left:not(.e-float-input)
+    .e-input-in-wrap::after {
+    background: var(--hightlightblue) !important;
+}
+
+.e-float-input.e-input-group:not(.e-float-icon-left) .e-float-line::before,
+.e-float-input.e-input-group:not(.e-float-icon-left) .e-float-line::after,
+.e-float-input.e-input-group.e-float-icon-left
+    .e-input-in-wrap
+    .e-float-line::before,
+.e-float-input.e-input-group.e-float-icon-left
+    .e-input-in-wrap
+    .e-float-line::after,
+.e-float-input.e-control-wrapper.e-input-group:not(.e-float-icon-left)
+    .e-float-line::before,
+.e-float-input.e-control-wrapper.e-input-group:not(.e-float-icon-left)
+    .e-float-line::after,
+.e-float-input.e-control-wrapper.e-input-group.e-float-icon-left
+    .e-input-in-wrap
+    .e-float-line::before,
+.e-float-input.e-control-wrapper.e-input-group.e-float-icon-left
+    .e-input-in-wrap
+    .e-float-line::after {
+    background: var(--hightlightblue) !important;
+}
+
+.e-input-group input.e-input,
+.e-input-group.e-control-wrapper input.e-input,
+.e-float-input input,
+.e-float-input.e-control-wrapper input,
+.e-input-group textarea.e-input,
+.e-input-group.e-control-wrapper textarea.e-input,
+.e-float-input textarea,
+.e-float-input.e-control-wrapper textarea,
+.e-input-group .e-input[disabled],
+.e-input-group.e-control-wrapper .e-input[disabled],
+.e-input-group.e-disabled input.e-input,
+.e-input-group.e-control-wrapper.e-disabled input.e-input,
+.e-input-group.e-disabled textarea.e-input,
+.e-input-group.e-control-wrapper.e-disabled textarea.e-input {
+    background: none;
+    color: var(--lightergrey) !important;
+}
+
+.e-input-group .e-input-group-icon,
+.e-input-group.e-control-wrapper .e-input-group-icon {
+    font-size: 18px !important;
+}
+
+/********************* Website scrollbars *********************/
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background: rgba(204, 204, 204, 0.15);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    margin: 0 2px;
+    background: var(--header-background);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--background);
+}
+
+::-webkit-scrollbar-corner {
+    background-color: transparent;
+}
+
+/********************* Classes *********************/
+
+.root-div {
+    padding-top: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 100%;
+    height: 100%;
+}
+
+.icon {
+    padding: 10px;
+}
+
+.pad-left-10 {
+    padding-left: 10px;
+}
+
+.pad-left-30 {
+    padding-left: 30px;
+}
+
+.pad-top-5 {
+    padding-top: 5px;
+}
+
+.pad-tb-10 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.rounded-corners {
+    border-radius: 2px;
+}
+
+.justify-space-around {
+    justify-content: space-around;
+    align-content: center;
+}
+
+.display-inline-block {
+    display: inline-block;
+}
+
+.mhbuilder-header {
+    background-color: var(--background);
+    height: 2.2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    color: white;
+    margin: 0 auto;
+    position: relative;
+    top: 5px;
+    left:55px
+}
+
+.sidebar {
+    background-color: var(--background);
+    position: fixed;
+    top: 2rem;
+    left: 0;
+    width: 80px;
+    height: 100%;
+    z-index: 2;
+}
+
+.sidebar a {
+    border-radius: 100%;
+    display: block;
+    height: 60px;
+    width: 60px;
+    margin: 5px;
+    transition: 0.5s;
+    transition-property: background;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    background-color: var(--icone-hover);
+    border-radius: 100%;
+}
+
+.sidebar-icon {
+    color: var(--lightergrey);
+    font-size: 2rem;
+    padding: 0.8rem;
+    position: relative;
+    left: 2px;
+    text-decoration: none;
+}
+
+.card {
+    background-color: var(--background);
+    border-radius: 3px;
+    margin: 10px;
+    position: relative;
+}
+
+.glass-card {
+    color: var(--lightergrey);
+    margin: 5px 0px 5px 0px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+        to right bottom,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.2)
+    );
+    backdrop-filter: blur(2rem);
+}
+
+.glass-card-current-weapon {
+    color: var(--lightergrey);
+    margin: 5px 0px 5px 0px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+        to right bottom,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.2)
+    );
+    backdrop-filter: blur(2rem);
+}
+
+.glass-card-weapon-item {
+    color: var(--lightergrey);
+    margin: 5px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+        to right bottom,
+        rgba(255, 255, 255, 0.05),
+        rgba(255, 255, 255, 0.1)
+    );
+    backdrop-filter: blur(2rem);
+}
+
+.glass-card-no-background {
+    color: var(--lightergrey);
+    margin: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-card-banner {
+    min-width: 1400px;
+    height: 350px;
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.banner-welcome {
+    font-size: 8rem;
+    position: relative;
+    bottom: 30px;
+    left: 10%;
+}
+
+.banner-subtext {
+    font-size: 3rem;
+    position: relative;
+    left: 23%;
+    bottom: 130px;
+}
+
+.banner-image {
+    position: absolute;
+    right: 0px;
+    top: -70px;
+    opacity: 0.8;
+}
+
+.glass-card-fill {
+    height: 100%;
+    width: 100%;
+}
+
+.glass-card-header {
+    background-color: var(--background);
+    padding: 5px;
+}
+
+.glass-card-header h2 {
+    font-weight: 300;
+    margin: 0 30px 0 0;
+}
+
+.glass-card-header h3 {
+    font-weight: 300;
+    margin: 0;
+}
+
+.glass-card-content {
+    padding: 0px 10px 10px 10px;
+}
+
+.linebreak {
+    background: var(--lightergrey);
+    height: 1pt;
+    margin: 30px 0px;
+    width: 95%;
+}
+
+.update-date {
+    font-weight: 100;
+    margin-left: 20px;
+    opacity: 0.5;
+}
+
+.update-title {
+    font-weight: 300;
+}
+
+.update-content {
+    font-weight: 300;
+}
+
+.update-fix-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.current-armor-display {
+    display: inline-block;
+}
+
+.deco-display {
+    display: flex;
+    justify-content: space-around;
+}
+
+.armor-item {
+    align-content: center;
+    display: flex;
+    justify-content: left;
+}
+
+.armor-item-icon {
+    height: 30px;
+    width: 30px;
+    padding: 10px;
+    font-size: 1.5rem;
+    display: flex;
+    color: var(--lightergrey);
+    justify-content: center;
+    align-content: center;
+}
+
+.current-set-label {
+    color: var(--lightergrey);
+    font-size: 0.9rem;
+}
+
+.armor-item-content {
+    padding: 0;
+    position: relative;
+}
+
+.armor-item-content span {
+    left: 10px;
+    position: absolute;
+    top: 27%;
+}
+
+.deco-icon {
+    display: flex;
+    padding: 10px;
+    margin: 0px;
+    font-size: 1rem;
+}
+
+.deco-content {
+    padding: 7px 10px 0 10px;
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+.deco-container-1 {
+    display: flex;
+    justify-content: left;
+    position: relative;
+    color: var(--lightergrey);
+    margin: 0px 5px 5px 0px;
+    width: 100%;
+    height: 35px;
+    min-width: 120px;
+}
+
+.deco-container-2 {
+    display: flex;
+    justify-content: left;
+    margin: 0px 0px 5px 0px;
+    width: 100%;
+    height: 35px;
+    min-width: 120px;
+}
+
+.deco-container-3 {
+    display: flex;
+    justify-content: left;
+    margin: 0px 0px 5px 5px;
+    width: 100%;
+    height: 35px;
+    min-width: 120px;
+}
+
+.deco-container:hover.remove-circle-right {
+    background-color: red;
+    opacity: 1;
+}
+
+.current-equipment-pane {
+    min-width: 500px;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.remove-circle-right {
+    color: rgb(255, 110, 110);
+    border-radius: 100%;
+    font-size: 1.5rem;
+    opacity: 0;
+    padding: 2px;
+    pointer-events: none;
+    position: absolute;
+    right: 5px;
+    top: 15%;
+    transition: 0.3s;
+}
+
+.select-container {
+    margin: 15px 5px 0px 5px;
+}
+
+.stats-container {
+    margin: 15px 0 0 5px;
+    width: 300px;
+}
+
+.armor-deco-tab-container {
+    margin: 10px;
+}
+
+.armor-deco-tab-container a {
+    color: var(--lightergrey);
+    background-color: var(--background);
+}
+
+.armor-deco-tab-container a:active {
+    background-color: var(--background);
+}
+
+.armor-deco-tab {
+    padding: 0 10px;
+}
+
+.white-border-hover {
+    transition: 0.1s;
+    padding: 3px;
+    border-color: transparent;
+    border-radius: 2px;
+}
+
+.white-border-hover:hover {
+    border-radius: 2px;
+    border-color: var(--hightlightblue);
+    border-style: solid;
+    border-width: 2px;
+    cursor: pointer;
+}
+
+.white-border-hover:active {
+    border-color: white;
+}
+
+.deco-white-border-hover {
+    transition: 0.1s;
+    border-color: transparent;
+    border-radius: 2px;
+}
+
+.deco-white-border-hover:hover {
+    border-radius: 2px;
+    border-color: var(--hightlightblue);
+    border-style: solid;
+    border-width: 2px;
+    cursor: pointer;
+}
+
+.deco-white-border-hover:active {
+    border-color: white;
+}
+
+.active-item-border {
+    border-radius: 2px;
+    border-color: white;
+    border-style: solid;
+    border-width: 2px;
+    cursor: pointer;
+}
+
+.select-equipment-no-armor {
+    margin-top: 3px;
+}
+
+.stat-item-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 10px;
+    margin: 5px;
+}
+
+.stat-item-container h4 {
+    position: absolute;
+    left: 0;
+}
+
+.stat-item-container label {
+    position: absolute;
+    top: -1px;
+    right: 0px;
+}
+
+.skill-level-indicator-over {
+    color: red;
+}
+
+.skill-level-indicator {
+    position: absolute;
+    right: 0px;
+}
+
+.dotted-linebreak {
+    border-style: dotted;
+    border-color: white;
+    border-width: 0 0 5px 0;
+    opacity: 0.5;
+    margin: 10px auto 10px auto;
+    width: 40px;
+}
+
+.armor-popup {
+    background-color: var(--header-background);
+    border-radius: 3px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: var(--hightlightblue);
+    color: var(--lightergrey);
+    padding: 5px 20px 5px 25px;
+}
+
+.skill-popup {
+    background-color: var(--header-background);
+    border-radius: 3px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: var(--hightlightblue);
+    color: var(--lightergrey);
+    padding: 5px 20px 5px 25px;
+}
+
+.radio-button {
+    border-color: var(--lightergrey);
+    border-style: solid;
+    border-radius: 3px;
+    border-width: 2px;
+    color: var(--lightergrey);
+    cursor: pointer;
+    margin-top: 15px;
+    padding: 10px 10px 0 10px;
+    transition: 0.2s;
+    z-index: 5;
+}
+
+.radio-button:hover {
+    border-color: var(--hightlightblue);
+}
+
+.radio-button label {
+    cursor: pointer;
+}
+
+.weapon-sharpness-container {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+}
+
+.weapon-sharpness-bar {
+    border-radius: 10px;
+    border-width: 1px;
+    overflow: hidden;
+    background-color: var(--icone-hover);
+    width: 130px;
+    height: 10px;
+    display: flex;
+    justify-content: left;
+    margin: 11px 0 10px 30px;
+}
+
+.default-button {
+    border-radius: 3px;
+    color: var(--lightergrey);
+    border-color: var(--lightergrey);
+    border-style: solid;
+    padding: 3px 10px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.default-button:hover {
+    border-color: var(--hightlightblue);
+}
+
+.default-button:active {
+    border-color: white;
+}
+
+.index-button {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+    color: var(--lightergrey) !important;
+    width: 200px;
+    font-size: 32px;
+    padding: 10px 50px;
+    border: var(--lightergrey) 2px solid;
+    border-radius: 3px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.index-button:hover {
+    text-decoration: none;
+    color: var(--hightlightblue) !important;
+    border-color: var(--hightlightblue);
+    box-shadow: 0px 0px 10px 2px var(--hightlightblue);
+}
+
+.index-button:active {
+    border-color: white;
+    color: white;
+    box-shadow: 0px 0px 10px 2px white;
+}
+
+.talisman-decoration-slot {
+    margin: 0px;
+}
+
+.default-input {
+    background: transparent;
+    border: solid 1px #ccc;
+    border-radius: 3px;
+    color: white;
+    padding: 5px 10px;
+    transition: 0.2s;
+    margin: 5px;
+}
+
+.default-input:focus {
+    box-shadow: 0px 0px 10px -3px var(--hightlightblue);
+    border: solid 1px var(--hightlightblue);
+    outline-width: 0;
+}
+
+.default-input::placeholder {
+    color: #ccc;
+}
+
+.weapon-prop-dropdown {
+    width: 105px;
+}

@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import emailjs from "emailjs-com";
 
 export default function ContactPage() {
+    const [emailSent, setEmailSent] = useState(false);
+
     function sendEmail(e) {
         e.preventDefault();
 
@@ -14,6 +16,7 @@ export default function ContactPage() {
             )
             .then(
                 (result) => {
+                    setEmailSent(true);
                     console.log(result.text);
                 },
                 (error) => {
@@ -45,53 +48,76 @@ export default function ContactPage() {
                 }}
             >
                 {/* Left side of the screen */}
-                <form
-                    onSubmit={sendEmail}
-                    style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        position: "relative",
-                        width: "400px",
-                        marginTop: "50px",
-                    }}
-                >
-                    <input
-                        className="default-input"
-                        placeholder="Name   (optional)"
-                        name="name"
-                    ></input>
-                    <input
-                        className="default-input"
-                        placeholder="Email   (optional)"
-                        name="email"
-                    ></input>
-                    <input
-                        className="default-input"
-                        placeholder="Subject"
-                        name="subject"
-                    ></input>
-                    <textarea
-                        style={{ height: "150px" }}
-                        className="default-input"
-                        placeholder="Enter bug/improvement ideas here..."
-                        name="message"
-                    ></textarea>
-                    <div style={{ position: "relative" }}>
-                        <button
-                            type="submit"
-                            className="index-button"
+                {!emailSent ? (
+                    <form
+                        onSubmit={sendEmail}
+                        style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            position: "relative",
+                            width: "400px",
+                            marginTop: "50px",
+                        }}
+                    >
+                        <input
+                            className="default-input"
+                            placeholder="Name   (optional)"
+                            name="name"
+                        ></input>
+                        <input
+                            className="default-input"
+                            placeholder="Email   (optional)"
+                            name="email"
+                        ></input>
+                        <input
+                            className="default-input"
+                            placeholder="Subject"
+                            name="subject"
+                        ></input>
+                        <textarea
+                            style={{ height: "150px" }}
+                            className="default-input"
+                            placeholder="Enter bug/improvement ideas here..."
+                            name="message"
+                        ></textarea>
+                        <div style={{ position: "relative" }}>
+                            <button
+                                type="submit"
+                                className="index-button"
+                                style={{
+                                    position: "absolute",
+                                    right: "0",
+                                    fontSize: "16px",
+                                    margin: "5px",
+                                    padding: "5px 10px",
+                                }}
+                            >
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                ) : (
+                    <div
+                        style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignContent: "center",
+                        }}
+                    >
+                        <label
                             style={{
-                                position: "absolute",
-                                right: "0",
-                                fontSize: "16px",
-                                margin: "5px",
-                                padding: "5px 10px",
+                                color: "#ccc",
+                                fontSize: "24px",
+                                width: "300px",
+                                textAlign: "center",
+                                margin:"auto 0"
                             }}
                         >
-                            Submit
-                        </button>
+                            Thank you for submitting your feedback!
+                        </label>
                     </div>
-                </form>
+                )}
+
                 {/* Center line break */}
                 <div
                     style={{

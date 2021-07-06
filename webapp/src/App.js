@@ -12,37 +12,41 @@ import LoginPage from "./Pages/LoginPage";
 import DevContext from "./Contexts/DevContext";
 import PrivateRoute from "./Components/PrivateRoute";
 import ContactPage from "./Pages/ContactPage";
+import NotFoundPage from "./Pages/NotFoundPage";
 
 function App() {
     return (
         <Fragment>
-            <Router>
-                <Header></Header>
-                <Navbar></Navbar>
-                <Switch>
-                    <Route exact path="/">
-                        <HomePageContext>
-                            <Index></Index>
-                        </HomePageContext>
-                    </Route>
-                    <Route exact path="/contact">
-                        <ContactPage></ContactPage>
-                    </Route>
-                    <Route exact path="/builder">
-                        <BuilderContext>
-                            <BuilderPage></BuilderPage>
-                        </BuilderContext>
-                    </Route>
-                    <DevContext>
+            <DevContext>
+                <Router>
+                    <Header></Header>
+                    <Navbar></Navbar>
+                    <Switch>
+                        <Route exact path="/">
+                            <HomePageContext>
+                                <Index></Index>
+                            </HomePageContext>
+                        </Route>
+                        <Route exact path="/contact">
+                            <ContactPage></ContactPage>
+                        </Route>
+                        <Route exact path="/builder">
+                            <BuilderContext>
+                                <BuilderPage></BuilderPage>
+                            </BuilderContext>
+                        </Route>
                         <PrivateRoute exact path="/dev">
                             <DeveloperPage></DeveloperPage>
                         </PrivateRoute>
                         <Route exact path="/login">
                             <LoginPage></LoginPage>
                         </Route>
-                    </DevContext>
-                </Switch>
-            </Router>
+                        <Route>
+                            <NotFoundPage></NotFoundPage>
+                        </Route>
+                    </Switch>
+                </Router>
+            </DevContext>
         </Fragment>
     );
 }

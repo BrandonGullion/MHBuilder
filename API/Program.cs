@@ -23,7 +23,6 @@ namespace API
                 var context = services.GetRequiredService<DataContext>();
                 var userManager = services.GetRequiredService<UserManager<DevUser>>();
                 context.Database.Migrate();
-                Seed.SeedSkills(context);
                 await Seed.SeedUser(context, userManager);
             }
             catch (Exception ex)

@@ -1,4 +1,3 @@
-import axios from "axios";
 import { createContext, useReducer, useEffect } from "react";
 import agent from "../Api/agent";
 
@@ -185,11 +184,19 @@ export const BuilderContext = (props) => {
 
     // Set the initial values when the armor and weapon property gets data from api
     useEffect(() => {
-        dispatch({ type: "SET_HELM", payload: state.armors[0] });
-        dispatch({ type: "SET_CHEST", payload: state.armors[1] });
-        dispatch({ type: "SET_ARMS", payload: state.armors[2] });
-        dispatch({ type: "SET_COIL", payload: state.armors[3] });
-        dispatch({ type: "SET_LEGS", payload: state.armors[4] });
+
+        // Gets the index for the started gear
+        const helmIndex = state.armors.findIndex(x => x.armorSetId === 1 && x.type === "Helm");
+        const chestIndex = state.armors.findIndex((x) => x.armorSetId === 1 && x.type === "Chest");
+        const armIndex = state.armors.findIndex(x => x.armorSetId === 1 && x.type === "Arms");
+        const coilIndex = state.armors.findIndex(x => x.armorSetId === 1 && x.type === "Coil");
+        const legIndex = state.armors.findIndex(x => x.armorSetId === 1 && x.type === "Legs");
+
+        dispatch({ type: "SET_HELM", payload: state.armors[helmIndex] });
+        dispatch({ type: "SET_CHEST", payload: state.armors[chestIndex] });
+        dispatch({ type: "SET_ARMS", payload: state.armors[armIndex] });
+        dispatch({ type: "SET_COIL", payload: state.armors[coilIndex] });
+        dispatch({ type: "SET_LEGS", payload: state.armors[legIndex] });
         dispatch({
             type: "SET_CURRENT_SKILLS",
             payload: populateSkills(state),

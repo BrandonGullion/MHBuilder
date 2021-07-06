@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BuilderStateContext } from "../../../Contexts/BuilderContext";
 import RadioButton from "../../ReUsable/RadioButton";
 import EquipmentSet from "./EquipmentSet";
@@ -6,7 +6,7 @@ import EquipmentSet from "./EquipmentSet";
 export default function ArmorTabContents() {
     // List of armors that will be iterated over
     const state = useContext(BuilderStateContext);
-    const {armors} = state;
+    const { armors } = state;
 
     const armorRanks = {
         highRank: "HighRank",
@@ -16,8 +16,8 @@ export default function ArmorTabContents() {
     const [armorRank, setArmorRank] = useState(armorRanks.lowRank);
 
     // Nested array that will hold sets of armor based on armorSetId Prop
-    const sortedHighRankArmors = [];
-    const sortedLowRankArmors = [];
+    const [sortedHighRankArmors, setSortedHighRankArmors] = useState([]);
+    const [sortedLowRankArmors, setSortedLowRankArmors] = useState([]);
 
     // using this in case there is a master or G rank introduced and bool
     // will not be enough
@@ -37,17 +37,17 @@ export default function ArmorTabContents() {
     const renderArmors = () => {
         switch (armorRank) {
             case armorRanks.highRank:
-                return sortedHighRankArmors.map((armorArray) => (
+                return sortedHighRankArmors.map((x) => (
                     <EquipmentSet
-                        key={armorArray[0].armorSetId}
-                        armorArray={armorArray}
+                        key={x.armorArray[0].armorSetId}
+                        armorArray={x.armorArray}
                     ></EquipmentSet>
                 ));
             case armorRanks.lowRank:
-                return sortedLowRankArmors.map((armorArray) => (
+                return sortedLowRankArmors.map((x) => (
                     <EquipmentSet
-                        key={armorArray[0].armorSetId}
-                        armorArray={armorArray}
+                        key={x.armorArray[0].armorSetId}
+                        armorArray={x.armorArray}
                     ></EquipmentSet>
                 ));
             default:
@@ -55,24 +55,61 @@ export default function ArmorTabContents() {
         }
     };
 
-    // Populate the sortedArmors array, creating new nested arrays if there is not an array present
-    // ***armorSetId represents the array placement
-    armors.forEach((armor) => {
-        // Sets the low rank array
-        if (armor.rank === "Low") {
-            if (sortedLowRankArmors.length < armor.armorSetId) {
-                sortedLowRankArmors.push([]);
-            }
-            sortedLowRankArmors[armor.armorSetId - 1].push(armor);
+    useEffect(() => {
+        if (state.armors.length > 0 && state.armors !== undefined) {
+            // Populate the sortedArmors array, creating new nested arrays if there is not an array present
+            // ***armorSetId represents the array placement
+            armors.forEach((armor) => {
+                // Sets the low rank array
+                if (armor.rank === "Low") {
+                    // There is not another piece of armor with the id present in the array
+                    if (
+                        !sortedLowRankArmors.some(
+                            (x) => x.id === armor.armorSetId
+                        )
+                    ) {
+                        // Need to add a new object to the array
+                        sortedLowRankArmors.push({
+                            id: armor.armorSetId,
+                            armorArray: [],
+                        });
+                    }
+
+                    let index = sortedLowRankArmors.findIndex(
+                        (x) => x.id === armor.armorSetId
+                    );
+                    sortedLowRankArmors[index].armorArray.push(armor);
+                }
+                // Sets the high rank array
+                else if (armor.rank === "High") {
+                    if (
+                        !sortedHighRankArmors.some(
+                            (x) => x.id === armor.armorSetId
+                        )
+                    ) {
+                        // Need to add a new object to the array
+                        sortedHighRankArmors.push({
+                            id: armor.armorSetId,
+                            armorArray: [],
+                        });
+                    }
+
+                    let index = sortedHighRankArmors.findIndex(
+                        (x) => x.id === armor.armorSetId
+                    );
+                    sortedHighRankArmors[index].armorArray.push(armor);
+                }
+            });
+
+            // Sort them by armor set id aka. object id 
+            setSortedHighRankArmors(
+                sortedHighRankArmors.sort((a, b) => (a.id > b.id ? 1 : -1))
+            );
+            setSortedLowRankArmors(
+                sortedLowRankArmors.sort((a, b) => (a.id > b.id ? 1 : -1))
+            );
         }
-        // Sets the high rank array
-        else if (armor.rank === "High") {
-            if (sortedHighRankArmors.length < armor.armorSetId) {
-                sortedHighRankArmors.push([]);
-            }
-            sortedHighRankArmors[armor.armorSetId - 1].push(armor);
-        }
-    });
+    }, [state.armors]);
 
     return (
         <div

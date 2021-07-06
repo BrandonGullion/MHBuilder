@@ -16,6 +16,7 @@ export default function BuilderPage() {
         await new Promise((resolve) => setTimeout(resolve, stallTime));
     }
 
+    // Note that if there is no data present, then it will never finish loading... probably ok
     useEffect(async () => {
         if (
             state.weapons.length > 0 &&

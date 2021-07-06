@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Classes;
 using Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -24,7 +25,7 @@ namespace API.Controllers
         }
 
         // Save fix to the database
-
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> CreateFix(object data) {
             var StringData = data.ToString();

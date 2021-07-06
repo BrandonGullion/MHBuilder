@@ -27,10 +27,12 @@ namespace API
         {
             services.AddControllers();
             // This allows for outside api to access the information present 
-            services.AddCors(options => options.AddDefaultPolicy(builder => 
+            services.AddCors(options => options.AddPolicy("CorsPolicy", policy => 
             {
-                builder.WithOrigins("http://localhost:3000"); 
-                builder.AllowAnyHeader();
+                policy.AllowAnyHeader()
+                      .AllowAnyMethod()
+                      .AllowCredentials()
+                      .WithOrigins("http://localhost:3000");
             }));
             services.AddSwaggerGen(c =>
             {
@@ -38,7 +40,7 @@ namespace API
             });
 
             services.AddDbContext<DataContext>(opt => {
-                opt.UseSqlite(_config.GetConnectionString("DefaultConnection"));
+                opt.UseNpgsql(_config.GetConnectionString("DefaultConnection"));
             });
 
             services.AddIdentityServices(_config);
@@ -56,7 +58,13 @@ namespace API
 
             app.UseRouting();
 
-            app.UseCors();
+            // This will look for anything inside the wwwroot folder for an index.html file
+            app.UseDefaultFiles();
+
+            // By default this will serve static files from the wwwroot folder
+            app.UseStaticFiles();
+
+            app.UseCors("CorsPolicy");
 
             // This order is important
             app.UseAuthentication();
@@ -65,6 +73,7 @@ namespace API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapFallbackToController("Index","Fallback");
             });
         }
     }

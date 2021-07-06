@@ -54,5 +54,21 @@ namespace API.Controllers
             }
 
         } 
+
+        [Authorize]
+        [HttpPost("addmany")]
+        public async Task<IActionResult> CreateSkills (List<Skill> Skills)
+        {
+            try
+            {
+                _context.Skills.AddRange(Skills);
+                await _context.SaveChangesAsync();
+                return Ok();
+            }
+            catch (System.Exception)
+            {
+                return BadRequest("Not able to save the list of items");
+            }
+        }
     }
 }
