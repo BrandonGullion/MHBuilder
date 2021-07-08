@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using API.Extensions;
 using Data;
 using Microsoft.AspNetCore.Authorization;
@@ -34,6 +35,7 @@ namespace API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
             });
 
+            services.AddIdentityServices(_config);
             services.AddDbContext<DataContext>(options => 
             {
                 var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
@@ -77,8 +79,8 @@ namespace API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
+                // app.UseSwagger();
+                // app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
             }
 
             app.UseRouting();

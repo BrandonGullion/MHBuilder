@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace Classes
 {
-    public class Armor
+    public class Armor 
     {
+
         public int Id { get; set; }
         public string Name { get; set; }
+
         public string Rank { get; set; }
 
         // Typing should always use the armor type enum.tostring()
@@ -31,7 +33,6 @@ namespace Classes
         public int DecoSlot1Lvl { get; set; }
         public int DecoSlot2Lvl { get; set; }
         public int DecoSlot3Lvl { get; set; }
-
         public string StringSkills { get; set; }
         [NotMapped]
         public List<Skill> Skills { get; set; }

@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210705184607_PGInitial")]
-    partial class PGInitial
+    [Migration("20210708132646_ChangedBulletinDateToDateCreated")]
+    partial class ChangedBulletinDateToDateCreated
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -91,7 +91,7 @@ namespace Data.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("text");
 
-                    b.Property<string>("Date")
+                    b.Property<string>("DateCreated")
                         .HasColumnType("text");
 
                     b.Property<string>("Title")

@@ -30,7 +30,7 @@ namespace API.Controllers
         {
             try
             {
-                bulletin.Date = DateTime.Now.ToString("dd MMMM yyyy");
+                bulletin.DateCreated = DateTime.Now.ToString("dd MMMM yyyy");
                 _context.Bulletins.Add(bulletin);
                 await _context.SaveChangesAsync();
                 return Ok();

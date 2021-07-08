@@ -5,10 +5,12 @@ namespace Classes
 {
     public class Weapon
     {
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
         public int Rarity { get; set; }
+
         public int DefenseIncrease { get; set; }
         public string PhialOrShellingType { get; set; }
         public string Melody { get; set; }
@@ -34,12 +36,10 @@ namespace Classes
         public double WhiteSharpness { get; set; }
         public double PurpleSharpness { get; set; }
 
-
         // Rampage skills 
         public string StringRampageSkills { get; set; }
         [NotMapped]
         public List<RampageSkill> RampageSkills { get; set; }
-
         // Decoration slots and their level 
         public int DecoSlot1Lvl { get; set; }
         public int DecoSlot2Lvl { get; set; }

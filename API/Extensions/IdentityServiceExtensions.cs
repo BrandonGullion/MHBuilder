@@ -15,10 +15,7 @@ namespace API.Extensions
         // This creates an extension method that can be accessed in the services class as a static member
         public static IServiceCollection AddIdentityServices(this IServiceCollection services, IConfiguration config) 
         {
-            services.AddIdentityCore<DevUser>(opt => {
-                // Can change password requirements in this section, by default
-                // it is always strict, needs 1 upper and lower case, 1 number and 1 symbol
-            })
+            services.AddIdentityCore<DevUser>()
             .AddEntityFrameworkStores<DataContext>()
             .AddSignInManager<SignInManager<DevUser>>();
 

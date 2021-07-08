@@ -27,8 +27,8 @@ namespace API
             catch (Exception ex)
             {
                 var logger = services.GetRequiredService<ILogger<Program>>();
-                logger.LogError("An error occurred during migration");
-                logger.LogError(ex.Message);
+                logger.LogError("Error at program.cs");
+                logger.LogError(ex.ToString());
             }
             await host.RunAsync();
         }
